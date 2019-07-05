@@ -3,7 +3,6 @@ import React from 'react';
 let toTopThisScroll = (e) => {
   let toTopposition = document.getElementById(e.target.getAttribute('toelement')).offsetTop;
   document.getElementById('content').scrollTo({top: toTopposition, behavior: 'smooth'});
-  // document.getElementById('scrollBlock').getElementsByTagName('div')[0].scrollTo({top: 0, behavior: 'smooth'});
 }
 
 let parseMenu = (dataMenu, m) => {

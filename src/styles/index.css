@@ -1,6 +1,16 @@
 @font-face {
-  font-family: DefaultText; /* Имя шрифта */
+  font-family: TitleText; /* Имя шрифта */
   src: url(fonts/16846.ttf); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+  font-family: DefaultText; /* Имя шрифта */
+  src: url(fonts/16857.ttf); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+  font-family: VerbenaC; /* Имя шрифта */
+  src: url(fonts/17007.otf); /* Путь к файлу со шрифтом */
 }
 
 html{
@@ -18,13 +28,17 @@ a{
   cursor: pointer;
 }
 
+.max1024{
+  max-width: 1024px;
+}
+
 .content{
   width: 100%;
   height: 100%;
   position: absolute;
   left: 0;
   top: 0;
-  overflow: scroll;
+  overflow: hidden;
   overflow-x: hidden;
 }
 
@@ -34,6 +48,7 @@ a{
   position: relative;
   display: inline-block;
   float: left;
+  background-color: #f6f6f6;
 }
 
 /** Preloader **/
@@ -61,6 +76,54 @@ a{
   opacity: 0;
 }
 
+/** Bar **/
+.navBar{
+
+}
+
+.navBar .pageBar{
+  position: fixed;
+  z-index: 3;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 10px;
+  max-width: 30px;
+}
+
+.navBar .pageBar .miniPageBar{
+  width: 30px;
+  height: 5px;
+  background-color: white;
+  margin: 7px 0;
+  border-radius: 2px;
+  border: 1px solid #30d5c8;
+  cursor: pointer;
+  display: inline-block;
+  transition: 0.3s;
+  /* float: left; */
+}
+
+
+
+.miniPageBar div{
+  color: white;
+  width: 5px;
+  word-wrap: break-word;
+  margin-top: 11px;
+  text-align: center;
+  display: none;
+  margin-left: 9px;
+  letter-spacing: 0px;
+  font-family: DefaultText;
+}
+
+.miniPageBar.activepagebar div{
+  display: block;
+}
+
+.navBar .pageBar .miniPageBar.activepagebar{
+    width: 45px;
+}
 /** mainMenu **/
 .mainMenu{
   position: absolute;
@@ -86,7 +149,7 @@ a{
   display: inline-block;
   margin: 5px 10px;
   font-size: 18px;
-  font-family: DefaultText;
+  font-family: TitleText;
   text-transform: uppercase;
   cursor: pointer;
   position: relative;
@@ -147,6 +210,40 @@ a{
   background-image: url(https://www.transparenttextures.com/patterns/dark-dotted-2.png);
 }
 
+.headBackgroundFilter svg{
+  max-width: 80%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.headBackgroundFilter svg .cls-1, .headBackgroundFilter svg .cls-2 {
+    stroke: #fff;
+}
+
+.headerBackgroundTextDataLine{
+  position: absolute;
+  left: 50%;
+  top: calc(50% - 65px);
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  text-transform: uppercase;
+  padding: 20px;
+  background-color: #30d5c873;
+  background-color: rgba(48, 213, 200, 0.57);
+  background-image: url(https://www.transparenttextures.com/patterns/dark-dotted-2.png);
+  color: white;
+  font-family: DefaultText;
+  text-align: center;
+}
+
+.headerBackgroundTextDataLine .HBTL.board{
+  border-bottom: 1px solid white;
+  padding-bottom: 10px;
+  margin-bottom: 9px;
+}
+
 .headButtons{
   position: absolute;
   width: 100%;
@@ -200,6 +297,7 @@ a{
   vertical-align: bottom;
   transition: transform 1s cubic-bezier(.01,.32,.11,.99);
   will-change: transform;
+  fill: rgb(48, 213, 200);
 }
 
 .headFooterSvg.openHeadSvg svg{
@@ -215,8 +313,306 @@ a{
   font-family: DefaultText;
 }
 
+.toScrollButton.openHeadSvg::before,.toScrollButton.openHeadSvg::after{
+  content: '';
+}
+.toScrollButton.openHeadSvg::before{
+
+}
+.toScrollButton.openHeadSvg::after{
+
+}
+
 
 /** About **/
 .block.about{
-    background-color: #30d5c8;
+  background-color: #30d5c8;
+  height: fit-content;
+}
+
+.aboutMiniText{
+  text-align: center;
+  margin: auto;
+  font-family: DefaultText;
+  color: white;
+  font-size: 22px;
+  white-space: pre-line;
+}
+
+.aboutMiniText .paragraphLine{
+  width: 80%;
+  margin: auto;
+  height: 1px;
+  background-color: white;
+  margin: 30px auto 30px auto;
+  position: relative;
+}
+
+.aboutMiniText .paragraphLine svg{
+  padding: 5px;
+  background-color: #30d5c8;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: -15px;
+  font-size: 28px;
+}
+
+.sosialAbout{
+  width: fit-content;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.sosialAbout a{
+  font-size: 30px;
+  margin: 10px;
+  color: white;
+}
+
+.aboutFooterSvg{
+  width: 100%;
+  height: 100%;
+}
+
+.aboutFooterSvg .containSvg{
+  bottom: 0;
+  width: 100%;
+}
+
+.aboutFooterSvg .containSvg svg{
+  width: 100%;
+  height: 100%;
+  transform: scaleX(1) scaleY(1);
+  transform-origin: bottom;
+  vertical-align: bottom;
+  transition: transform 1s cubic-bezier(.01,.32,.11,.99);
+  will-change: transform;
+  fill: rgb(246, 246, 246);
+}
+
+
+/** ServicesBlock **/
+.services{
+
+}
+
+.services .blockTitle{
+  margin: auto;
+  width: fit-content;
+  text-transform: uppercase;
+  font-family: DefaultText;
+  font-size: 40px;
+}
+
+.services .blockMiniText{
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  font-size: 29px;
+  font-family: VerbenaC;
+  color: #30d5c8;
+}
+
+.servicesContent{
+  max-width: 1024px;
+  margin: auto;
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 10px;
+  border-top: 1px solid #30d5c8;
+}
+
+.servicesContent .myService{
+  display: inline-block;
+  margin: 10px;
+  width: calc(100% / 4 - 20px);
+  text-align: center;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.servicesContent .myService:hover{
+  transform: scale(1.2);
+}
+
+.myServiceTitle{
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+      font-family: DefaultText;
+}
+
+.serviceLine{
+  width: 100%;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.serviceIcon{
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background: #ff9696;
+  transition: 0.3s;
+}
+
+#serv0 .serviceIcon{
+  animation: shadowDinamic 8s cubic-bezier(0, 0, 1, 0.99);;
+  animation-iteration-count: infinite;
+}
+#serv1 .serviceIcon{
+  animation: shadowDinamic 10s cubic-bezier(0.4, 0.74, 0.56, 0.82);
+  animation-iteration-count: infinite;
+}
+#serv2 .serviceIcon{
+  animation: shadowDinamic 8s cubic-bezier(0.4, 0.74, 0.56, 0.82);
+  animation-iteration-count: infinite;
+}
+#serv3 .serviceIcon{
+  animation: shadowDinamic 10s cubic-bezier(0.4, 0.74, 0.56, 0.82);
+  animation-iteration-count: infinite;
+}
+#serv4 .serviceIcon{
+  animation: shadowDinamic 11s cubic-bezier(0.4, 0.74, 0.56, 0.82);
+  animation-iteration-count: infinite;
+}
+#serv5 .serviceIcon{
+  animation: shadowDinamic 9s cubic-bezier(0.4, 0.74, 0.56, 0.82);
+  animation-iteration-count: infinite;
+}
+#serv6 .serviceIcon{
+  animation: shadowDinamic 12s cubic-bezier(0.4, 0.74, 0.56, 0.82);
+  animation-iteration-count: infinite;
+}
+
+@keyframes shadowDinamic {
+  0%,
+100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+ 14% { border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%; }
+ 28% { border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%; }
+ 42% { border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%; }
+ 56% { border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%; }
+ 70% { border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%; }
+ 84% { border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%; }
+}
+
+/** GalleryBlock **/
+.gallery{
+
+}
+
+.gallery .blockTitle{
+  margin: auto;
+  width: fit-content;
+  text-transform: uppercase;
+  font-family: DefaultText;
+  font-size: 40px;
+}
+
+
+.galleryPhoto{
+  margin: -2px 0;
+  padding: 0;
+  display: inline-block;
+  width: calc(100% / 4);
+  overflow: hidden;
+  height: 340px;
+  position: relative;
+  cursor: pointer;
+}
+
+.hoverImage{
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-size: 3em;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.galleryPhoto:hover .hoverImage{
+  opacity: 1;
+}
+
+.galleryPhoto:hover img{
+  transform: translate(-50%, 0) scale(1.1);
+  filter: blur(3px);
+}
+
+.galleryPhoto img{
+  max-height: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  transition: 0.3s;
+  min-height: 100%;
+}
+
+/** StaffBlock **/
+.staff{
+
+}
+
+.staff .blockTitle{
+  margin: auto;
+  width: fit-content;
+  text-transform: uppercase;
+  font-family: DefaultText;
+  font-size: 40px;
+}
+
+/** ContactsBlock **/
+.contacts{
+
+}
+
+.contacts .blockTitle{
+  margin: auto;
+  width: fit-content;
+  text-transform: uppercase;
+  font-family: DefaultText;
+  font-size: 40px;
+}
+
+
+/** Фото модал **/
+.imageModal{
+  position: fixed;
+  z-index: 21;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.79);
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+.imageModal.hiden{
+  display: none;
+}
+
+.imageModal .imageModalBlock{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: calc(100% - 20px);
+  max-height: calc(100% - 50px);
+}
+
+.closeimageModal{
+  position: absolute;
+  right: 0px;
+  top: -30px;
+  color: silver;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.imageModal .imageModalBlock img{
+  max-width: 100%;
 }

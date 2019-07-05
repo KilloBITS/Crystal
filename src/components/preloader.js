@@ -14,7 +14,7 @@ class Preloader extends React.Component {
           id="Cristall_logo"
           option={{
             file: this.props.logotype,
-            duration: 250,
+            duration: 50,
             animTimingFunction: 'EASE',
             type: 'oneByOne',
             onReady: console.log

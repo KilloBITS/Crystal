@@ -7,8 +7,11 @@
     "@fortawesome/free-brands-svg-icons": "^5.9.0",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-lightbox-component": "^1.2.1",
     "react-scripts": "3.0.1",
     "react-vivus": "0.0.2",
     "vivus": "^0.4.4"
