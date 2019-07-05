@@ -1,3 +1,12 @@
+@font-face {
+  font-family: DefaultText; /* Имя шрифта */
+  src: url(fonts/16846.ttf); /* Путь к файлу со шрифтом */
+}
+
+html{
+  overflow: hidden;
+}
+
 body{
   margin: 0;
   padding: 0;
@@ -7,4 +16,207 @@ body{
 a{
   text-decoration: none;
   cursor: pointer;
+}
+
+.content{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.block{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: inline-block;
+  float: left;
+}
+
+/** Preloader **/
+.Preloader{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  transition: 0.3s;
+  z-index: 50;
+  background-color: white;
+}
+
+.Preloader #Cristall_logo{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+}
+
+.Preloader.fadeout{
+  transform: scale(5);
+  opacity: 0;
+}
+
+/** mainMenu **/
+.mainMenu{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 10;
+}
+
+.menuCenter{
+
+}
+
+.menuCenter{
+  width: fit-content;
+  position: relative;
+  margin: auto;
+  line-height: 50px;
+}
+
+.menuCenter .menu_btn{
+  display: inline-block;
+  margin: 5px 10px;
+  font-size: 18px;
+  font-family: DefaultText;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.menuCenter .menu_btn::before,.menuCenter .menu_btn::after{
+  content: '';
+  position: absolute;
+  height: 1px;
+  background-color: white;
+  transition: 0.3s;
+  width: 0px;
+}
+
+.menuCenter .menu_btn::before{
+  top: 5px;
+  left: 0;
+}
+
+.menuCenter .menu_btn::after{
+  bottom: 5px;
+  right: 0;
+}
+
+.menuCenter .menu_btn:hover::before,.menuCenter .menu_btn:hover::after{
+  width: 100%;
+}
+
+/** Header **/
+.block.head{
+
+}
+
+.headBackground{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.headBackground img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.headBackgroundFilter{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  background-color: rgba(48, 213, 200, 0.3);
+  background-image: url(https://www.transparenttextures.com/patterns/dark-dotted-2.png);
+}
+
+.headButtons{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 3;
+}
+
+.toScrollButton{
+  width: 50px;
+  height: 50px;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 0) rotate(45deg);
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.37);
+  border: 3px solid white;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  line-height: 53px;
+  transition: 0.3s;
+}
+
+.toScrollButton svg{
+  transform: rotate(-45deg);
+}
+
+.headFooterSvg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* background-color: rebeccapurple; */
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+.headFooterSvg .containSvg{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.headFooterSvg .containSvg svg{
+  width: 100%;
+  height: 100%;
+  transform: scaleX(1) scaleY(0);
+  transform-origin: bottom;
+  vertical-align: bottom;
+  transition: transform 1s cubic-bezier(.01,.32,.11,.99);
+  will-change: transform;
+}
+
+.headFooterSvg.openHeadSvg svg{
+  transform: scaleX(1) scaleY(1);
+}
+
+.toScrollButton.openHeadSvg{
+  transform: translate(-50%, 0) rotate(0deg);
+  width: auto;
+  background-color: transparent;
+  border: 0;
+  text-transform: uppercase;
+  font-family: DefaultText;
+}
+
+
+/** About **/
+.block.about{
+    background-color: #30d5c8;
 }
