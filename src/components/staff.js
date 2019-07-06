@@ -14,6 +14,11 @@ let parseUsers = (data) => {
     <div className="staffPosada">
       {comp.text}
     </div>
+    <div className="staffSocials">
+    <a target="_blank" href={"#"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'instagram']} /></a>
+    <a target="_blank" href={"#"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fas', 'envelope']} /></a>
+    <a target="_blank" href={"#"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'facebook']} /></a>
+    </div>
   </div>);
   return dataBlock
 }
@@ -27,6 +32,10 @@ class StaffBlock extends React.Component {
       <div className="bdt-heading-style"><HeadingArt fill={'#164b49'}/></div>
       <div className="staffContent">
       <div className="carouselBlock">
+        <div className="staffArrow">
+          <div className="staffArrLeft"></div>
+          <div className="staffArrRight"></div>
+        </div>
         {parseUsers(this.props.data.staffData)}
       </div>
       </div>

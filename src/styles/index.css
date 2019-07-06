@@ -59,6 +59,7 @@ a{
   text-transform: uppercase;
   border-radius: 3px;
   cursor: pointer;
+  border-radius: 50px;
 }
 
 .bdt-heading-style {
@@ -278,10 +279,13 @@ top: 15px;
   z-index: 1;
 }
 
-.headBackground img{
+.headBackground img.backgroundPhoto{
   object-fit: cover;
-  width: 100%;
-  height: 100%;
+  width: calc(100% + 50px);
+  height: calc(100% + 50px);
+  left: -20px;
+  margin-left: -25px;
+  margin-top: -25px;
 }
 
 .headBackgroundFilter{
@@ -291,16 +295,26 @@ top: 15px;
   left: 0;
   top: 0;
   z-index: 2;
-  background-color: rgba(48, 213, 200, 0.3);
-  background-image: url(https://www.transparenttextures.com/patterns/dark-dotted-2.png);
+  /* background-color: rgba(48, 213, 200, 0.3);
+  background-image: url(https://www.transparenttextures.com/patterns/dark-dotted-2.png); */
 }
 
-.headBackgroundFilter svg{
-  max-width: 1024px;
+.headBackgroundFilter img.headerModel{
   position: absolute;
-  left: 50%;
+  bottom: 0px;
+  left: 0;
+  top: auto!important;
+  z-index: 3;
+  max-height: calc(100% - 100px);
+}
+
+
+.headBackgroundFilter svg{
+  max-width: calc(100% - 700px);
+  position: absolute;
+  right: 100px;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(0%, -50%);
 }
 
 .headBackgroundFilter svg .cls-1, .headBackgroundFilter svg .cls-2 {
@@ -468,6 +482,7 @@ top: 15px;
   transform: translate(-50%,-50%);
   top: 50%;
   z-index: 1;
+  border-radius: 50px;
 }
 
 .aboutFooterSvg .containSvg{
@@ -489,7 +504,6 @@ top: 15px;
 
 /** ServicesBlock **/
 .block.services{
-  padding-bottom: 50px;
   height: auto;
   background-image: url(https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/05/features-bg.jpg);
   background-position: top center;
@@ -513,7 +527,7 @@ top: 15px;
 }
 
 .servicesContent{
-  max-width: calc(100% - 300px);
+  max-width: 1160px;
   margin: auto;
   text-align: center;
   margin-top: 40px;
@@ -525,11 +539,9 @@ top: 15px;
 .servicesContent .myService{
   display: inline-block;
   margin: 10px;
-  width: calc(100% / 4 - 20px);
+  width: calc(100% / 5 - 20px);
   transition: 0.3s;
   cursor: default;
-  height: 360px;
-  float: left;
   margin-bottom: 100px;
   border-bottom: 1px solid rgba(206, 206, 206, 0);
   position: relative;
@@ -594,6 +606,7 @@ top: 15px;
   font-family: DefaultText;
   margin: auto;
   max-width: calc(100% - 20px);
+  display: none;
 }
 
 .serviceLine{
@@ -639,6 +652,10 @@ top: 15px;
 }
 #serv6 .serviceIcon{
   animation: shadowDinamic 12s cubic-bezier(0.4, 0.74, 0.56, 0.82);
+  animation-iteration-count: infinite;
+}
+#serv7 .serviceIcon{
+  animation: shadowDinamic 9s cubic-bezier(0.4, 0.74, 0.56, 0.82);
   animation-iteration-count: infinite;
 }
 
@@ -745,6 +762,10 @@ top: 15px;
   position: relative;
 }
 
+.statisticData{
+  cursor: default;
+}
+
 .statistic .statisticData{
   position: absolute;
   top: 50%;
@@ -756,12 +777,12 @@ top: 15px;
 }
 
 .statistic .statisticData.stLeft{
-  right: 80%;
+  right: 75%;
   box-shadow: -10px -10px 0px -3px #ffffff, -10px -10px 0px 0px #a4f5f2;
 }
 
 .statistic .statisticData.stRight{
-  left: 80%;
+  left: 75%;
   box-shadow: 10px -10px 0px -3px #ffffff, 10px -10px 0px 0px #a4f5f2;
 }
 
@@ -805,6 +826,22 @@ top: 15px;
   margin: auto;
 }
 
+.staffArrow{
+
+}
+
+.staffArrow .staffArrLeft,.staffArrow .staffArrRight{
+
+}
+
+.staffArrow .staffArrLeft{
+
+}
+
+.staffArrow .staffArrRight{
+
+}
+
 .staffUserBlock{
   position: relative;
   margin: 40px 10px;
@@ -843,7 +880,29 @@ top: 15px;
   text-transform: uppercase;
   font-family: DefaultText;
   height: 40px;
-  border-bottom: 1px solid #08e8de;
+}
+
+.staffSocials{
+  text-align: center;
+  overflow: hidden;
+  height: 0;
+  transition: 0.3s;
+  position: absolute;
+  top: calc(100% - 16px);
+  width: 100%;
+  z-index: 5;
+}
+
+.staffSocials a{
+  font-size: 30px;
+  margin: 10px;
+  color: #00a099;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.staffSocials a:hover{
+  color: #ff7070;
 }
 
 .staffImageUser .oneImg, .staffImageUser .twoImg{
@@ -872,19 +931,28 @@ top: 15px;
   opacity: 1;
 }
 
+.staffUserBlock:hover .staffSocials{
+  height: 30px;
+}
+
+.staffUserBlock:hover .staffSocials a{
+  opacity: 1
+}
+
 /** ContactsBlock **/
-.contacts{
-    background-color: #00dbca;
-    background-color: rgb(8,232,222);;
+.block.contacts{
+  background-color: rgb(8,232,222);
+  height: auto;
+  padding-bottom: 100px;
 }
 
 .contacts .elementor-shape-fill {
-    fill: #ffffff;
-    -webkit-transform-origin: center;
-    -ms-transform-origin: center;
-    transform-origin: center;
-    -webkit-transform: rotateY(0deg);
-    transform: rotateY(0deg);
+  fill: #ffffff;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-transform: rotateY(0deg);
+  transform: rotateY(0deg);
 }
 
 .contacts .blockTitle{
@@ -895,7 +963,158 @@ top: 15px;
   font-size: 40px;
 }
 
+.contactsContent{
+  max-width: 1080px;
+  margin: auto;
+}
 
+.contactsRow{
+  display: inline-grid;
+  width: 50%;
+  margin-top: 50px;
+}
+
+.contacts_line{
+  text-transform: uppercase;
+  font-family: DefaultText;
+  color: white;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.contactsLineTitle{
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.contactsLineStroke{
+  padding-left: 10px;
+  margin-top: 5px;
+}
+
+.feedBackForm{
+
+}
+
+.formLine{
+  margin-bottom: 16px;
+}
+
+.inputForm{
+  width: 100%;
+  border: 0;
+  height: 30px;
+  border-radius: 3px 3px 0 0;
+  border-bottom: 2px solid red;
+  outline: none;
+}
+
+.inputFormTitle{
+  text-transform: uppercase;
+  font-family: DefaultText;
+  text-align: center;
+  color: white;
+  letter-spacing: 3px;
+}
+
+.formLine textarea{
+  resize: none;
+  height: 100px;
+}
+
+/** MapBlock **/
+.block.mapBlock{
+  height: 800px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mapBlock .topSvg{
+  position: absolute;
+  top: -120px;
+  z-index: 5;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+.topSvg div{
+  transform: rotate(180deg);
+}
+
+.mapBlock .bottomSvg{
+  position: absolute;
+  bottom: -120px;
+  z-index: 5;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#mePin path {
+  fill: #ce7575;
+}
+
+#mePin .ring_outer {
+  animation: opacityPulse 2s cubic-bezier(1, 0.14, 1, 1);
+  animation-iteration-count: infinite;
+  opacity: 0.5;
+}
+
+#mePin .ring_inner {
+  animation: opacityPulse 2s cubic-bezier(0.4, 0.74, 0.56, 0.82);
+  animation-iteration-count: infinite;
+  opacity: 0.8;
+}
+
+@keyframes opacityPulse {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1.0;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+@keyframes bounceInDown {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 5px, 0);
+  }
+  75% {
+    transform: translate3d(0, -3px, 0);
+  }
+  90% {
+    transform: translate3d(0, 5px, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+.bounceInDown {
+  animation-name: bounceInDown;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+}
+
+.leaflet-control-container{
+  display: none;
+}
 /** Фото модал **/
 .imageModal{
   position: fixed;

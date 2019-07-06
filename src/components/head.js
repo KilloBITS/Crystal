@@ -1,5 +1,6 @@
 import React from 'react';
 import Vivus from "vivus";
+import Parallax from 'parallax-js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class HeadBlock extends React.Component {
@@ -13,7 +14,10 @@ class HeadBlock extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       new Vivus('headBackgroundFilter', {file: this.props.logotype });
-    }, 1500);
+    }, 1000);
+    var scene = document.getElementById('headBackground');
+    var scene = document.getElementById('headBackground');
+    var parallaxInstance = new Parallax(scene);
     document.getElementById('content').addEventListener('scroll', this.handleScroll);
   };
   componentWillUnmount() {
@@ -39,10 +43,12 @@ class HeadBlock extends React.Component {
   render() {
     let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5001':window.location.origin;
     return <div className="block head" id="HeadBlock">
-      <div className="headBackground">
-        <img src={myLocation+this.props.data.background} alt=""/>
+      <div className="headBackground" id="headBackground">
+        <img data-depth="0.1" className="backgroundPhoto" src={myLocation+this.props.data.background} alt=""/>
       </div>
-      <div className="headBackgroundFilter" id="headBackgroundFilter"></div>
+      <div className="headBackgroundFilter" id="headBackgroundFilter">
+        <img data-depth="0.3" className="headerModel" src={this.props.modelheader} alt=""/>
+      </div>
       <div className="headButtons" id="headButtons">
         <div className="toScrollButton" id="toScrollButton">{(this.state.scrolled)?"Про нас":<FontAwesomeIcon icon={['fas', 'arrow-down']} />}</div>
       </div>

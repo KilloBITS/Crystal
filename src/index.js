@@ -6,6 +6,7 @@ import { faCheckSquare, faCoffee , fas} from '@fortawesome/free-solid-svg-icons'
 
 //Styles
 import './styles/index.css';
+import './styles/index.min.css';
 
 //import components
 import Menu from './includes/menu.js';
@@ -21,6 +22,7 @@ import StatisticBlock from './components/statistic.js'
 import GalleryBlock from './components/gallery.js';
 import StaffBlock from './components/staff.js';
 import ContactsBlock from './components/contacts.js';
+import MapBlock from './components/map.js';
 
 
 library.add(fab, faCheckSquare, faCoffee, fas);
@@ -32,6 +34,7 @@ class Crystal extends React.Component{
       openedMenu: false,
       title: 'Crystal',
       logotype: require( './images/logotype.svg'),
+      modelheader: require( './images/model.png'),
       menu: [
         {
           title: 'Головна',
@@ -104,6 +107,11 @@ class Crystal extends React.Component{
           {
             title: 'Педикюр',
             icon: require('./images/icons/pedicure.svg'),
+            text: 'Красиві і доглянуті ноги - мрія багатьох. Така процедура, як апаратний педикюр, допоможе позбутися від грубої шкіри, а нігті зробить красивими'
+          },
+          {
+            title: 'Корекція брів',
+            icon: require('./images/icons/brow.svg'),
             text: 'Красиві і доглянуті ноги - мрія багатьох. Така процедура, як апаратний педикюр, допоможе позбутися від грубої шкіри, а нігті зробить красивими'
           },
           {
@@ -207,14 +215,15 @@ class Crystal extends React.Component{
       <Preloader logotype={this.state.logotype}/>
       <Menu data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
       <Bar data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
-      <HeadBlock data={this.state.header} logotype={this.state.logotype}/>
+      <HeadBlock data={this.state.header} logotype={this.state.logotype} modelheader={this.state.modelheader}/>
       <AboutBlock data={this.state.about}/>
-      <ServicesBlock data={this.state.services}/>
+      <ServicesBlock data={this.state.services} logotype={this.state.logotype}/>
       <StatisticBlock/>
       <GalleryBlock data={this.state.gallery}/>
       <StaffBlock data={this.state.staff} dataTest={this.state.gallery}/>
       <ContactsBlock data={this.state.constacts}/>
+      <MapBlock/>
     </div>
   }
 }
-ReactDOM.render(<Crystal />, document.getElementById('root'));
+ReactDOM.render(<Crystal/>, document.getElementById('root'));

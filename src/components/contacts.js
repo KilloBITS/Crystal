@@ -20,6 +20,45 @@ class ContactsBlock extends React.Component {
         {this.props.data.title}
       </div>
       <div className="bdt-heading-style"><HeadingArt fill={'white'}/></div>
+      <div className="contactsContent">
+        <div className="contactsRow">
+          <div className="contacts_line">
+            <div className="contactsLineTitle">Адреса</div>
+            <div className="contactsLineStroke">Чернівці, вулиця Чорноморська, 4а</div>
+          </div>
+
+          <div className="contacts_line">
+            <div className="contactsLineTitle">Телефон</div>
+            <div className="contactsLineStroke">+38 (097) 805-69-53</div>
+            <div className="contactsLineStroke">+38 (066) 524-17-09</div>
+          </div>
+
+        </div>
+        <div className="contactsRow">
+          <div className="feedBackForm">
+            <div className="formLine">
+              <div className="inputFormTitle">Імя</div>
+              <input type="text" className="inputForm"/>
+            </div>
+
+            <div className="formLine">
+              <div className="inputFormTitle">Номер телефону</div>
+              <input type="text" className="inputForm"/>
+            </div>
+
+            <div className="formLine">
+              <div className="inputFormTitle">Електронна пошта</div>
+              <input type="text" className="inputForm"/>
+            </div>
+
+            <div className="formLine">
+              <div className="inputFormTitle">Текст повідомлення</div>
+              <textarea className="inputForm"/>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
   }
 }

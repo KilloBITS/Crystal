@@ -1,0 +1,102 @@
+@media screen and (max-width: 880px) {
+  .defaultButton {
+    padding: 15px 14px;
+    font-size: 14px;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .pageBar{
+    display: none;
+  }
+  /** Menu **/
+  .navBar .openMenuButton{
+    top: 14px;
+    right: 14px;
+    width: 45px;
+  }
+  /** HeadBlock **/
+  .headBackgroundFilter svg{
+    max-width: calc(100% - 15px);
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: calc(50% - 100px);
+  }
+
+  .headBackgroundFilter img.headerModel{
+    max-width: calc(100%);
+  }
+
+  /** AboutBlock **/
+  .aboutMiniText{
+    font-size: 18px;
+    max-width: calc(100% - 20px);
+  }
+
+  .aboutMiniText .paragraphLine{
+    margin: 30px auto 30px auto;
+  }
+
+  .aboutMiniText .paragraphLine svg{
+    top: -19px;
+    font-size: 30px;
+  }
+
+  /** ServicesBlock **/
+  .services .blockMiniText {
+    max-width: calc(100% - 20px);
+  }
+
+  .servicesContent .myService {
+    margin: 5px;
+    width: calc(100% / 2 - 10px);
+    transition: 0.3s;
+    margin-bottom: 70px;
+  }
+
+  /** StatisticBlock **/
+  .statistic .statisticData {
+    position: static;
+    top: auto;
+    font-family: DefaultText;
+    width: calc(100% - 70px);
+    margin: auto;
+    transform: translate(0, -50%);
+    padding: 10px;
+    border: 2px solid #a4f5f2;
+    margin-bottom: 35px;
+  }
+
+  /** GalleryBlock **/
+  .block.gallery{
+    padding-bottom: 25px;
+  }
+
+  .galleryFotterButton .defaultButton {
+    width: calc(100% - 50px);
+    display: inline-block;
+    margin: 8px 10px;
+    text-align: center;
+    background-color: #08e8de;
+  }
+
+  /** StaffBlock **/
+  .block.staff{
+    padding-bottom: 50px;
+  }
+  .staffUserBlock{
+    margin: 40px 10px -10px 10px;
+  }
+
+  /** ContactsBlock **/
+  .block.contacts{
+    padding-bottom: 10px;
+  }
+  .contactsRow {
+    display: inherit;
+    width: calc(100% - 20px);
+    margin: auto;
+    margin-top: 50px;
+  }
+}
