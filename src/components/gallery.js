@@ -2,8 +2,9 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 let parseGallery = (a,css,click) => {
+    let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5001':window.location.origin;
     const dataGallery = a.map((comp, key) => <div key={key} style={css} className="galleryPhoto" onClick={click}>
-      <img src={comp.src} alt=""/>
+      <img src={myLocation+comp.src} alt=""/>
       <div className="hoverImage" style={{  lineHeight: css.width+'px'}}><FontAwesomeIcon icon={['fas', 'search-plus']} /></div>
     </div>);
     return dataGallery
@@ -61,9 +62,6 @@ class GalleryBlock extends React.Component {
   }
   render() {
     return <div className="block gallery" id="GalleryBlock">
-      <div className="blockTitle">
-        {this.props.data.title}
-      </div>
       <div className={(this.state.openimagesrc === null)?"imageModal hiden":"imageModal"} id="imageModal">
         <div className="imageModalBlock">
           <div className="closeimageModal" onClick={this.closephoto}>
@@ -72,7 +70,13 @@ class GalleryBlock extends React.Component {
           <img src={this.state.openimagesrc} alt=""/>
         </div>
       </div>
-      {parseGallery(this.props.data.images, {width: this.state.width, height: this.state.height}, this.openphoto )}
+      <div className="galleryData">
+        {parseGallery(this.props.data.images, {width: this.state.width, height: this.state.height}, this.openphoto )}
+      </div>
+      <div className="galleryFotterButton">
+        <div className="defaultButton showAllPhoto">Більше зображень</div>
+        <div className="defaultButton showAllInstagram">Instagram</div>
+      </div>
     </div>
   }
 }

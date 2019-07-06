@@ -5,7 +5,7 @@ let toTopThisScroll = (e) => {
   document.getElementById('content').scrollTo({top: toTopposition, behavior: 'smooth'});
 }
 
-let parseMenu = (dataMenu, m) => {
+let parseMenu = (dataMenu, m,) => {
   if(m){
     const menuBtn = dataMenu.map((comp, key) => <div key={key} onClick={toTopThisScroll.bind(this)} toelement={comp.toelement} className="menu_btn">{comp.title}</div>);
     return menuBtn
@@ -16,8 +16,8 @@ let parseMenu = (dataMenu, m) => {
 
 class Menu extends React.Component {
   render() {
-    return <div className="mainMenu" id="mainMenu">
-      <div className="menuCenter">
+    return <div className={(this.props.open)?"mainMenu":"mainMenu hide"} id="mainMenu">
+      <div className="menuCenter" onClick={this.props.openclose}>
         {parseMenu(this.props.data, true)}
       </div>
     </div>

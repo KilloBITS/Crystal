@@ -11,13 +11,16 @@ import './styles/index.css';
 import Menu from './includes/menu.js';
 import Bar from './includes/bar.js';
 //Block
-import Preloader from './components/preloader.js'
-import HeadBlock from './components/head.js'
-import AboutBlock from './components/about.js'
-import ServicesBlock from './components/services.js'
-import GalleryBlock from './components/gallery.js'
-import StaffBlock from './components/staff.js'
-import ContactsBlock from './components/contacts.js'
+import Preloader from './components/preloader.js';
+import HeadBlock from './components/head.js';
+import AboutBlock from './components/about.js';
+import ServicesBlock from './components/services.js';
+
+import StatisticBlock from './components/statistic.js'
+
+import GalleryBlock from './components/gallery.js';
+import StaffBlock from './components/staff.js';
+import ContactsBlock from './components/contacts.js';
 
 
 library.add(fab, faCheckSquare, faCoffee, fas);
@@ -26,6 +29,7 @@ class Crystal extends React.Component{
   constructor(props){
     super(props);
     this.state = {
+      openedMenu: false,
       title: 'Crystal',
       logotype: require( './images/logotype.svg'),
       menu: [
@@ -55,7 +59,7 @@ class Crystal extends React.Component{
         }
       ],
       header: {
-        background: require( './images/header/1.jpg')
+        background: '/images/header/1.jpg'
       },
       about: {
         title: 'Про нас',
@@ -114,47 +118,101 @@ class Crystal extends React.Component{
         images:
           [
             {
-              src: require('./images/gallery/1.jpg')
+              src: '/images/gallery/1.jpg'
             },
             {
-              src: require('./images/gallery/2.jpg')
+              src: '/images/gallery/2.jpg'
             },
             {
-              src: require('./images/gallery/3.jpg')
+              src: '/images/gallery/3.jpg'
             },
             {
-              src: require('./images/gallery/4.jpg')
+              src: '/images/gallery/4.jpg'
             },
             {
-              src: require('./images/gallery/5.jpg')
+              src: '/images/gallery/5.jpg'
             },
             {
-              src: require('./images/gallery/6.jpg')
+              src: '/images/gallery/6.jpg'
             },
             {
-              src: require('./images/gallery/7.jpg')
+              src: '/images/gallery/7.jpg'
+            },
+            {
+              src: '/images/gallery/8.jpg'
             }
           ]
 
       },
       staff: {
-        title: 'Наші працівники'
+        title: 'Наші працівники',
+        staffData: [
+          {
+            title: 'Ангеліна Пасічник',
+            photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Aaliyah-01-400x400.jpg',
+            photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Aaliyah-02-400x400.jpg',
+            text: 'Манікюк • Педикюр'
+          },
+          {
+            title: 'Елеонора Міщишина',
+            photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Abigail-01-400x400.jpg',
+            photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Abigail-02-400x400.jpg',
+            text: 'Манікюр'
+          },
+          {
+            title: 'Ірина Подовець',
+            photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-01-400x400.jpg',
+            photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-02-400x400.jpg',
+            text: 'Стажер'
+          },
+          {
+            title: 'Ангеліна Пасічник',
+            photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Aaliyah-01-400x400.jpg',
+            photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Aaliyah-02-400x400.jpg',
+            text: 'Манікюк • Педикюр'
+          },
+          {
+            title: 'Елеонора Міщишина',
+            photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Abigail-01-400x400.jpg',
+            photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Abigail-02-400x400.jpg',
+            text: 'Манікюр'
+          },
+          {
+            title: 'Ірина Подовець',
+            photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-01-400x400.jpg',
+            photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-02-400x400.jpg',
+            text: 'Стажер'
+          }
+        ]
       },
       constacts: {
         title: 'Контакти'
       }
     }
   }
+
+  openCloseMenu(){
+    if(this.state.openedMenu){
+      this.setState({
+        openedMenu: false
+      });
+    }else{
+      this.setState({
+        openedMenu: true
+      });
+    }
+  }
   render(){
     return <div className="content" id="content">
       <Preloader logotype={this.state.logotype}/>
-      <Menu data={this.state.menu}/>
-      <Bar data={this.state.menu}/>
+      <Menu data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
+      <Bar data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
       <HeadBlock data={this.state.header} logotype={this.state.logotype}/>
       <AboutBlock data={this.state.about}/>
       <ServicesBlock data={this.state.services}/>
+      <StatisticBlock/>
       <GalleryBlock data={this.state.gallery}/>
-      <StaffBlock data={this.state.staff}/>
+      <StaffBlock data={this.state.staff} dataTest={this.state.gallery}/>
       <ContactsBlock data={this.state.constacts}/>
     </div>
   }

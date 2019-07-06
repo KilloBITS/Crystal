@@ -7,7 +7,7 @@ let toTopThisScroll = (e) => {
 
 let parseNavBar = (dataBar, m) => {
   if(m){
-    const menuBtn = dataBar.map((comp, key) => <div key={key} onClick={toTopThisScroll.bind(this)} toelement={comp.toelement} className="miniPageBar"><div>{comp.title}</div></div>);
+    const menuBtn = dataBar.map((comp, key) => <div key={key} onClick={toTopThisScroll.bind(this)} toelement={comp.toelement} className={(key === 0)?"miniPageBar activepagebar":"miniPageBar"}><div>{comp.title}</div></div>);
     return menuBtn
   }else{
     return <div className="miniPageBar"></div>
@@ -27,16 +27,29 @@ class NavBar extends React.Component {
     document.getElementById('content').addEventListener('scroll', this.handleScroll.bind(this));
   };
   handleScroll(){
-    if(document.getElementById('HeadBlock').offsetTop+150 <= document.getElementById('content').scrollTop){clearClassNavigator(0)}
-    if(document.getElementById('AboutBlock').offsetTop+150 <= document.getElementById('content').scrollTop){clearClassNavigator(1)}
-    if(document.getElementById('ServicesBlock').offsetTop+150 <= document.getElementById('content').scrollTop){clearClassNavigator(2)}
-    if(document.getElementById('GalleryBlock').offsetTop+150 <= document.getElementById('content').scrollTop){clearClassNavigator(3)}
-    if(document.getElementById('StaffBlock').offsetTop+150 <= document.getElementById('content').scrollTop){clearClassNavigator(4)}
-    if(document.getElementById('ContactsBlock').offsetTop+150 <= document.getElementById('content').scrollTop){clearClassNavigator(5)}
+    let docHeight = document.getElementById('HeadBlock').offsetHeight / 2;
+
+    if(document.getElementById('content').scrollTop > document.getElementById('AboutBlock').offsetTop){
+      document.getElementById('pageBar').className = 'pageBar twoColor'
+    }else{
+      document.getElementById('pageBar').className = 'pageBar'
+    }
+
+    if(document.getElementById('content').scrollTop >= document.getElementById('HeadBlock').offsetTop){clearClassNavigator(0)}
+    if(document.getElementById('AboutBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(1)}
+    if(document.getElementById('ServicesBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(2)}
+    if(document.getElementById('GalleryBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(3)}
+    if(document.getElementById('StaffBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(4)}
+    if(document.getElementById('ContactsBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(5)}
   }
   render() {
     return <div className="navBar" id="navBar">
-      <div className="pageBar">
+      <div className={(this.props.open)?"openMenuButton open":"openMenuButton"} onClick={this.props.openclose}>
+        <div className="menuButtonLine line1"></div>
+        <div className="menuButtonLine line2"></div>
+        <div className="menuButtonLine line3"></div>
+      </div>
+      <div className="pageBar" id="pageBar">
         {parseNavBar(this.props.data, true)}
       </div>
     </div>

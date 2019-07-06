@@ -27,7 +27,7 @@ a{
   text-decoration: none;
   cursor: pointer;
 }
-
+.st0{fill:red;}
 .max1024{
   max-width: 1024px;
 }
@@ -38,7 +38,7 @@ a{
   position: absolute;
   left: 0;
   top: 0;
-  overflow: hidden;
+  overflow: scroll;
   overflow-x: hidden;
 }
 
@@ -48,7 +48,7 @@ a{
   position: relative;
   display: inline-block;
   float: left;
-  background-color: #f6f6f6;
+  background-color: #ffffff;
 }
 
 .defaultButton{
@@ -59,6 +59,15 @@ a{
   text-transform: uppercase;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.bdt-heading-style {
+    height: 16px;
+    width: 170px;
+    margin: auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    background-position: center;
 }
 
 /** Preloader **/
@@ -91,6 +100,54 @@ a{
 
 }
 
+.navBar .openMenuButton{
+  position: fixed;
+  top: 20px;
+  right: 40px;
+  width: 60px;
+  height: 34px;
+  z-index: 11;
+  cursor: pointer;
+}
+
+.navBar .openMenuButton .menuButtonLine{
+  width: 100%;
+  height: 5px;
+  background-color: #08322f;
+  position: absolute;
+  transition: 0.3s;
+}
+
+.menuButtonLine.line1{
+  top: 0;
+  left: 0;
+}
+.menuButtonLine.line2{
+  top: 14px;
+  left: -10px;
+  transition: 0.3s;
+}
+.menuButtonLine.line3{
+  top: 28px;
+  left: 0;
+}
+
+.navBar .openMenuButton:hover .menuButtonLine.line2{
+  left: 0px;
+}
+
+.openMenuButton.open .line1{
+  transform: rotate(45deg);
+  top: 15px;
+}
+.openMenuButton.open .line2{
+  width: 0;
+}
+.openMenuButton.open .line3{
+  transform: rotate(-45deg);
+top: 15px;
+}
+
 .navBar .pageBar{
   position: fixed;
   z-index: 3;
@@ -99,6 +156,16 @@ a{
   left: 10px;
   max-width: 30px;
 }
+
+.navBar .pageBar.twoColor .miniPageBar{
+  background-color: rgb(8,232,222);
+}
+
+.navBar .pageBar.twoColor .miniPageBar div{
+  color:  rgb(8,232,222);
+}
+
+
 
 .navBar .pageBar .miniPageBar{
   width: 30px;
@@ -136,42 +203,50 @@ a{
 }
 /** mainMenu **/
 .mainMenu{
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
-  height: 60px;
+  height: 100%;
   z-index: 10;
+  background-color: #f6f6f6;
+  transition: 0.3s;
+}
+
+.mainMenu.hide{
+  overflow: hidden;
+  right: 0;
+  left: auto;
+  width: 0;
 }
 
 .menuCenter{
-
-}
-
-.menuCenter{
-  width: fit-content;
-  position: relative;
+  position: absolute;
   margin: auto;
   line-height: 50px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .menuCenter .menu_btn{
-  display: inline-block;
   margin: 5px 10px;
-  font-size: 18px;
+  font-size: 28px;
   font-family: TitleText;
   text-transform: uppercase;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  color: white;
+  color: #08322f;
+  text-align: center;
+  width: 100%;
 }
 
 .menuCenter .menu_btn::before,.menuCenter .menu_btn::after{
   content: '';
   position: absolute;
   height: 1px;
-  background-color: white;
+  background-color: #08322f;
   transition: 0.3s;
   width: 0px;
 }
@@ -221,7 +296,7 @@ a{
 }
 
 .headBackgroundFilter svg{
-  max-width: 80%;
+  max-width: 1024px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -261,8 +336,7 @@ a{
   left: 0;
   top: 0;
   z-index: 3;
-  opacity: 0;
-  transition: 0.5s;
+  transition: 1s;
 }
 
 .toScrollButton{
@@ -309,11 +383,11 @@ a{
   vertical-align: bottom;
   transition: transform 1s cubic-bezier(.01,.32,.11,.99);
   will-change: transform;
-  fill: rgb(48, 213, 200);
+  fill: rgb(8, 232, 222);
 }
 
 .headFooterSvg.openHeadSvg svg{
-  transform: scaleX(1) scaleY(1);
+  transform: scaleX(1) scaleY(0.8);
 }
 
 .toScrollButton.openHeadSvg{
@@ -338,8 +412,8 @@ a{
 
 /** About **/
 .block.about{
-  background-color: #30d5c8;
-  height: fit-content;
+  background-color: rgb(8,232,222);
+  height: auto;
 }
 
 .aboutMiniText{
@@ -362,7 +436,7 @@ a{
 
 .aboutMiniText .paragraphLine svg{
   padding: 5px;
-  background-color: #30d5c8;
+  background-color: #08e8de;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
@@ -404,19 +478,21 @@ a{
 .aboutFooterSvg .containSvg svg{
   width: 100%;
   height: 100%;
-  transform: scaleX(1) scaleY(1);
+  transform: scaleX(1) scaleY(0.5);
   transform-origin: bottom;
   vertical-align: bottom;
   transition: transform 1s cubic-bezier(.01,.32,.11,.99);
   will-change: transform;
-  fill: rgb(246, 246, 246);
+  fill:rgb(255, 255, 255);
 }
 
 
 /** ServicesBlock **/
-.services{
+.block.services{
   padding-bottom: 50px;
   height: auto;
+  background-image: url(https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/05/features-bg.jpg);
+  background-position: top center;
 }
 
 .services .blockTitle{
@@ -437,7 +513,7 @@ a{
 }
 
 .servicesContent{
-  max-width: 1024px;
+  max-width: calc(100% - 300px);
   margin: auto;
   text-align: center;
   margin-top: 40px;
@@ -451,20 +527,59 @@ a{
   margin: 10px;
   width: calc(100% / 4 - 20px);
   transition: 0.3s;
-  cursor: pointer;
-  height: 330px;
+  cursor: default;
+  height: 360px;
   float: left;
-  border-bottom: 1px solid #cecece;
   margin-bottom: 100px;
+  border-bottom: 1px solid rgba(206, 206, 206, 0);
+  position: relative;
+  background-color: white;
+}
+
+.buttonServiceBottom{
+  position: absolute;
+  left: 50%;
+  bottom: -22px;
+  width: 42px;
+  height: 42px;
+  background-color: #e38daa;
+  line-height: 43px;
+  color: white;
+  border-radius: 78px;
+  opacity: 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.buttonServiceBottom .placehold{
+  position: absolute;
+  right: calc(100% + 10px);
+  color: #e38daa;
+  background-color: white;
+  padding: 5px;
+  top: -8px;
+  opacity: 0;
 }
 
 .servicesContent .myService:hover{
   transform: scale(1.15);
-  box-shadow: 0px 0px 3px 1px #ff9696;
-  background-color: #fcfcfc;
+  border-bottom: 1px solid #cecece;
   border-radius: 5px;
   position: relative;
   z-index: 1;
+}
+
+.servicesContent .myService:hover .buttonServiceBottom{
+  left: calc(100% - 70px);
+  opacity: 1;
+}
+
+.servicesContent .myService:hover .buttonServiceBottom .placehold{
+  opacity: 1;
+}
+
+.buttonServiceBottom:hover{
+  box-shadow: -1px -1px 0px 1px #b8659c, 1px 1px 0px 1px #c41440;
 }
 
 .myServiceTitle{
@@ -477,6 +592,8 @@ a{
 
 .myServiceText{
   font-family: DefaultText;
+  margin: auto;
+  max-width: calc(100% - 20px);
 }
 
 .serviceLine{
@@ -491,7 +608,7 @@ a{
   display: inline-block;
   width: 80px;
   height: 80px;
-  background: #ff9696;
+  background: #a4f5f2;
   transition: 0.3s;
   margin-top: -45px;
 }
@@ -538,7 +655,8 @@ a{
 
 /** GalleryBlock **/
 .gallery{
-
+  height: auto;
+  padding-bottom: 80px;
 }
 
 .gallery .blockTitle{
@@ -549,6 +667,30 @@ a{
   font-size: 40px;
 }
 
+.gallery .galleryData{
+
+}
+
+.galleryFotterButton{
+  width: fit-content;
+  margin: auto;
+}
+
+.galleryFotterButton .defaultButton{
+  width: 200px;
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+  background-color: #08e8de;
+}
+
+.galleryFotterButton .showAllPhoto{
+
+}
+
+.galleryFotterButton .showAllInstagram{
+
+}
 
 .galleryPhoto{
   margin: -2px 0;
@@ -567,11 +709,13 @@ a{
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 1);
   text-align: center;
   font-size: 3em;
   font-weight: bold;
   transition: 0.3s;
+  outline: 1px dashed white;
+  outline-offset: -15px;
 }
 .galleryPhoto:hover .hoverImage{
   opacity: 1;
@@ -583,17 +727,64 @@ a{
 }
 
 .galleryPhoto img{
-  max-height: 100%;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
   transition: 0.3s;
   min-height: 100%;
+  max-width: 100%;
+}
+
+/** StatisticBlock **/
+.block.statistic{
+  max-height: 400px;
+  background-image: url(https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/07/slider1-slide4-bg.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  position: relative;
+}
+
+.statistic .statisticData{
+  position: absolute;
+  top: 50%;
+  font-family: DefaultText;
+  width: 200px;
+  transform: translate(0, -50%);
+  padding: 10px;
+  border: 2px solid #a4f5f2;
+}
+
+.statistic .statisticData.stLeft{
+  right: 80%;
+  box-shadow: -10px -10px 0px -3px #ffffff, -10px -10px 0px 0px #a4f5f2;
+}
+
+.statistic .statisticData.stRight{
+  left: 80%;
+  box-shadow: 10px -10px 0px -3px #ffffff, 10px -10px 0px 0px #a4f5f2;
+}
+
+.statistic .statisticData .statisticTitle{
+  font-size: 26px;
+  text-align: center;
+  width: 100%;
+}
+
+.statistic .statisticData .statisticLebgth{
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+  width: 100%;
+}
+
+.statistic .statisticData .statisticTitleMini{
+  text-align: center;
 }
 
 /** StaffBlock **/
-.staff{
-
+.block.staff{
+  height: auto;
 }
 
 .staff .blockTitle{
@@ -604,9 +795,96 @@ a{
   font-size: 40px;
 }
 
+.staffContent{
+  width: fit-content;
+  margin: auto;
+}
+
+.carouselBlock{
+  max-width: 1080px;
+  margin: auto;
+}
+
+.staffUserBlock{
+  position: relative;
+  margin: 40px 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: inline-block;
+}
+
+.staffImageUser{
+  width: 340px;
+  height: 340px;
+  overflow: hidden;
+  position: relative;
+  transform: translateZ(0);
+}
+
+.staffTitleUser{
+  text-transform: uppercase;
+  font-family: DefaultText;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  font-size: 22px;
+  height: 40px;
+  background-color: white;
+  box-shadow: 0px -5px 20px 13px white;
+  z-index: 1;
+  position: relative;
+  line-height: 48px;
+}
+
+.staffPosada{
+  position: relative;
+  max-width: 400px;
+  text-align: center;
+  z-index: 2;
+  text-transform: uppercase;
+  font-family: DefaultText;
+  height: 40px;
+  border-bottom: 1px solid #08e8de;
+}
+
+.staffImageUser .oneImg, .staffImageUser .twoImg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  object-position: center;
+  object-fit: cover;
+  max-width: 100%;
+}
+
+ .staffImageUser .twoImg{
+   opacity: 0;
+ }
+
+.staffImageUser:hover .oneImg{
+  opacity: 0;
+}
+
+.staffImageUser:hover .twoImg{
+  opacity: 1;
+}
+
 /** ContactsBlock **/
 .contacts{
+    background-color: #00dbca;
+    background-color: rgb(8,232,222);;
+}
 
+.contacts .elementor-shape-fill {
+    fill: #ffffff;
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
 }
 
 .contacts .blockTitle{

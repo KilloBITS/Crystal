@@ -6,22 +6,15 @@ class HeadBlock extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      scrolled: false,
-      opacityBTN: 0
+      scrolled: false
     }
     this.handleScroll = this.handleScroll.bind(this);
   }
   componentDidMount() {
     setTimeout(() => {
-      new Vivus('headBackgroundFilter', {file: this.props.logotype }, () => {
-        document.getElementById('content').style.overflowY = 'scroll'
-        document.getElementById('content').addEventListener('scroll', this.handleScroll);
-        this.setState({
-          opacityBTN: 1
-        });
-      });
-
-    }, 3000);
+      new Vivus('headBackgroundFilter', {file: this.props.logotype });
+    }, 1500);
+    document.getElementById('content').addEventListener('scroll', this.handleScroll);
   };
   componentWillUnmount() {
     document.getElementById('content').removeEventListener('scroll', this.handleScroll);
@@ -44,12 +37,13 @@ class HeadBlock extends React.Component {
   }
 
   render() {
+    let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5001':window.location.origin;
     return <div className="block head" id="HeadBlock">
       <div className="headBackground">
-        <img src={this.props.data.background} alt=""/>
+        <img src={myLocation+this.props.data.background} alt=""/>
       </div>
       <div className="headBackgroundFilter" id="headBackgroundFilter"></div>
-      <div className="headButtons" id="headButtons" style={{opacity: this.state.opacityBTN}}>
+      <div className="headButtons" id="headButtons">
         <div className="toScrollButton" id="toScrollButton">{(this.state.scrolled)?"Про нас":<FontAwesomeIcon icon={['fas', 'arrow-down']} />}</div>
       </div>
       <div className="headFooterSvg" id="headFooterSvg">
