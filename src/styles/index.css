@@ -51,6 +51,16 @@ a{
   background-color: #f6f6f6;
 }
 
+.defaultButton{
+  padding: 15px 50px;
+  background-color: #ff6565;
+  color: white;
+  font-size: 18px;
+  text-transform: uppercase;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 /** Preloader **/
 .Preloader{
   position: fixed;
@@ -251,6 +261,8 @@ a{
   left: 0;
   top: 0;
   z-index: 3;
+  opacity: 0;
+  transition: 0.5s;
 }
 
 .toScrollButton{
@@ -335,7 +347,7 @@ a{
   margin: auto;
   font-family: DefaultText;
   color: white;
-  font-size: 22px;
+  font-size: 28px;
   white-space: pre-line;
 }
 
@@ -344,7 +356,7 @@ a{
   margin: auto;
   height: 1px;
   background-color: white;
-  margin: 30px auto 30px auto;
+  margin: 60px auto 50px auto;
   position: relative;
 }
 
@@ -354,8 +366,8 @@ a{
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
-  top: -15px;
-  font-size: 28px;
+  top: -27px;
+  font-size: 55px;
 }
 
 .sosialAbout{
@@ -373,6 +385,15 @@ a{
 .aboutFooterSvg{
   width: 100%;
   height: 100%;
+  position: relative;
+}
+
+.aboutFooterSvg .defaultButton{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  z-index: 1;
 }
 
 .aboutFooterSvg .containSvg{
@@ -394,7 +415,8 @@ a{
 
 /** ServicesBlock **/
 .services{
-
+  padding-bottom: 50px;
+  height: auto;
 }
 
 .services .blockTitle{
@@ -421,26 +443,40 @@ a{
   margin-top: 40px;
   padding-top: 10px;
   border-top: 1px solid #30d5c8;
+  padding-top: 80px;
 }
 
 .servicesContent .myService{
   display: inline-block;
   margin: 10px;
   width: calc(100% / 4 - 20px);
-  text-align: center;
   transition: 0.3s;
   cursor: pointer;
+  height: 330px;
+  float: left;
+  border-bottom: 1px solid #cecece;
+  margin-bottom: 100px;
 }
 
 .servicesContent .myService:hover{
-  transform: scale(1.2);
+  transform: scale(1.15);
+  box-shadow: 0px 0px 3px 1px #ff9696;
+  background-color: #fcfcfc;
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
 }
 
 .myServiceTitle{
   text-transform: uppercase;
   text-align: center;
   width: 100%;
-      font-family: DefaultText;
+  font-family: DefaultText;
+  font-weight: bold;
+}
+
+.myServiceText{
+  font-family: DefaultText;
 }
 
 .serviceLine{
@@ -457,6 +493,7 @@ a{
   height: 80px;
   background: #ff9696;
   transition: 0.3s;
+  margin-top: -45px;
 }
 
 #serv0 .serviceIcon{

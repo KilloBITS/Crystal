@@ -6,7 +6,8 @@ class HeadBlock extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      scrolled: false
+      scrolled: false,
+      opacityBTN: 0
     }
     this.handleScroll = this.handleScroll.bind(this);
   }
@@ -15,6 +16,9 @@ class HeadBlock extends React.Component {
       new Vivus('headBackgroundFilter', {file: this.props.logotype }, () => {
         document.getElementById('content').style.overflowY = 'scroll'
         document.getElementById('content').addEventListener('scroll', this.handleScroll);
+        this.setState({
+          opacityBTN: 1
+        });
       });
 
     }, 3000);
@@ -45,7 +49,7 @@ class HeadBlock extends React.Component {
         <img src={this.props.data.background} alt=""/>
       </div>
       <div className="headBackgroundFilter" id="headBackgroundFilter"></div>
-      <div className="headButtons">
+      <div className="headButtons" id="headButtons" style={{opacity: this.state.opacityBTN}}>
         <div className="toScrollButton" id="toScrollButton">{(this.state.scrolled)?"Про нас":<FontAwesomeIcon icon={['fas', 'arrow-down']} />}</div>
       </div>
       <div className="headFooterSvg" id="headFooterSvg">

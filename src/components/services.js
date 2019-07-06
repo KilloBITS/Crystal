@@ -11,6 +11,9 @@ const myService = (arr) => {
     <div className="serviceLine">
       <div className="myServiceTitle">{comp.title}</div>
     </div>
+    <div className="serviceLine">
+      <div className="myServiceText">{comp.text}</div>
+    </div>
   </div>);
   return myService
 }
