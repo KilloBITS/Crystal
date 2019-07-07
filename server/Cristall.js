@@ -20,8 +20,8 @@ app.use(express.static(path.join(__dirname, './data/')));
 // const getData =  require('./controllers/getData_controller');
 // app.post('/getData', getData);
 //
-// const message =  require('./controllers/message_controller');
-// app.post('/postMessage', message);
+const message =  require('./controller/message_controller');
+app.post('/postMessage', message);
 
 app.get('/*', function (req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
