@@ -29,6 +29,6 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
-app.listen(5001, function(){
-  console.warn('Server started from port 5001');
+app.listen(5002, function(){
+  console.warn('Server started from port 5002');
 });
