@@ -1,18 +1,29 @@
 import React from 'react';
 import Fade from 'react-reveal/Fade';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import HeadingArt from '../images/heading.js'
+import HeadingArt from '../images/heading.js';
+
+const bg1 = require('../images/bg1.png');
+const bg2 = require('../images/bg2.png');
 class AboutBlock extends React.Component {
   render() {
     return <div className="block about" id="AboutBlock">
+      <div className="bdt-heading-style"><HeadingArt fill={'white'}/></div>
       <div className="aboutMiniText max1024">
-        <div className="bdt-heading-style"><HeadingArt fill={'white'}/></div>
-        <Fade delay={50}>{this.props.data.minitext}</Fade>
-        <div className="paragraphLine">
-          <Fade delay={50}><FontAwesomeIcon icon={['fas', 'quote-right']} /></Fade>
+        <div className="aboutDataBlock imageAbout" id="imageAbout">
+          <img id="oneImageAbout" src={bg1} alt=""/>
+          <img id="twoImageAbout" data-depth="0.1" src={bg2} alt=""/>
         </div>
-        <Fade delay={50}>{this.props.data.minitext2}</Fade>
+        <div className="aboutDataBlock">
+          <Fade delay={50}>{this.props.data.minitext}</Fade>
+          <div className="paragraphLine">
+            <Fade delay={50}><FontAwesomeIcon icon={['fas', 'gem']} /></Fade>
+          </div>
+          <Fade delay={50}>{this.props.data.minitext2}</Fade>
+        </div>
+
       </div>
+
       <Fade delay={50}>
       <div className="sosialAbout">
         <a target="_blank" href={this.props.data.email} rel="noopener noreferrer"><FontAwesomeIcon icon={['fas', 'envelope']} /></a>

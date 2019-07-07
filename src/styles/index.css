@@ -409,12 +409,36 @@ top: 15px;
   height: auto;
 }
 
+.aboutDataBlock{
+  width: 50%;
+  display: inline-block;
+  float: left;
+  padding-top: 30px;
+  position: relative;
+}
+
+.aboutDataBlock.imageAbout img{
+  max-width: calc(100% - 30px)
+}
+
+#oneImageAbout{
+  position: relative;
+  z-index: 1;
+}
+
+#twoImageAbout{
+  position: absolute;
+  z-index: 0;
+  left: -10px;
+  bottom: -20px;
+}
+
 .aboutMiniText{
   text-align: center;
   margin: auto;
   font-family: DefaultText;
   color: white;
-  font-size: 28px;
+  font-size: 20px;
   white-space: pre-line;
 }
 
@@ -433,14 +457,17 @@ top: 15px;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
-  top: -27px;
-  font-size: 55px;
+  top: -22px;
+  font-size: 36px;
 }
 
 .sosialAbout{
   width: fit-content;
   margin: auto;
   margin-top: 30px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
 }
 
 .sosialAbout a{
@@ -1239,8 +1266,28 @@ display: none;
 .author{
   margin-top: 5px;
   margin-bottom: 5px;
+  position: relative;
+  width: fit-content;
+  margin: auto;
 }
 
 .author a{
   margin-left: 5px;
+}
+
+.author::before,.author::after{
+  content: '';
+  width: 300px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.52);
+  top: calc(50% - 1px);
+  position: absolute;
+}
+
+.author::before{
+  left: calc(100% + 5px);
+}
+
+.author::after{
+  right: calc(100% + 5px);
 }

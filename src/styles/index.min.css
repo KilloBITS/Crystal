@@ -1,3 +1,9 @@
+@media screen and (max-width: 340px) {
+  .staffImageUser{
+    width: 300px;
+  }
+}
+
 @media screen and (max-width: 880px) {
   .defaultButton {
     padding: 15px 14px;
@@ -42,6 +48,27 @@
     max-width: calc(100% - 20px);
   }
 
+  .aboutDataBlock{
+    width: 100%;
+  }
+
+  .aboutDataBlock.imageAbout img {
+    max-width: calc(100% - 10px);
+    margin: auto;
+    transition: 0.3s;
+  }
+
+  #oneImageAbout{
+    right: -10px;
+    top: -5px;
+  }
+
+  #twoImageAbout {
+    position: absolute;
+    z-index: 0;
+    left: -5px;
+    bottom: -10px;
+  }
   .aboutMiniText .paragraphLine{
     margin: 30px auto 30px auto;
   }
