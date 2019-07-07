@@ -1026,7 +1026,7 @@ top: 15px;
 
 /** MapBlock **/
 .block.mapBlock{
-  height: 800px;
+  /* height: 800px; */
   position: relative;
   overflow: hidden;
 }
