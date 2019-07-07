@@ -61,22 +61,22 @@ class ContactsBlock extends React.Component {
           <div className="feedBackForm">
             <div className="formLine">
               <div className="inputFormTitle">Імя</div>
-              <input type="text" className="inputForm"/>
+              <input type="text" className="inputForm" placeholder="..."/>
             </div>
 
             <div className="formLine">
               <div className="inputFormTitle">Номер телефону</div>
-              <input type="text" className="inputForm"/>
+              <input type="text" className="inputForm" placeholder="..."/>
             </div>
 
             <div className="formLine">
               <div className="inputFormTitle">Електронна пошта</div>
-              <input type="text" className="inputForm"/>
+              <input type="text" className="inputForm" placeholder="..."/>
             </div>
 
             <div className="formLine">
               <div className="inputFormTitle">Текст повідомлення</div>
-              <textarea className="inputForm"/>
+              <textarea className="inputForm" placeholder="..."/>
             </div>
 
             <div className="formLine">

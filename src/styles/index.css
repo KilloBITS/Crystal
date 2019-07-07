@@ -994,12 +994,17 @@ top: 15px;
 }
 
 .inputForm{
-  width: 100%;
+  width: calc(100% - 10px);
   border: 0;
-  height: 30px;
+  height: 40px;
   border-radius: 3px 3px 0 0;
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid #00807a;
   outline: none;
+  padding-left: 10px;
+  text-transform: uppercase;
+  color: #008882;
+  font-size: 16px;
+  font-family: DefaultText;
 }
 
 .inputFormTitle{
