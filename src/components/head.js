@@ -40,7 +40,7 @@ class HeadBlock extends React.Component {
   }
 
   render() {
-    let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5001':window.location.origin;
+    let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5002':window.location.origin;
     return <div className="block head" id="HeadBlock">
       <div className="headBackground" id="headBackground">
         <img data-depth="0.1" className="backgroundPhoto" src={myLocation+this.props.data.background} alt=""/>
