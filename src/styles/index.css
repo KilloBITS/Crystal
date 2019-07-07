@@ -1161,7 +1161,7 @@ top: 15px;
   color: white;
   text-transform: uppercase;
   font-family: DefaultText;
-  padding-bottom: 50px;
+  padding-bottom: 80px;
 }
 
 .footer .max1024{
@@ -1191,10 +1191,7 @@ top: 15px;
 }
 
 .footerToTopBlock{
-  width: 100%;
-  height: 40px;
-  width: 100%;
-  margin-bottom: 50px;
+display: none;
 }
 
 .footerToTopBtn{
