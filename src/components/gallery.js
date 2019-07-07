@@ -1,12 +1,13 @@
 import React from 'react';
+import Fade from 'react-reveal/Fade';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 let parseGallery = (a,css,click) => {
     let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5001':window.location.origin;
-    const dataGallery = a.map((comp, key) => <div key={key} style={css} className="galleryPhoto" onClick={click}>
+    const dataGallery = a.map((comp, key) => <Fade delay={50} key={key}><div key={key} style={css} className="galleryPhoto" onClick={click}>
       <img src={myLocation+comp.src} alt=""/>
       <div className="hoverImage" style={{  lineHeight: css.width+'px'}}><FontAwesomeIcon icon={['fas', 'search-plus']} /></div>
-    </div>);
+    </div></Fade>);
     return dataGallery
 }
 

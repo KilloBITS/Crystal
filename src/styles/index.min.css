@@ -6,6 +6,10 @@
     text-transform: uppercase;
   }
 
+  .bdt-heading-style{
+    width: 145px;
+  }
+
   .pageBar{
     display: none;
   }
@@ -22,6 +26,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
     top: calc(50% - 100px);
+  }
+
+  .headFooterSvg.openHeadSvg svg {
+    transform: scaleX(3) scaleY(3);
   }
 
   .headBackgroundFilter img.headerModel{
@@ -55,7 +63,27 @@
     margin-bottom: 70px;
   }
 
+  .myServiceTitle{
+    height: 28px;
+  }
+
+  .buttonServiceBottom{
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+  }
+
+  .buttonServiceBottom .placehold {
+    right: calc(100% + 1px);
+    top: -4px;
+    font-size: 12px;
+  }
+
   /** StatisticBlock **/
+  .block.statistic{
+    max-height: 470px;
+  }
+
   .statistic .statisticData {
     position: static;
     top: auto;
@@ -66,6 +94,10 @@
     padding: 10px;
     border: 2px solid #a4f5f2;
     margin-bottom: 35px;
+  }
+
+  .statistic .statisticData.stRight{
+    background-color: white;
   }
 
   /** GalleryBlock **/
@@ -91,12 +123,59 @@
 
   /** ContactsBlock **/
   .block.contacts{
-    padding-bottom: 10px;
+    padding-bottom: 0px;
   }
   .contactsRow {
     display: inherit;
     width: calc(100% - 20px);
     margin: auto;
     margin-top: 50px;
+  }
+
+  /** MapBlock **/
+  #map{
+    pointer-events: none;
+  }
+  /** FooterBlock **/
+  .footer .max1024 {
+    max-width: calc(100% - 50px);
+  }
+
+  .footerDataLeft, .footerDataRight {
+    width: 100%;
+  }
+
+  .footerDataCenter {
+    position: relative;
+    margin-top: 30px;
+  }
+  .footerData .menu_btn {
+    text-align: center;
+    margin: auto;
+    margin-bottom: 5px;
+    width: fit-content;
+  }
+  .footerToTopBlock {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+  }
+  .footerToTopBtn {
+    margin: auto;
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+    text-align: center;
+    line-height: 60px;
+    margin-top: -40px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .footerToTopBtn div{
+    font-size: 15px;
+    line-height: 0px;
+    white-space: nowrap;
   }
 }

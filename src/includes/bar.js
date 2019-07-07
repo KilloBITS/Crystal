@@ -7,7 +7,7 @@ let toTopThisScroll = (e) => {
 
 let parseNavBar = (dataBar, m) => {
   if(m){
-    const menuBtn = dataBar.map((comp, key) => <div key={key} onClick={toTopThisScroll.bind(this)} toelement={comp.toelement} className={(key === 0)?"miniPageBar activepagebar":"miniPageBar"}><div>{comp.title}</div></div>);
+    const menuBtn = dataBar.map((comp, key) => <div key={key} onClick={toTopThisScroll.bind(this)} toelement={comp.toelement} className={(key === 0)?"miniPageBar activepagebar":"miniPageBar"}></div>);
     return menuBtn
   }else{
     return <div className="miniPageBar"></div>
@@ -31,7 +31,7 @@ class NavBar extends React.Component {
 
     if(document.getElementById('content').scrollTop > document.getElementById('AboutBlock').offsetTop){
       document.getElementById('pageBar').className = 'pageBar twoColor'
-    }else{
+    } else{
       document.getElementById('pageBar').className = 'pageBar'
     }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadingArt from '../images/heading.js'
 
 class ContactsBlock extends React.Component {
@@ -29,8 +28,32 @@ class ContactsBlock extends React.Component {
 
           <div className="contacts_line">
             <div className="contactsLineTitle">Телефон</div>
-            <div className="contactsLineStroke">+38 (097) 805-69-53</div>
-            <div className="contactsLineStroke">+38 (066) 524-17-09</div>
+            <div className="contactsLineStroke">
+              <a href={"tel:+380978056953"}>+38 (097) 805-69-53</a>
+            </div>
+            <div className="contactsLineStroke">
+              <a href={"tel:+380665241709"}>+38 (066) 524-17-09</a>
+            </div>
+          </div>
+
+          <div className="contacts_line">
+            <div className="contactsLineTitle">Електронна пошта</div>
+            <div className="contactsLineStroke">
+              <a href={"mailto:kalinich0107@gmail.com"}>kalinich0107@gmail.com</a>
+            </div>
+          </div>
+
+          <div className="contacts_line mtop">
+            <div className="contactsLineTitle">Графік роботи</div>
+            <div className="contactsLineStroke">
+            <div className="dateTimeLine">Понеділок: 10:00 - 20:00</div>
+            <div className="dateTimeLine">Вівторок: 10:00 - 20:00</div>
+            <div className="dateTimeLine">Середа: 10:00 - 20:00</div>
+            <div className="dateTimeLine">Четвер: 10:00 - 20:00</div>
+            <div className="dateTimeLine">Пятниця: 10:00 - 20:00</div>
+            <div className="dateTimeLine">Субота: 10:00 - 20:00</div>
+            <div className="dateTimeLine dayRed">Неділя: Вихідний</div>
+            </div>
           </div>
 
         </div>
@@ -54,6 +77,10 @@ class ContactsBlock extends React.Component {
             <div className="formLine">
               <div className="inputFormTitle">Текст повідомлення</div>
               <textarea className="inputForm"/>
+            </div>
+
+            <div className="formLine">
+              <div className="defaultButton sendMessage">Відпарвити</div>
             </div>
 
           </div>

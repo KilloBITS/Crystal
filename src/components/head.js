@@ -16,8 +16,7 @@ class HeadBlock extends React.Component {
       new Vivus('headBackgroundFilter', {file: this.props.logotype });
     }, 1000);
     var scene = document.getElementById('headBackground');
-    var scene = document.getElementById('headBackground');
-    var parallaxInstance = new Parallax(scene);
+    new Parallax(scene);
     document.getElementById('content').addEventListener('scroll', this.handleScroll);
   };
   componentWillUnmount() {
@@ -50,7 +49,7 @@ class HeadBlock extends React.Component {
         <img data-depth="0.3" className="headerModel" src={this.props.modelheader} alt=""/>
       </div>
       <div className="headButtons" id="headButtons">
-        <div className="toScrollButton" id="toScrollButton">{(this.state.scrolled)?"Про нас":<FontAwesomeIcon icon={['fas', 'arrow-down']} />}</div>
+        <div className="toScrollButton" id="toScrollButton">{(this.state.scrolled)?"Про нас":<FontAwesomeIcon icon={['fas', 'arrow-down']}/>}</div>
       </div>
       <div className="headFooterSvg" id="headFooterSvg">
         <div className="containSvg">

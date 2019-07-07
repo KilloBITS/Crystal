@@ -24,6 +24,8 @@ import StaffBlock from './components/staff.js';
 import ContactsBlock from './components/contacts.js';
 import MapBlock from './components/map.js';
 
+import FooterBlock from './components/footer.js';
+
 
 library.add(fab, faCheckSquare, faCoffee, fas);
 
@@ -34,6 +36,7 @@ class Crystal extends React.Component{
       openedMenu: false,
       title: 'Crystal',
       logotype: require( './images/logotype.svg'),
+      logotypeFooter: require( './images/logotype.svg'),
       modelheader: require( './images/model.png'),
       menu: [
         {
@@ -198,17 +201,10 @@ class Crystal extends React.Component{
       }
     }
   }
-
   openCloseMenu(){
-    if(this.state.openedMenu){
-      this.setState({
-        openedMenu: false
-      });
-    }else{
-      this.setState({
-        openedMenu: true
-      });
-    }
+    this.setState({
+      openedMenu: (this.state.openedMenu)?false:true
+    });
   }
   render(){
     return <div className="content" id="content">
@@ -223,6 +219,7 @@ class Crystal extends React.Component{
       <StaffBlock data={this.state.staff} dataTest={this.state.gallery}/>
       <ContactsBlock data={this.state.constacts}/>
       <MapBlock/>
+      <FooterBlock dataMenu={this.state.menu} dataContacts={this.state.constacts} logotype={this.state.logotypeFooter}/>
     </div>
   }
 }

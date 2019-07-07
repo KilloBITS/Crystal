@@ -15,9 +15,9 @@ let parseUsers = (data) => {
       {comp.text}
     </div>
     <div className="staffSocials">
-    <a target="_blank" href={"#"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'instagram']} /></a>
-    <a target="_blank" href={"#"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fas', 'envelope']} /></a>
-    <a target="_blank" href={"#"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'facebook']} /></a>
+    <a target="_blank" href={"/"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'instagram']} /></a>
+    <a target="_blank" href={"/"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fas', 'envelope']} /></a>
+    <a target="_blank" href={"/"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'facebook']} /></a>
     </div>
   </div>);
   return dataBlock
