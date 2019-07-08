@@ -29,7 +29,27 @@ class FooterBlock extends React.Component {
           {parseMenu(this.props.dataMenu, true)}
         </div>
         <div className="footerData footerDataRight">
+          <div className="contacts_line">
+            <div className="contactsLineTitle">Адреса</div>
+            <div className="contactsLineStroke">Чернівці, вулиця Чорноморська, 4а</div>
+          </div>
 
+          <div className="contacts_line">
+            <div className="contactsLineTitle">Телефон</div>
+            <div className="contactsLineStroke">
+              <a href={"tel:+380978056953"}>+38 (097) 805-69-53</a>
+            </div>
+            <div className="contactsLineStroke">
+              <a href={"tel:+380665241709"}>+38 (066) 524-17-09</a>
+            </div>
+          </div>
+
+          <div className="contacts_line">
+            <div className="contactsLineTitle">Електронна пошта</div>
+            <div className="contactsLineStroke">
+              <a href={"mailto:kalinich0107@gmail.com"}>kalinich0107@gmail.com</a>
+            </div>
+          </div>
         </div>
         <div className="footerData footerDataCenter">
           <img className="fotterLogotype" src={this.props.logotype} alt=""/>

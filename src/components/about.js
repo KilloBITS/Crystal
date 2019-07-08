@@ -11,8 +11,8 @@ class AboutBlock extends React.Component {
       <div className="bdt-heading-style"><HeadingArt fill={'white'}/></div>
       <div className="aboutMiniText max1024">
         <div className="aboutDataBlock imageAbout" id="imageAbout">
-          <img id="oneImageAbout" src={bg1} alt=""/>
-          <img id="twoImageAbout" data-depth="0.1" src={bg2} alt=""/>
+          <Fade delay={50}><img id="oneImageAbout" src={bg1} alt=""/></Fade>
+          <Fade delay={75}><img id="twoImageAbout" data-depth="0.1" src={bg2} alt=""/></Fade>
         </div>
         <div className="aboutDataBlock">
           <Fade delay={50}>{this.props.data.minitext}</Fade>
@@ -32,7 +32,20 @@ class AboutBlock extends React.Component {
       </div>
       </Fade>
       <div className="aboutFooterSvg" id="aboutFooterSvg">
-        <div className="defaultButton">Записатися на прийом</div>
+        <div className="blockFeedBack">
+          <div className="blockFeedBacktitle">Записатися на прийом</div>
+          <div className="blockFeedBackContent">
+          Для Вашої зручності, Nail salon «Cristall» запустив послугу - запис онлайн.
+          Більше не потрібно шукати номер телефону, дзвонити адміністратору.
+          Для запису досить заповнити нескладну форму, вказавши бажану послугу і бажаний час та дату.
+          Вам передзвонить адміністратор, який проконсультує по бажаної послуги,
+          часу роботи майстра і адресою салону.
+          Запишіться на бажану процедуру прямо зараз!
+          Наш адміністратор зв'яжеться з Вами найближчим часом.
+          </div>
+          <div className="blockFeedBackMinData left"></div>
+          <div className="blockFeedBackMinData right"></div>
+        </div>
         <div className="containSvg">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595.3 135.5" preserveAspectRatio="none"><path d="M595.3 135.5V5.5c-53.4-11.9-113-3.4-164 12.3-22.4 6.9-43.8 15.1-64.9 23.7-26.9 11-53.3 22.5-80.9 32.7-49.2 18.2-104.8 32.2-160.9 28.3C80.9 99.6 40.9 86 0 75.3v60.2h595.3zM0 135.5h595.3"></path></svg>
         </div>

@@ -162,37 +162,37 @@ class Crystal extends React.Component{
             title: 'Ангеліна Пасічник',
             photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Aaliyah-01-400x400.jpg',
             photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Aaliyah-02-400x400.jpg',
-            text: 'Манікюк • Педикюр'
+            text: '• Майстер манікюру •'
           },
           {
             title: 'Елеонора Міщишина',
             photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Abigail-01-400x400.jpg',
             photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Abigail-02-400x400.jpg',
-            text: 'Манікюр'
+            text: '• Майстер бровіст •'
           },
           {
             title: 'Ірина Подовець',
             photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-01-400x400.jpg',
             photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-02-400x400.jpg',
-            text: 'Стажер'
+            text: '• Майстер манікюру •'
           },
           {
             title: 'Ангеліна Пасічник',
             photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Aaliyah-01-400x400.jpg',
             photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Aaliyah-02-400x400.jpg',
-            text: 'Манікюк • Педикюр'
+            text: '• Майстер з епіляції •'
           },
           {
             title: 'Елеонора Міщишина',
             photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Abigail-01-400x400.jpg',
             photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Abigail-02-400x400.jpg',
-            text: 'Манікюр'
+            text: '• Майстер манікюру •'
           },
           {
             title: 'Ірина Подовець',
             photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-01-400x400.jpg',
             photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-02-400x400.jpg',
-            text: 'Стажер'
+            text: '• Стажер •'
           }
         ]
       },

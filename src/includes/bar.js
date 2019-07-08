@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 let toTopThisScroll = (e) => {
   let toTopposition = document.getElementById(e.target.getAttribute('toelement')).offsetTop;
@@ -51,6 +52,13 @@ class NavBar extends React.Component {
       </div>
       <div className="pageBar" id="pageBar">
         {parseNavBar(this.props.data, true)}
+      </div>
+
+      <div className="feedBackAbsoluteBtn">
+        <FontAwesomeIcon icon={['fas', 'gem']} />
+      </div>
+      <div className="toTopAbsoluteBtn">
+        <FontAwesomeIcon icon={['fas', 'arrow-up']}/>
       </div>
     </div>
   }

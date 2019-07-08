@@ -102,6 +102,55 @@ a{
 
 }
 
+.feedBackAbsoluteBtn{
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  width: 60px;
+  height: 60px;
+  background-color: #f2af70;
+  z-index: 10;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  line-height: 63px;
+  border-radius: 63px;
+  border: 3px solid white;
+  cursor: pointer;
+      transition: 0.3s;
+  animation: btnshadovanimate 3s linear;
+}
+
+@keyframes btnshadovanimate {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1.0;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+.toTopAbsoluteBtn{
+  position: fixed;
+  right: 30px;
+  bottom: 10px;
+  width: 60px;
+  height: 60px;
+  background-color: #f2af70;
+  z-index: 10;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  line-height: 63px;
+  border-radius: 63px;
+  border: 3px solid white;
+  cursor: pointer;
+}
+
+
 .navBar .openMenuButton{
   position: fixed;
   top: 20px;
@@ -480,21 +529,45 @@ top: 15px;
   width: 100%;
   height: 100%;
   position: relative;
+  height: 540px;
 }
 
-.aboutFooterSvg .defaultButton{
+.aboutFooterSvg .blockFeedBack{
   position: absolute;
   left: 50%;
   transform: translate(-50%,-50%);
   top: 50%;
   z-index: 1;
-  border-radius: 50px;
+  border-radius: 3px;
   animation-fill-mode: none!important;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 300px;
+}
+
+.blockFeedBacktitle{
+  width: 100%;
+  border-bottom: 1px solid #08e8de96;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: DefaultText;
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+.blockFeedBackContent{
+  padding: 10px;
+  text-transform: uppercase;
+  font-family: DefaultText;
+  text-align: center;
+  word-break: break-word;
 }
 
 .aboutFooterSvg .containSvg{
   bottom: 0;
   width: 100%;
+  position: absolute;
 }
 
 .aboutFooterSvg .containSvg svg{
@@ -634,7 +707,7 @@ top: 15px;
 }
 
 #serv0 .serviceIcon{
-  animation: shadowDinamic 8s cubic-bezier(0, 0, 1, 0.99);;
+  animation: shadowDinamic 8s cubic-bezier(0, 0, 1, 0.99);
   animation-iteration-count: infinite;
 }
 #serv1 .serviceIcon{
@@ -706,14 +779,15 @@ top: 15px;
   margin: 10px;
   text-align: center;
   background-color: #08e8de;
+  transition: 0.3s;
 }
 
-.galleryFotterButton .showAllPhoto{
-
+.galleryFotterButton .showAllPhoto:hover{
+  background-color: #0dcbc2;
 }
 
-.galleryFotterButton .showAllInstagram{
-
+.galleryFotterButton .showAllInstagram:hover{
+  background-color: #0dcbc2;
 }
 
 .galleryPhoto{
@@ -1244,8 +1318,12 @@ display: none;
 
 .footerDataRight{
   float: right;
+  text-align: right;
 }
 
+.footerDataRight .contacts_line{
+  letter-spacing: 1px;
+}
 .footerDataCenter{
   position: absolute;
   left: 50%;
