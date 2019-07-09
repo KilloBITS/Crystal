@@ -6,8 +6,8 @@ const router = express.Router();
 const transporter = nodemailer.createTransport({
 	service: 'gmail',
 	auth: {
-		user: 'MyResume.kaleniuk@gmail.com',
-		pass: 'makaron1488'
+		user: 'cristall.bot.site@gmail.com',
+		pass: 'cristallbot0907'
 	}
 });
 
@@ -20,11 +20,11 @@ let postMessage = (req, res, next) => {
 	today = mm + '/' + dd + '/' + yyyy;
 
   let data = req.body.text;
-  let message = '{'+data.firstName + ' ' + data.lastName +'}' +
-                "("+data.phone+")"+
-                "["+data.text+"]";
+  let message = '• '+data.firstName + ' ' + data.lastName +' • \n \n' +
+                +data.phone+
+                +data.text
   let mailOptions = {
-      from: "MyResume.kaleniuk@gmail.com", // sender address
+      from: "cristall.bot.site@gmail.com", // sender address
       to: "mr.kalinuk@gmail.com", // list of receivers
       subject: "Сообщение с сайта Cristall ("+ data.email +")", // Subject line
       text: message, // plain text body

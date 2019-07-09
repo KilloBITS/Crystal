@@ -18,6 +18,7 @@ import AboutBlock from './components/about.js';
 import ServicesBlock from './components/services.js';
 
 import StatisticBlock from './components/statistic.js'
+import MailingBlock from './components/mailing.js';
 
 import GalleryBlock from './components/gallery.js';
 import StaffBlock from './components/staff.js';
@@ -25,7 +26,6 @@ import ContactsBlock from './components/contacts.js';
 import MapBlock from './components/map.js';
 
 import FooterBlock from './components/footer.js';
-
 
 library.add(fab, faCheckSquare, faCoffee, fas);
 
@@ -215,6 +215,7 @@ class Crystal extends React.Component{
       <AboutBlock data={this.state.about}/>
       <ServicesBlock data={this.state.services} logotype={this.state.logotype}/>
       <StatisticBlock/>
+      <MailingBlock/>
       <GalleryBlock data={this.state.gallery}/>
       <StaffBlock data={this.state.staff} dataTest={this.state.gallery}/>
       <ContactsBlock data={this.state.constacts}/>
