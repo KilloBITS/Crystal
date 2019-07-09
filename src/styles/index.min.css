@@ -19,6 +19,10 @@
   .pageBar{
     display: none;
   }
+
+  .toTopAbsoluteBtn{
+    right: 10px;
+  }
   /** Menu **/
   .navBar .openMenuButton{
     top: 14px;
@@ -56,6 +60,11 @@
     max-width: calc(100% - 10px);
     margin: auto;
     transition: 0.3s;
+  }
+
+  .aboutFooterSvg .blockFeedBack {
+    max-width: 310px;
+    width: calc(100% - 30px);
   }
 
   #oneImageAbout{

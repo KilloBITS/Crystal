@@ -16,19 +16,15 @@ class GalleryBlock extends React.Component {
     super();
     if(document.body.offsetWidth > 800){
       this.state = {
-        openimagesrc: null,
         height: (window.innerWidth / 4)-5,
         width: (window.innerWidth / 4)-5
       };
     }else{
       this.state = {
-        openimagesrc: null,
         height: (window.innerWidth / 2)-5,
         width: (window.innerWidth / 2)-5
       };
     }
-    this.openphoto = this.openPhoto.bind(this);
-    this.closephoto = this.closephoto.bind(this);
     this.updateDimensions = this.updateDimensions.bind(this);
   }
   componentDidMount() {
@@ -48,31 +44,11 @@ class GalleryBlock extends React.Component {
     }
   }
 
-  openPhoto(a) {
-    const imageURL = a.currentTarget.getElementsByTagName('img')[0].src;
-    this.setState({
-      openimagesrc: imageURL
-    });
-    console.log(imageURL)
-  }
 
-  closephoto(a) {
-    this.setState({
-      openimagesrc: null
-    });
-  }
   render() {
     return <div className="block gallery" id="GalleryBlock">
-      <div className={(this.state.openimagesrc === null)?"imageModal hiden":"imageModal"} id="imageModal">
-        <div className="imageModalBlock">
-          <div className="closeimageModal" onClick={this.closephoto}>
-            <FontAwesomeIcon icon={['fas', 'times']} />
-          </div>
-          <img src={this.state.openimagesrc} alt=""/>
-        </div>
-      </div>
       <div className="galleryData">
-        {parseGallery(this.props.data.images, {width: this.state.width, height: this.state.height}, this.openphoto )}
+        {parseGallery(this.props.data.images, {width: this.state.width, height: this.state.height}, this.props.openphoto, this.props.closephoto )}
       </div>
       <div className="galleryFotterButton">
         <div className="defaultButton showAllPhoto">Більше зображень</div>

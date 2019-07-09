@@ -11,6 +11,7 @@ import './styles/index.min.css';
 //import components
 import Menu from './includes/menu.js';
 import Bar from './includes/bar.js';
+import ImageModal from './includes/imagemodal.js';
 //Block
 import Preloader from './components/preloader.js';
 import HeadBlock from './components/head.js';
@@ -34,6 +35,7 @@ class Crystal extends React.Component{
     super(props);
     this.state = {
       openedMenu: false,
+      openimagesrc: null,
       title: 'Crystal',
       logotype: require( './images/logotype.svg'),
       logotypeFooter: require( './images/logotype.svg'),
@@ -200,23 +202,40 @@ class Crystal extends React.Component{
         title: 'Контакти'
       }
     }
+    this.openphoto = this.openPhoto.bind(this);
+    this.closephoto = this.closephoto.bind(this);
   }
   openCloseMenu(){
     this.setState({
       openedMenu: (this.state.openedMenu)?false:true
     });
   }
+  openPhoto(a) {
+    const imageURL = a.currentTarget.getElementsByTagName('img')[0].src;
+    this.setState({
+      openimagesrc: imageURL
+    });
+    console.log(imageURL)
+  }
+
+  closephoto(a) {
+    this.setState({
+      openimagesrc: null
+    });
+  }
+
   render(){
     return <div className="content" id="content">
       <Preloader logotype={this.state.logotype}/>
       <Menu data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
       <Bar data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
+      <ImageModal openimagesrc={this.state.openimagesrc} closephoto={this.closephoto}/>
       <HeadBlock data={this.state.header} logotype={this.state.logotype} modelheader={this.state.modelheader}/>
       <AboutBlock data={this.state.about}/>
       <ServicesBlock data={this.state.services} logotype={this.state.logotype}/>
       <StatisticBlock/>
       <MailingBlock/>
-      <GalleryBlock data={this.state.gallery}/>
+      <GalleryBlock data={this.state.gallery} openphoto={this.openphoto}/>
       <StaffBlock data={this.state.staff} dataTest={this.state.gallery}/>
       <ContactsBlock data={this.state.constacts}/>
       <MapBlock/>
