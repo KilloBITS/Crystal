@@ -105,8 +105,8 @@ class AboutBlock extends React.Component {
               Смс-нагадування про майбутній візит.<br/><br/>
               Можливість залишити відгук.<br/><br/>
               </div>
-              <div className="defaultButton">Записатись</div>
             </div>
+            <div className="defaultButton">Записатись</div>
           </div>
 
           <div className="blockFeedBacktitle">Записатися на прийом</div>

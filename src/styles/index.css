@@ -692,7 +692,7 @@ top: 15px;
   width: 120px;
   height: 120px;
   position: absolute;
-  top: calc(100% - 30px);
+  bottom: -20px;
   animation: calacala 5s cubic-bezier(0.4, 0.74, 0.56, 0.82);
   animation-iteration-count: infinite;
   transition: 0.3s;
