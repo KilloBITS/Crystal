@@ -69,35 +69,51 @@ class AboutBlock extends React.Component {
 
         <Reveal effect="fadeInUp">
         <div className="blockFeedBack">
-        <div className="blockFeedBackMinData left">
-          <div className="contacts_line mtop">
-            <div className="contactsLineTitle">Графік роботи</div>
-              <div className="contactsLineStroke">
-              <div className="dateTimeLine">Понеділок: 10:00 - 20:00</div>
-              <div className="dateTimeLine">Вівторок: 10:00 - 20:00</div>
-              <div className="dateTimeLine">Середа: 10:00 - 20:00</div>
-              <div className="dateTimeLine">Четвер: 10:00 - 20:00</div>
-              <div className="dateTimeLine">Пятниця: 10:00 - 20:00</div>
-              <div className="dateTimeLine">Субота: 10:00 - 20:00</div>
-              <div className="dateTimeLine dayRed">Неділя: Вихідний</div>
+          <div className="blockFeedBackMinData left">
+            <div className="contacts_line mtop">
+              <div className="contactsLineTitle">Графік роботи</div>
+                <div className="paragraphLine">
+                  <FontAwesomeIcon icon={['fas', 'gem']} />
+                </div>
+                <div className="contactsLineStroke">
+                <div className="dateTimeLine">Понеділок: 10:00 - 20:00</div>
+                <div className="dateTimeLine">Вівторок: 10:00 - 20:00</div>
+                <div className="dateTimeLine">Середа: 10:00 - 20:00</div>
+                <div className="dateTimeLine">Четвер: 10:00 - 20:00</div>
+                <div className="dateTimeLine">Пятниця: 10:00 - 20:00</div>
+                <div className="dateTimeLine">Субота: 10:00 - 20:00</div>
+                <div className="dateTimeLine dayRed">Неділя: Вихідний</div>
 
-              <div className="thisCurrentOpened">
-                На даний момент: {parseOpeneCristall(this.state.currentTime).text}
+                <div className="thisCurrentOpened">
+                  На даний момент: {parseOpeneCristall(this.state.currentTime).text}
+                </div>
               </div>
             </div>
+            <div className="imgLogodoor">
+              {parseOpeneCristall(this.state.currentTime).image}
+            </div>
           </div>
-          <div className="imgLogodoor">
-            {parseOpeneCristall(this.state.currentTime).image}
+          <div className="blockFeedBackMinData right">
+            <div className="contacts_line mtop">
+              <div className="contactsLineTitle">Переваги online</div>
+              <div className="paragraphLine">
+                <FontAwesomeIcon icon={['fas', 'gem']} />
+              </div>
+              <div className="blockFeedBackContent">
+              Це дозволить вам швидше записуватися на прийом до улюбленого майстра.<br/><br/>
+              Простий і зручний спосіб запису.<br/><br/>
+              Смс-нагадування про майбутній візит.<br/><br/>
+              Можливість залишити відгук.<br/><br/>
+              </div>
+              <div class="defaultButton">Записатись</div>
+            </div>
           </div>
-        </div>
-        <div className="blockFeedBackMinData right">
 
-        </div>
           <div className="blockFeedBacktitle">Записатися на прийом</div>
           <div className="paragraphLine">
             <FontAwesomeIcon icon={['fas', 'gem']} />
           </div>
-          <div className="blockFeedBackContent">
+          <div className="blockFeedBackContent center">
           Для Вашої зручності, Nail salon «Cristall» запустив послугу - запис онлайн.
           Більше не потрібно шукати номер телефону, дзвонити адміністратору.
           Для запису досить заповнити нескладну форму, вказавши бажану послугу і бажаний час та дату.
@@ -106,8 +122,6 @@ class AboutBlock extends React.Component {
           Запишіться на бажану процедуру прямо зараз!
           Наш адміністратор зв'яжеться з Вами найближчим часом.
           </div>
-
-
         </div>
         </Reveal>
         <div className="containSvg">

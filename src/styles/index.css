@@ -651,6 +651,7 @@ top: 15px;
   font-family: DefaultText;
   text-align: center;
   word-break: break-word;
+  text-align: left;
 }
 
 .blockFeedBackMinData.left{
@@ -667,6 +668,23 @@ top: 15px;
 
 .blockFeedBackMinData.left .contactsLineTitle{
   color: rebeccapurple;
+  text-align: center;
+}
+
+.blockFeedBackMinData.right .contactsLineTitle{
+  color: rebeccapurple;
+  text-align: center;
+}
+
+.blockFeedBackMinData.right .blockFeedBackContent {
+    color: rebeccapurple;
+}
+
+.blockFeedBackMinData.right .paragraphLine svg {
+    background-color: #e6fffe;
+}
+
+.blockFeedBackContent.center{
   text-align: center;
 }
 
@@ -703,6 +721,10 @@ top: 15px;
   color: rebeccapurple;
 }
 
+.blockFeedBackMinData.left .paragraphLine svg{
+  background-color: #e6fffe;
+}
+
 .blockFeedBackMinData.right{
   position: absolute;
   left: calc(100% - 5px);
@@ -713,6 +735,20 @@ top: 15px;
   padding: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   z-index: -10;
+}
+
+.blockFeedBackMinData.right .defaultButton{
+  padding: 8px;
+  text-align: center;
+  position: absolute;
+  width: calc(100% - 36px);
+  top: calc(100% - 18px);
+  background-color: #25b4ad;
+  transition: 0.3s;
+}
+
+.blockFeedBackMinData.right .defaultButton:hover{
+  background-color: #18938d;
 }
 
 .aboutFooterSvg .containSvg{
