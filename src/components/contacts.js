@@ -1,7 +1,61 @@
 import React from 'react';
+import axios from 'axios';
 import HeadingArt from '../images/heading.js'
 
 class ContactsBlock extends React.Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+          messagestatus: false,
+          firstName: '',
+          phoneNumber: '',
+          email: '',
+          text: ''
+      };
+  }
+  handleFirstNameChange(event) {
+      var firstName = event.target.value;
+      this.setState({
+          firstName: firstName
+      });
+  }
+  handlePhoneNumberChange(event) {
+      var phone = event.target.value;
+      this.setState({
+          phoneNumber: phone
+      });
+  }
+  handleEmailChange(event) {
+      var email = event.target.value;
+      this.setState({
+          email: email
+      });
+  }
+  handleTextChange(event){
+    var text = event.target.value;
+    this.setState({
+        text: text
+    });
+  }
+
+  handleSubmit(){
+    this.setState({
+        messagestatus: true
+    });
+    let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5002':window.location.origin;
+    axios.post(myLocation+'/postMessage', {text: this.state}).then(res => {
+      setTimeout(() => {
+        this.setState({
+          messagestatus: false,
+          firstName: "",
+          phoneNumber: "",
+          email: "",
+          text: ""
+        })
+      },2000)
+      return false
+    });
+  }
   render() {
     return <div className="block contacts" id="ContactsBlock">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
@@ -59,28 +113,29 @@ class ContactsBlock extends React.Component {
         </div>
         <div className="contactsRow">
           <div className="feedBackForm">
+            <div className={this.state.messagestatus?"FormLoader load":"FormLoader"}></div>
             <div className="formLine">
               <div className="inputFormTitle">Імя</div>
-              <input type="text" className="inputForm" placeholder="..."/>
+              <input type="text" className="inputForm" value={this.state.firstName} placeholder="..." onChange={this.handleFirstNameChange.bind(this)}/>
             </div>
 
             <div className="formLine">
               <div className="inputFormTitle">Номер телефону</div>
-              <input type="text" className="inputForm" placeholder="..."/>
+              <input type="text" className="inputForm" value={this.state.phoneNumber} placeholder="..." onChange={this.handlePhoneNumberChange.bind(this)}/>
             </div>
 
             <div className="formLine">
               <div className="inputFormTitle">Електронна пошта</div>
-              <input type="text" className="inputForm" placeholder="..."/>
+              <input type="text" className="inputForm" value={this.state.email} placeholder="..." onChange={this.handleEmailChange.bind(this)}/>
             </div>
 
             <div className="formLine">
               <div className="inputFormTitle">Текст повідомлення</div>
-              <textarea className="inputForm" placeholder="..."/>
+              <textarea className="inputForm" value={this.state.text} placeholder="..." onChange={this.handleTextChange.bind(this)}/>
             </div>
 
             <div className="formLine">
-              <div className="defaultButton sendMessage">Відпарвити</div>
+              <div className="defaultButton sendMessage" onClick={this.handleSubmit.bind(this)}>Відпарвити</div>
             </div>
 
           </div>

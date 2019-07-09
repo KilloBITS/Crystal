@@ -1160,7 +1160,26 @@ top: 15px;
 }
 
 .feedBackForm{
+  position: relative;
+}
 
+.FormLoader{
+  position: absolute;
+  width: calc(100% + 10px);
+  height: 100%;
+  background-color: rgba(8, 232, 222, 0.75);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100px;
+  background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/cd514331234507.564a1d2324e4e.gif);
+  opacity: 0;
+  z-index: -1;
+  transition: 0.3s;
+}
+
+.FormLoader.load{
+  opacity: 1;
+  z-index: 1;
 }
 
 .formLine{
