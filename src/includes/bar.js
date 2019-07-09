@@ -24,24 +24,39 @@ let clearClassNavigator = (setClass) => {
 }
 
 class NavBar extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      visibleBTN: false,
+      pageColor: false,
+      clickedFeedback: false
+    }
+  }
   componentDidMount() {
     document.getElementById('content').addEventListener('scroll', this.handleScroll.bind(this));
   };
   handleScroll(){
+    this.setState({
+      visibleBTN: (document.getElementById('content').scrollTop > 50),
+      pageColor: (document.getElementById('content').scrollTop > document.getElementById('AboutBlock').offsetTop),
+      clickedFeedback: false
+    });
+
     let docHeight = document.getElementById('HeadBlock').offsetHeight / 2;
-
-    if(document.getElementById('content').scrollTop > document.getElementById('AboutBlock').offsetTop){
-      document.getElementById('pageBar').className = 'pageBar twoColor'
-    } else{
-      document.getElementById('pageBar').className = 'pageBar'
-    }
-
     if(document.getElementById('content').scrollTop >= document.getElementById('HeadBlock').offsetTop){clearClassNavigator(0)}
     if(document.getElementById('AboutBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(1)}
     if(document.getElementById('ServicesBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(2)}
     if(document.getElementById('GalleryBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(3)}
     if(document.getElementById('StaffBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(4)}
     if(document.getElementById('ContactsBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(5)}
+  }
+  toTopPosition(){
+    document.getElementById('content').scrollTo({top: 0, behavior: 'smooth'});
+  }
+  toClickFeedBack(){
+    this.setState({
+      clickedFeedback: (this.state.clickedFeedback)?false:true
+    });
   }
   render() {
     return <div className="navBar" id="navBar">
@@ -50,14 +65,17 @@ class NavBar extends React.Component {
         <div className="menuButtonLine line2"></div>
         <div className="menuButtonLine line3"></div>
       </div>
-      <div className="pageBar" id="pageBar">
+      <div className={this.state.pageColor?"pageBar twoColor":"pageBar"} id="pageBar">
         {parseNavBar(this.props.data, true)}
       </div>
-
-      <div className="feedBackAbsoluteBtn">
+      <div className={this.state.visibleBTN?"feedBackAbsoluteBtn":"feedBackAbsoluteBtn hide"} onClick={this.toClickFeedBack.bind(this)} id="feedBackAbsoluteBtn">
         <FontAwesomeIcon icon={['fas', 'gem']} />
+        <div className={this.state.clickedFeedback?"chilsFeedBackBtn email openFeed":"chilsFeedBackBtn email"}><FontAwesomeIcon icon={['fas', 'envelope']} /></div>
+        <div className={this.state.clickedFeedback?"chilsFeedBackBtn insta openFeed":"chilsFeedBackBtn insta"}><FontAwesomeIcon icon={['fab', 'instagram']} /></div>
+        <div className={this.state.clickedFeedback?"chilsFeedBackBtn viber openFeed":"chilsFeedBackBtn viber"}><FontAwesomeIcon icon={['fab', 'viber']} /></div>
+        <div className={this.state.clickedFeedback?"chilsFeedBackBtn facebook openFeed":"chilsFeedBackBtn facebook"}><FontAwesomeIcon icon={['fab', 'facebook']} /></div>
       </div>
-      <div className="toTopAbsoluteBtn">
+      <div className={this.state.visibleBTN?"toTopAbsoluteBtn":"toTopAbsoluteBtn hide"} onClick={this.toTopPosition.bind(this)} id="toTopAbsoluteBtn">
         <FontAwesomeIcon icon={['fas', 'arrow-up']}/>
       </div>
     </div>

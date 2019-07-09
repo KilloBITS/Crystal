@@ -27,6 +27,10 @@ a{
   text-decoration: none;
   cursor: pointer;
 }
+
+.hide{
+
+}
 .st0{fill:red;}
 
 .max1024{
@@ -122,17 +126,6 @@ a{
   animation-iteration-count: infinite;
 }
 
-@keyframes btnshadovanimate {
-  0% { box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0.5); }
- 14% { box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.5); }
- 28% { box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.5); }
- 42% { box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.5); }
- 56% { box-shadow: 0px 0px 0px 8px rgba(255, 255, 255, 0.5); }
- 70% { box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.5); }
- 84% { box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.5); }
- 100% { box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0.5); }
-}
-
 .toTopAbsoluteBtn{
   position: fixed;
   right: 30px;
@@ -157,6 +150,69 @@ a{
   border-radius: 12px;
 }
 
+.feedBackAbsoluteBtn.hide,.toTopAbsoluteBtn.hide{
+  opacity: 0;
+  z-index: -1;
+}
+
+@keyframes btnshadovanimate {
+  0% { box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0.5); }
+ 14% { box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.5); }
+ 28% { box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.5); }
+ 42% { box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.5); }
+ 56% { box-shadow: 0px 0px 0px 8px rgba(255, 255, 255, 0.5); }
+ 70% { box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 0.5); }
+ 84% { box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.5); }
+ 100% { box-shadow: 0px 0px 0px 4px rgba(255, 255, 255, 0.5); }
+}
+
+.chilsFeedBackBtn{
+  position: absolute;
+  background-color: #f2af70;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 40px;
+  font-size: 20px;
+  z-index: -1;
+  opacity: 0;
+  left: 0;
+  bottom: 0;
+  transition: 0.3s;
+}
+
+.chilsFeedBackBtn.email.openFeed{
+  bottom: calc(100% + 36px);
+  left: 0;
+  z-index: 2;
+  opacity: 1;
+  background-color: #be81fa;
+  transition: 0.1s;
+}
+.chilsFeedBackBtn.insta.openFeed{
+  bottom: calc(100% + 23px);
+  left: 55px;
+  z-index: 2;
+  opacity: 1;
+  transition: 0.2s;
+  background-color: #fa8181;
+}
+.chilsFeedBackBtn.viber.openFeed{
+  bottom: calc(100% + -18px);
+  left: 92px;
+  z-index: 2;
+  opacity: 1;
+  transition: 0.3s;
+  background-color: #22259d;
+}
+.chilsFeedBackBtn.facebook.openFeed{
+  bottom: calc(100% + -71px);
+  left: 93px;
+  z-index: 2;
+  opacity: 1;
+  transition: 0.4s;
+  background-color: #5d8d4e;
+}
 
 .navBar .openMenuButton{
   position: fixed;
@@ -543,14 +599,20 @@ top: 15px;
   position: absolute;
   left: 50%;
   transform: translate(-50%,-50%);
-  top: 50%;
+  top: calc(50% + 150px);
   z-index: 1;
   border-radius: 3px;
-  animation-fill-mode: none!important;
   background-color: white;
   padding: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   max-width: 300px;
+  opacity: 0;
+  transition: 1s;
+}
+
+.fadeInUp.blockFeedBack{
+  top: 50%;
+  opacity: 1;
 }
 
 .blockFeedBacktitle{
