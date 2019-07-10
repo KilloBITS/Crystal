@@ -279,4 +279,5 @@ class Crystal extends React.Component{
     </div>
   }
 }
+
 ReactDOM.render(<Crystal/>, document.getElementById('root'));
