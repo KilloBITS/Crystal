@@ -16,13 +16,13 @@ class GalleryBlock extends React.Component {
     super();
     if(document.body.offsetWidth > 800){
       this.state = {
-        height: (window.innerWidth / 4)-5,
-        width: (window.innerWidth / 4)-5
+        height: (window.innerWidth / 4),
+        width: (window.innerWidth / 4)
       };
     }else{
       this.state = {
-        height: (window.innerWidth / 2)-5,
-        width: (window.innerWidth / 2)-5
+        height: (window.innerWidth / 2),
+        width: (window.innerWidth / 2)
       };
     }
     this.updateDimensions = this.updateDimensions.bind(this);
@@ -33,13 +33,13 @@ class GalleryBlock extends React.Component {
   updateDimensions() {
     if(document.body.offsetWidth > 800){
       this.setState({
-        height: (window.innerWidth / 4)-5,
-        width: (window.innerWidth / 4)-5
+        height: (window.innerWidth / 4),
+        width: (window.innerWidth / 4)
       });
     }else{
       this.setState({
-        height: (window.innerWidth / 2)-5,
-        width: (window.innerWidth / 2)-5
+        height: (window.innerWidth / 2),
+        width: (window.innerWidth / 2)
       });
     }
   }

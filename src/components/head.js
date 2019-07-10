@@ -39,6 +39,11 @@ class HeadBlock extends React.Component {
     }
   }
 
+  nextScroll(){
+    let toTopposition = document.getElementById('AboutBlock').offsetTop;
+    document.getElementById('content').scrollTo({top: toTopposition, behavior: 'smooth'});
+  }
+
   render() {
     let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5002':window.location.origin;
     return <div className="block head" id="HeadBlock">
@@ -49,7 +54,7 @@ class HeadBlock extends React.Component {
         <img data-depth="0.3" className="headerModel" src={this.props.modelheader} alt=""/>
       </div>
       <div className="headButtons" id="headButtons">
-        <div className="toScrollButton" id="toScrollButton">{(this.state.scrolled)?"Про нас":<FontAwesomeIcon icon={['fas', 'arrow-down']}/>}</div>
+        <div className="toScrollButton" id="toScrollButton" onClick={(!this.state.scrolled)?this.nextScroll.bind(this):()=>{return false}}>{(this.state.scrolled)?"Про нас":<FontAwesomeIcon icon={['fas', 'arrow-down']}/>}</div>
       </div>
       <div className="headFooterSvg" id="headFooterSvg">
         <div className="containSvg">

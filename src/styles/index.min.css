@@ -30,6 +30,9 @@
     width: 45px;
   }
   /** HeadBlock **/
+  .block.head{
+    overflow-x: hidden;
+  }
   .headBackgroundFilter svg{
     max-width: calc(100% - 15px);
     right: auto;
@@ -50,6 +53,10 @@
   .aboutMiniText{
     font-size: 18px;
     max-width: calc(100% - 20px);
+  }
+
+  .headFooterSvg{
+    top: 2px;
   }
 
   .aboutDataBlock{
@@ -87,6 +94,13 @@
     font-size: 30px;
   }
 
+  .blockFeedBackMinData.left{
+    display: none;
+  }
+
+  .blockFeedBackMinData.right{
+    display: none;
+  }
   /** ServicesBlock **/
   .services .blockMiniText {
     max-width: calc(100% - 20px);
