@@ -1,4 +1,5 @@
 import React from 'react';
+import Swiper from 'react-id-swiper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadingArt from '../images/heading.js';
 
@@ -23,6 +24,27 @@ let parseUsers = (data) => {
   return dataBlock
 }
 
+const multipleRowSlidesLayout = (stafData) => {
+  const params = {
+    slidesPerView: 3,
+    slidesPerColumn: 2,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    }
+  }
+  return (
+    <Swiper {...params}>
+      {parseUsers(stafData)}
+    </Swiper>
+  )
+};
+
 class StaffBlock extends React.Component {
   render() {
     return <div className="block staff" id="StaffBlock">
@@ -32,11 +54,7 @@ class StaffBlock extends React.Component {
       <div className="bdt-heading-style"><HeadingArt fill={'#164b49'}/></div>
       <div className="staffContent">
       <div className="carouselBlock">
-        <div className="staffArrow">
-          <div className="staffArrLeft"></div>
-          <div className="staffArrRight"></div>
-        </div>
-        {parseUsers(this.props.data.staffData)}
+        {multipleRowSlidesLayout(this.props.data.staffData)}
       </div>
       </div>
     </div>

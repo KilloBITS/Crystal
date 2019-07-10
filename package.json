@@ -16,6 +16,7 @@
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-id-swiper": "^2.3.1",
     "react-leaflet": "^2.4.0",
     "react-lightbox-component": "^1.2.1",
     "react-lottie": "^1.2.3",
@@ -24,6 +25,7 @@
     "react-scripts": "3.0.1",
     "react-vivus": "0.0.2",
     "semantic-ui-react": "^0.87.2",
+    "swiper": "^4.5.0",
     "vivus": "^0.4.4"
   },
   "scripts": {

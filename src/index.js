@@ -195,6 +195,42 @@ class Crystal extends React.Component{
             photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-01-400x400.jpg',
             photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-02-400x400.jpg',
             text: '• Стажер •'
+          },
+          {
+            title: 'Ангеліна Пасічник',
+            photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Aaliyah-01-400x400.jpg',
+            photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Aaliyah-02-400x400.jpg',
+            text: '• Майстер з епіляції •'
+          },
+          {
+            title: 'Елеонора Міщишина',
+            photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Abigail-01-400x400.jpg',
+            photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Abigail-02-400x400.jpg',
+            text: '• Майстер манікюру •'
+          },
+          {
+            title: 'Ірина Подовець',
+            photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-01-400x400.jpg',
+            photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-02-400x400.jpg',
+            text: '• Стажер •'
+          },
+          {
+            title: 'Ангеліна Пасічник',
+            photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Aaliyah-01-400x400.jpg',
+            photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Aaliyah-02-400x400.jpg',
+            text: '• Майстер з епіляції •'
+          },
+          {
+            title: 'Елеонора Міщишина',
+            photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Abigail-01-400x400.jpg',
+            photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Abigail-02-400x400.jpg',
+            text: '• Майстер манікюру •'
+          },
+          {
+            title: 'Ірина Подовець',
+            photoOne: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-01-400x400.jpg',
+            photoTwo: 'https://bdthemes.net/demo/wordpress/parlour/wp-content/uploads/2017/06/Bailey-02-400x400.jpg',
+            text: '• Стажер •'
           }
         ]
       },
