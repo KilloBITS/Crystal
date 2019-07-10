@@ -25,6 +25,7 @@ let parseUsers = (data) => {
 }
 
 const multipleRowSlidesLayout = (stafData) => {
+  console.log('PC')
   const params = {
     slidesPerView: 3,
     slidesPerColumn: 2,
@@ -35,7 +36,7 @@ const multipleRowSlidesLayout = (stafData) => {
     },
     pagination: {
       el: '.swiper-pagination',
-      clickable: true,
+      clickable: true
     }
   }
   return (
@@ -45,7 +46,48 @@ const multipleRowSlidesLayout = (stafData) => {
   )
 };
 
+const multipleRowSlidesLayoutMobile = (stafData) => {
+  console.log('mobile')
+  const params = {
+    effect: 'coverflow',
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    coverflowEffect: {
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    }
+  }
+  return (
+    <Swiper {...params}>
+        {parseUsers(stafData)}
+    </Swiper>
+  )
+};
+
 class StaffBlock extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      width: document.body.clientWidth
+    }
+    this.updateDimensions = this.updateDimensions.bind(this);
+  }
+  componentDidMount() {
+    window.addEventListener("resize", this.updateDimensions);
+  }
+  updateDimensions() {
+    this.setState({
+      width: document.body.clientWidth
+    });
+  }
   render() {
     return <div className="block staff" id="StaffBlock">
       <div className="blockTitle">
@@ -54,7 +96,7 @@ class StaffBlock extends React.Component {
       <div className="bdt-heading-style"><HeadingArt fill={'#164b49'}/></div>
       <div className="staffContent">
       <div className="carouselBlock">
-        {multipleRowSlidesLayout(this.props.data.staffData)}
+        {(this.state.width > 880)?multipleRowSlidesLayout(this.props.data.staffData):multipleRowSlidesLayoutMobile(this.props.data.staffData)}
       </div>
       </div>
     </div>

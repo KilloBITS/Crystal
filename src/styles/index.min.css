@@ -152,9 +152,38 @@
   /** StaffBlock **/
   .block.staff{
     padding-bottom: 50px;
+    height: 560px;
   }
   .staffUserBlock{
     margin: 40px 10px -10px 10px;
+  }
+
+  .staffContent {
+    width: 100%;
+    height: 100%;
+  }
+
+  .carouselBlock {
+    height: 100%;
+  }
+
+  .swiper-container {
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .swiper-wrapper {
+    display: flex;
+  }
+
+  .swiper-pagination {
+    width: fit-content;
+    margin: auto;
+    position: absolute;
+    z-index: 10;
+    bottom: 27px;
+    left: 50%;
+    transform: translate(-50%, 0);
   }
 
   /** ContactsBlock **/

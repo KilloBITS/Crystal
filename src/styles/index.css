@@ -677,11 +677,12 @@ top: 15px;
 }
 
 .blockFeedBackMinData.right .blockFeedBackContent {
-    color: rebeccapurple;
+  color: rebeccapurple;
+  font-size: 14px;
 }
 
 .blockFeedBackMinData.right .paragraphLine svg {
-    background-color: #e6fffe;
+  background-color: #e6fffe;
 }
 
 .blockFeedBackContent.center{
@@ -740,7 +741,6 @@ top: 15px;
 .blockFeedBackMinData.right .defaultButton{
   padding: 8px;
   text-align: center;
-  position: absolute;
   width: calc(100% - 36px);
   top: calc(100% - 18px);
   background-color: #25b4ad;
@@ -1205,6 +1205,7 @@ top: 15px;
 .swiper-pagination{
   width: fit-content;
   margin: auto;
+  margin-top: 20px;
 }
 
 .swiper-pagination span{
@@ -1353,6 +1354,36 @@ top: 15px;
 
 .staffUserBlock:hover .staffSocials a{
   opacity: 1
+}
+
+.swiper-container-3d .swiper-wrapper, .swiper-container-3d .swiper-slide, .swiper-container-3d .swiper-slide-shadow-left, .swiper-container-3d .swiper-slide-shadow-right, .swiper-container-3d .swiper-slide-shadow-top, .swiper-container-3d .swiper-slide-shadow-bottom, .swiper-container-3d .swiper-cube-shadow {
+  transform-style: preserve-3d;
+}
+
+.swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: block;
+  transition-property: transform;
+  box-sizing: content-box;
+}
+
+.swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition-property: transform;
+}
+
+.swiper-slide{
+  width: 20rem;
+  height: 20rem;
+  background-color: rgb(255, 255, 255);
+  background-size: cover;
+  background-position: center center;
 }
 
 /** ContactsBlock **/
