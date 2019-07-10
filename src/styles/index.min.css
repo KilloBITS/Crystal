@@ -117,7 +117,8 @@
 
   /** StatisticBlock **/
   .block.statistic{
-    max-height: 470px;
+    max-height: 400px;
+    background-image: none;
   }
 
   .statistic .statisticData {
@@ -134,6 +135,16 @@
 
   .statistic .statisticData.stRight{
     background-color: white;
+  }
+
+  /** MailingBlock **/
+  .block.mailing{
+    margin-top: -22px;
+    max-height: 160px;
+  }
+
+  .mailing .max1080 {
+    max-width: calc(100% - 20px);
   }
 
   /** GalleryBlock **/
@@ -197,6 +208,10 @@
     margin-top: 50px;
   }
 
+  .contacts_line{
+    text-align: center;
+  }
+
   /** MapBlock **/
   #map{
     pointer-events: none;
@@ -208,6 +223,10 @@
 
   .footerDataLeft, .footerDataRight {
     width: 100%;
+  }
+
+  .footerDataLeft{
+    display: none;
   }
 
   .footerDataCenter {
@@ -242,5 +261,12 @@
     font-size: 15px;
     line-height: 0px;
     white-space: nowrap;
+  }
+
+
+  /** ImageMOdal **/
+  .imageModal .imageModalBlock{
+    max-width: calc(100% - 20px);
+    width: 100%;
   }
 }

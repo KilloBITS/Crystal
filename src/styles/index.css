@@ -179,6 +179,7 @@ a{
   left: 0;
   bottom: 0;
   transition: 0.3s;
+  border: 3px solid rgba(255, 255, 255, 0.6);
 }
 
 .chilsFeedBackBtn.email.openFeed{
