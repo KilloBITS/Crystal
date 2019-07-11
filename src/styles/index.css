@@ -1107,7 +1107,7 @@ top: 15px;
   position: relative;
 }
 
-.mailingBackground:before {
+/* .mailingBackground:before {
   content: "";
   display: block;
   position: absolute;
@@ -1119,6 +1119,19 @@ top: 15px;
   top: -45px;
   z-index: 1;
 }
+
+.mailingBackground:after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 50% 50%;
+  width: calc(100% + 20px);
+  height: 90px;
+  background-color: white;
+  left: -10px;
+  bottom: -45px;
+  z-index: 1;
+} */
 
 .mailingBackground .backgroundImage{
   position: absolute;
