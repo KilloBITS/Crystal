@@ -16,8 +16,8 @@ class GalleryBlock extends React.Component {
     super();
     if(document.body.offsetWidth > 800){
       this.state = {
-        height: (window.innerWidth / 4),
-        width: (window.innerWidth / 4)
+        height: (window.innerWidth / 4) - 5,
+        width: (window.innerWidth / 4) - 5
       };
     }else{
       this.state = {
@@ -33,8 +33,8 @@ class GalleryBlock extends React.Component {
   updateDimensions() {
     if(document.body.offsetWidth > 800){
       this.setState({
-        height: (window.innerWidth / 4),
-        width: (window.innerWidth / 4)
+        height: (window.innerWidth / 4) - 5,
+        width: (window.innerWidth / 4) - 5
       });
     }else{
       this.setState({

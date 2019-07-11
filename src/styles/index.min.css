@@ -211,6 +211,14 @@
     transform: translate(-50%, 0);
   }
 
+  .staffImageUser{
+      max-width: 100%;
+  }
+
+  .staffSocials {
+    /* top: calc(100% + 30px); */
+  }
+
   /** ContactsBlock **/
   .block.contacts{
     padding-bottom: 0px;

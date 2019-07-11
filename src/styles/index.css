@@ -1269,7 +1269,7 @@ top: 15px;
 
 .staffImageUser{
   width: 340px;
-  height: 340px;
+  height: 440px;
   overflow: hidden;
   position: relative;
   transform: translateZ(0);
@@ -1335,6 +1335,7 @@ top: 15px;
   object-position: center;
   object-fit: cover;
   max-width: 100%;
+  width: 100%;
 }
 
  .staffImageUser .twoImg{
@@ -1380,8 +1381,8 @@ top: 15px;
 }
 
 .swiper-slide{
-  width: 20rem;
-  height: 20rem;
+  /* width: 20rem;
+  height: 20rem; */
   background-color: rgb(255, 255, 255);
   background-size: cover;
   background-position: center center;

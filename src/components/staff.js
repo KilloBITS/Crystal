@@ -4,10 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadingArt from '../images/heading.js';
 
 let parseUsers = (data) => {
+  let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5002':window.location.origin;
   const dataBlock = data.map((comp, key) => <div key={key} className="staffUserBlock">
     <div className="staffImageUser">
-      <img className="oneImg" src={comp.photoOne} alt=""/>
-      <img className="twoImg" src={comp.photoTwo} alt=""/>
+      <img className="oneImg" src={myLocation + '/images' + comp.photoOne} alt=""/>
+      <img className="twoImg" src={myLocation + '/images' + comp.photoTwo} alt=""/>
     </div>
     <div className="staffTitleUser">
       {comp.title}
