@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class MailingBlock extends React.Component {
   render() {
     return <div className="block mailing" id="MailingBlock">
+      <div className="mailingBackground">
+        <div className="backgroundImage"></div>
+      </div>
       <div className="max1080">
         <input type="text" className="mailingInput" placeholder="Введіть ваш адрес електронної пошти"/>
         <input type="button" className="mailingInput button" value="Отримувати новини"/>
