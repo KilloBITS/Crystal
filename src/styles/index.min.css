@@ -177,7 +177,7 @@
   /** StaffBlock **/
   .block.staff{
     padding-bottom: 50px;
-    height: 560px;
+    height: auto;
   }
   .staffUserBlock{
     margin: 40px 10px -10px 10px;
@@ -206,17 +206,18 @@
     margin: auto;
     position: absolute;
     z-index: 10;
-    bottom: 27px;
+    bottom: -45px;
     left: 50%;
     transform: translate(-50%, 0);
   }
 
   .staffImageUser{
-      max-width: 100%;
+    max-width: 100%;
+    margin: auto;
   }
 
   .staffSocials {
-    /* top: calc(100% + 30px); */
+    top: calc(100% - 120px);
   }
 
   /** ContactsBlock **/
