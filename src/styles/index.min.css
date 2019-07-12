@@ -31,14 +31,15 @@
   }
   /** HeadBlock **/
   .block.head{
-    overflow-x: hidden;
+    overflow: hidden;
   }
   .headBackgroundFilter svg{
     max-width: calc(100% - 15px);
+    height: fit-content;
     right: auto;
     left: 50%;
     transform: translate(-50%, -50%);
-    top: calc(50% - 100px);
+    top: calc(50% - 200px);
   }
 
   .headFooterSvg.openHeadSvg svg {
@@ -56,7 +57,12 @@
   }
 
   .headFooterSvg{
-    top: 2px;
+    bottom: -2px;
+    top: auto;
+  }
+
+  .mobileSetBtn{
+    display: block;
   }
 
   .aboutDataBlock{
@@ -161,17 +167,83 @@
     max-width: calc(100% - 20px);
   }
 
+  .mailing .blockMailingText{
+    font-size: 12px;
+    padding-bottom: 8px;
+  }
+
+  .mailingInput {
+    border: 2px solid #08e8de;
+    font-size: 12px;
+    width: calc(100% - 160px);
+    height: 30px;
+  }
+
+  .mailingInput.button {
+    width: 155px;
+    border: 2px solid #08e8de;
+    height: 36px;
+    border-right: 2px solid #08e8de;
+    font-size: 14px;
+  }
+  .mailing .max1080::before {
+    content: '';
+    height: 0;
+    position: absolute;
+    width: 0;
+    border: 16px solid transparent;
+    border-right-color: rgb(8, 232, 222);
+    border-left: 0;
+    bottom: 3px;
+    right: 150px;
+    transform: translate(-50%, 0);
+    z-index: 1;
+  }
+
+  .mailing .cristall {
+    position: absolute;
+    left: 50%;
+    z-index: 10;
+    background: #08e8de;
+    top: calc(100% - 26px);
+    font-size: 30px;
+    transform: translate(-50%, 0);
+    padding: 8px;
+    border-radius: 60px;
+    color: white;
+    line-height: 46px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    border: 3px solid white;
+    cursor: pointer;
+  }
+
   /** GalleryBlock **/
   .block.gallery{
     padding-bottom: 25px;
+    border-top: 6px solid white;
   }
 
   .galleryFotterButton .defaultButton {
-    width: calc(100% - 50px);
+    width: calc(50% - 28px);
     display: inline-block;
-    margin: 8px 10px;
+    margin: 0;
     text-align: center;
     background-color: #08e8de;
+    border-radius: 0;
+  }
+
+  .galleryFotterButton{
+    width: 100%;
+  }
+
+  .defaultButton.showAllPhoto{
+    background-color: #08e8de;
+  }
+
+  .defaultButton.showAllInstagram{
+    background-color: #f97f80;
   }
 
   /** StaffBlock **/

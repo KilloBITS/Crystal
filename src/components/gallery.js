@@ -52,7 +52,7 @@ class GalleryBlock extends React.Component {
       </div>
       <div className="galleryFotterButton">
         <div className="defaultButton showAllPhoto">Більше зображень</div>
-        <div className="defaultButton showAllInstagram">Instagram</div>
+        <a href={'https://www.instagram.com/kalinich_nail_master/'} target="_blank" rel="noopener noreferrer"><div className="defaultButton showAllInstagram">наш Instagram</div></a>
       </div>
     </div>
   }

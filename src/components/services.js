@@ -1,5 +1,6 @@
 import React from 'react';
 import Fade from 'react-reveal/Fade';
+import Vivus from "vivus";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadingArt from '../images/heading.js'
 
@@ -7,7 +8,9 @@ const myService = (arr) => {
   const myService = arr.map((comp, key) => <div key={key} className="myService" id={"serv"+key}>
 
     <div className="serviceLine">
-      <div className="serviceIcon" id={"serviceIcon"+key}></div>
+      <div className="serviceIcon" id={"serviceIcon"+key}>
+        <img src={comp.icon} alt=""/>
+      </div>
     </div>
     <div className="bdt-heading-style"><HeadingArt fill={'#164b49'}/></div>
     <div className="serviceLine">
@@ -20,7 +23,7 @@ const myService = (arr) => {
       <div className="placehold">Детальніше</div>
       <FontAwesomeIcon icon={['fas', 'arrow-right']} />
     </div>
-    
+
   </div>);
   return myService
 }
@@ -36,11 +39,11 @@ class ServicesBlock extends React.Component {
     document.getElementById('content').addEventListener('scroll', this.handleScroll.bind(this));
   }
   handleScroll(){
-    if(document.getElementById('content').scrollTop > document.getElementById('AboutBlock').offsetTop){
-      // for(let i = 0; i < this.props.data.myservice.length; i++){
-      //   new Vivus("serviceIcon"+i, { duration: 100, file: this.props.data.myservice[i].icon })
-      // }
-    }
+    // if(document.getElementById('content').scrollTop > document.getElementById('AboutBlock').offsetTop){
+    //   for(let i = 0; i < this.props.data.myservice.length; i++){
+    //     new Vivus("serviceIcon"+i, { duration: 100, file: this.props.data.myservice[i].icon })
+    //   }
+    // }
   }
   render() {
     return <div className="block services" id="ServicesBlock">

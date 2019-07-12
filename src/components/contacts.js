@@ -135,7 +135,7 @@ class ContactsBlock extends React.Component {
             </div>
 
             <div className="formLine">
-              <div className="defaultButton sendMessage" onClick={this.handleSubmit.bind(this)}>Відпарвити</div>
+              <div className="defaultButton sendMessage" onClick={this.handleSubmit.bind(this)}>Відправити</div>
             </div>
 
           </div>

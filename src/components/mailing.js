@@ -8,6 +8,10 @@ class MailingBlock extends React.Component {
         <div className="backgroundImage"></div>
       </div>
       <div className="max1080">
+        <div className="blockMailingText">
+          Хочете бути вкурсі останніх новин та завжди отримувати їх першим,
+          залиште нам свій адрес електронної пошти і ми будемо тримати вас вкурсі всіх останніх подій)
+        </div>
         <input type="text" className="mailingInput" placeholder="Введіть ваш адрес електронної пошти"/>
         <input type="button" className="mailingInput button" value="Отримувати новини"/>
       </div>
