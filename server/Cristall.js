@@ -21,7 +21,9 @@ app.use(express.static(path.join(__dirname, './data/')));
 // app.post('/getData', getData);
 //
 const message =  require('./controller/message_controller');
+const saveEmail =  require('./controller/saveEmail');
 app.post('/postMessage', message);
+app.post('/saveEmail', saveEmail);
 
 app.get('/*', function (req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
