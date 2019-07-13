@@ -44,14 +44,12 @@ class GalleryBlock extends React.Component {
     }
   }
 
-
   render() {
     return <div className="block gallery" id="GalleryBlock">
       <div className="galleryData">
         {parseGallery(this.props.data.images, {width: this.state.width, height: this.state.height}, this.props.openphoto, this.props.closephoto )}
       </div>
       <div className="galleryFotterButton">
-        <div className="defaultButton showAllPhoto">Більше зображень</div>
         <a href={'https://www.instagram.com/kalinich_nail_master/'} target="_blank" rel="noopener noreferrer"><div className="defaultButton showAllInstagram">наш Instagram</div></a>
       </div>
     </div>

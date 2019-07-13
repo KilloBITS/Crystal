@@ -135,6 +135,14 @@
     font-size: 12px;
   }
 
+  .servicesContent .myService:hover .buttonServiceBottom{
+    bottom: -14px;
+  }
+
+  .serviceModalContent{
+    max-width: calc(100% - 50px);
+  }
+
   /** StatisticBlock **/
   .block.statistic{
     max-height: 400px;
@@ -226,7 +234,7 @@
   }
 
   .galleryFotterButton .defaultButton {
-    width: calc(50% - 28px);
+    width: calc(100% - 28px);
     display: inline-block;
     margin: 0;
     text-align: center;
@@ -236,10 +244,6 @@
 
   .galleryFotterButton{
     width: 100%;
-  }
-
-  .defaultButton.showAllPhoto{
-    background-color: #08e8de;
   }
 
   .defaultButton.showAllInstagram{

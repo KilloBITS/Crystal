@@ -78,7 +78,8 @@ class Crystal extends React.Component{
         minitext2: `Після візиту до нашого дивовижного закладу ви матимете розкішну зовнішність, стильний образ та чудовий настрій. Спробуйте, адже ви варті того, аби бути бездоганними!`,
         insta:'https://www.instagram.com/kalinich_nail_master/',
         facebook:'https://www.facebook.com/Ivanna_Nail-315013712266548/',
-        email:'mailto:kalinich0107@gmail.com'
+        email:'mailto:kalinich0107@gmail.com',
+        viber:'viber://chat?number=+380978056953',
       },
       services: {
         title: 'Наші послуги',
@@ -279,7 +280,7 @@ class Crystal extends React.Component{
     return <div className="content" id="content">
       <Preloader logotype={this.state.logotype}/>
       <Menu data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
-      <Bar data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
+      <Bar dataAbout={this.state.about} data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
       <ImageModal openimagesrc={this.state.openimagesrc} closephoto={this.closephoto}/>
       <HeadBlock data={this.state.header} logotype={this.state.logotype} modelheader={this.state.modelheader}/>
       <AboutBlock data={this.state.about}/>

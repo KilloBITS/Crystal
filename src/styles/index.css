@@ -180,6 +180,7 @@ a{
   bottom: 0;
   transition: 0.3s;
   border: 3px solid rgba(255, 255, 255, 0.6);
+  color: white;
 }
 
 .chilsFeedBackBtn.email.openFeed{
@@ -950,6 +951,47 @@ top: 15px;
   max-height: 80px;
 }
 
+.servicesModal{
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.serviceModalContent{
+  padding: 35px 14px;
+  font-family: DefaultText;
+  text-transform: uppercase;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 460px;
+  background-color: white;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+  color: black;
+  border: 1px solid #08e8de;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.servicesModalClose{
+  position: absolute;
+  right: 0px;
+  top: -30px;
+  color: silver;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.servicesModal.hide{
+  display: none;
+}
+
 /** GalleryBlock **/
 .block.gallery{
   height: auto;
@@ -982,10 +1024,6 @@ top: 15px;
   text-align: center;
   background-color: #08e8de;
   transition: 0.3s;
-}
-
-.galleryFotterButton .showAllPhoto:hover{
-  background-color: #0dcbc2;
 }
 
 .galleryFotterButton .showAllInstagram:hover{
