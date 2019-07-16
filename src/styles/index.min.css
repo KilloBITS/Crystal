@@ -296,6 +296,20 @@
     top: calc(100% - 120px);
   }
 
+  .swiper-button-next, .swiper-button-prev{
+    z-index: 10;
+  }
+
+  .swiper-button-next{
+    right: 0;
+    left: auto;
+  }
+
+  .swiper-button-prev{
+    left: 0;
+    right: auto;
+  }
+
   /** ContactsBlock **/
   .block.contacts{
     padding-bottom: 0px;

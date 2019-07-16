@@ -1461,6 +1461,7 @@ top: 15px;
   height: 40px;
   background-size: contain;
   background-repeat: no-repeat;
+  outline: none;
 }
 
 .swiper-button-next:hover,.swiper-button-prev:hover{
