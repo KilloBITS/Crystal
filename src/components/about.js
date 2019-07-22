@@ -98,16 +98,14 @@ class AboutBlock extends React.Component {
                 <FontAwesomeIcon icon={['fas', 'gem']} />
               </div>
               <div className="blockFeedBackContent">
-              Це дозволить вам швидше записуватися на прийом до улюбленого майстра.<br/><br/>
-              Простий і зручний спосіб запису.<br/><br/>
-              Смс-нагадування про майбутній візит.<br/><br/>
-              Можливість залишити відгук.<br/><br/>
+                Це дозволить вам швидше записуватися на прийом до улюбленого майстра.<br/><br/>
+                Простий і зручний спосіб запису.<br/><br/>
+                Смс-нагадування про майбутній візит.<br/><br/>
+                Можливість залишити відгук.<br/><br/>
               </div>
               <div className="defaultButton">Записатись</div>
             </div>
-
           </div>
-
           <div className="blockFeedBacktitle">Записатися на прийом</div>
           <div className="paragraphLine">
             <FontAwesomeIcon icon={['fas', 'gem']} />

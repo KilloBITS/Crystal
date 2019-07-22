@@ -1,7 +1,24 @@
 const express = require('express');
 const path = require('path');
 const bParser = require('body-parser');
+const cParser = require('cookie-parser');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
 const app = express();
+
+let sessionParser = session({
+  secret: '2C44-4D44-WppQ38S',
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({
+    url: 'mongodb://localhost:27017/CRISTALL'
+  }),
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 * 2 // two weeks
+  }
+});
+app.use(sessionParser);
 
 //CORS middleware
 var allowCrossDomain = function(req, res, next) {
@@ -17,13 +34,13 @@ app.use(allowCrossDomain);
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(express.static(path.join(__dirname, './data/')));
 
-// const getData =  require('./controllers/getData_controller');
-// app.post('/getData', getData);
-//
 const message =  require('./controller/message_controller');
 const saveEmail =  require('./controller/saveEmail');
 app.post('/postMessage', message);
 app.post('/saveEmail', saveEmail);
+
+const getData =  require('./controller/get_data');
+app.post('/getData', getData);
 
 app.get('/*', function (req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');

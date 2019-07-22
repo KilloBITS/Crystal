@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadingArt from '../images/heading.js'
 
 const myService = (arr, open) => {
-  const myService = arr.map((comp, key) => <div key={key} className="myService" id={"serv"+key}>
+  let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5002':window.location.origin;
+  const myServices = arr.map((comp, key) => <div key={key} className="myService" id={"serv"+key}>
     <div className="serviceLine">
       <div className="serviceIcon" id={"serviceIcon"+key}>
-        <img src={comp.icon} alt=""/>
+        <img src={myLocation + comp.icon} alt=""/>
       </div>
     </div>
     <div className="bdt-heading-style"><HeadingArt fill={'#164b49'}/></div>
@@ -24,7 +25,7 @@ const myService = (arr, open) => {
     </div>
 
   </div>);
-  return myService
+  return myServices
 }
 
 class ServicesBlock extends React.Component {
