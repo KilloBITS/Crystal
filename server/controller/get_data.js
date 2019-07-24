@@ -1,9 +1,11 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
+const cookieParser = require('cookie-parser');
 
-let GlobalDataEN = {
-  isAdmin: true,
+router.use(cookieParser());
+
+let GlobalData = {
   title: 'Crystal',
   menu: [
     {
@@ -35,6 +37,8 @@ let GlobalDataEN = {
     background: '/images/header/1.jpg'
   },
   about: {
+    bg1: '/images/bg1.png',
+    bg2: '/images/bg2.png',
     title: 'Про нас',
     minitext: `У людині все має бути прекрасним! Адже багатий внутрішній світ підкреслює приваблива і доглянута зовнішність.
     Хочете виглядати приголомшливо? Тоді навідайтеся до Nail studio «Cristall».
@@ -221,7 +225,9 @@ let GlobalDataEN = {
 }
 
 var getdata = (req, res, next) => {
-  res.send({code: 500, data: GlobalDataEN});
+  console.log(req.session.user_id)
+  GlobalData.isAdmin = true;//(req.session.user_id !== undefined)?true:false;
+  res.send({code: 500, data: GlobalData});
 };
 
 router.post('/getData', getdata);

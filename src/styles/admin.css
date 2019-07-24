@@ -36,6 +36,7 @@
   z-index: 15;
   border-right: 1px solid #149690;
   box-shadow: 2px 0px 14px -2px #149690;
+  font-family: DefaultText;
 }
 
 .adminPaneTitle{
@@ -45,7 +46,8 @@
   font-family: DefaultText;
   font-size: 28px;
   margin-top: 10px;
-  border-bottom: 1px solid #149690;
+  border-bottom: 1px solid #00726d;
+  color: #00726d;
 }
 
 .navigationPanel{
@@ -64,11 +66,261 @@
   cursor: pointer;
 }
 
+.defaultEditData{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: DefaultText;
+  padding: 20px;
+  border: 1px solid #08e8de;
+  width: 300px;
+}
+
+.defaultEditDataText{
+    margin-bottom: 15px;
+}
+
+.defaultEditDataTitle{
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #08e8de;
+}
+
+.defaultEditDataContacts{
+
+}
+
+.defaultEditDataContactsTitle{
+
+}
+
+.defaultEditDataContactsContact{
+
+}
+
+.defaultEditDataContactsContact a{
+
+}
 
 .editedData{
-
+  height: 670px;
+  width: calc(100% - 20px);
+  background-color: #efefef;
+  margin: 10px auto;
+  border: 1px solid #08e8de;
+  overflow: hidden;
+  position: relative;
 }
 
 .dataFromEdited{
   display: none;
 }
+
+.dataFromEdited.show{
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.miniDataEditedDataClass{
+  overflow: auto;
+  height: calc(100% - 30px);
+}
+
+.miniTitleEdited{
+  width: calc(100% - 20px);
+  text-align: center;
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 5px 0;
+  border-bottom: 1px solid silver;
+  margin: auto;
+}
+
+.miniTitleEditedLength{
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  color: silver;
+  letter-spacing: 2px;
+}
+
+.miniDataEditedLoader{
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(57, 237, 229, 0.5);
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100px;
+  background-image: url(../images/loading.gif);
+  display: none;
+}
+
+.miniDataEditedLoader.show{
+  display: block;
+}
+
+.saveAdminEdit{
+  width: 100%;
+  text-align: center;
+  padding: 11px 0;
+  background-color: #08e8de;
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.controllBlockPanel{
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: #7c7c7c;
+}
+
+.controllBlockPanel .panelFrom{
+  display: inline-block;
+  margin: 5px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.controllBlockPanel .panelFrom:hover{
+  color: #3d3d3d;
+}
+
+.panelFrom.Add{
+
+}
+
+.panelFrom.Refresh{
+
+}
+
+
+.editBlock{
+  width: calc(100% - 30px);
+  padding: 5px;
+  border-bottom: 1px solid black;
+  margin: auto;
+  font-family: DefaultText;
+}
+
+.titleEditText{
+  width: calc(100% - 10px);
+  margin: auto;
+  margin-bottom: 5px;
+  height: 20px;
+  text-align: center;
+  font-family: DefaultText;
+}
+
+.titleEditTextArea{
+  resize: none;
+  width: calc(100% - 10px);
+  margin: auto;
+  margin-bottom: 5px;
+  height: 100px;
+  font-family: DefaultText;
+}
+
+.imagesOneTwoBlock{
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.imgEdiBlock{
+  position: relative;
+}
+
+.imgEdiBlock.imgOne{
+  width: 100px;
+  height: 120px;
+  background-size: contain;
+  display: inline-block;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.imgEdiBlock.imgTwo{
+  width: 100px;
+  height: 120px;
+  background-size: contain;
+  display: inline-block;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.imgEdiBlock .imageHover{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: 0.3s;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjk0Ljg0MiAyOTQuODQyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyOTQuODQyIDI5NC44NDI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgY2xhc3M9IiI+PGc+PGc+Cgk8cGF0aCBkPSJNMjQ4LjM0Niw1MS45OTFoLTgwLjA0OGMtMy4zMTMsMC02LDIuNjg3LTYsNnMyLjY4Nyw2LDYsNmg3NC4wNDh2MjE4Ljg1MUg1Mi40OTVWNjMuOTkxaDc0LjA0OGMzLjMxMywwLDYtMi42ODcsNi02ICAgcy0yLjY4Ny02LTYtNkg0Ni40OTVjLTMuMzEzLDAtNiwyLjY4Ny02LDZ2MjMwLjg1MWMwLDMuMzEzLDIuNjg3LDYsNiw2aDIwMS44NTFjMy4zMTMsMCw2LTIuNjg3LDYtNlY1Ny45OTEgICBDMjU0LjM0Niw1NC42NzcsMjUxLjY2LDUxLjk5MSwyNDguMzQ2LDUxLjk5MXoiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiIHN0eWxlPSJmaWxsOiNGRkZGRkYiPjwvcGF0aD4KCTxwYXRoIGQ9Ik0xMjIuMzUxLDM5LjU1NGwxOS4wNy0xOS4wNjl2MTc4LjczNmMwLDMuMzEzLDIuNjg3LDYsNiw2czYtMi42ODcsNi02VjIwLjQ4NWwxOS4xNDYsMTkuMTQ1ICAgYzEuMTcxLDEuMTcyLDIuNzA3LDEuNzU4LDQuMjQyLDEuNzU4czMuMDcxLTAuNTg2LDQuMjQyLTEuNzU4YzIuMzQ0LTIuMzQzLDIuMzQ0LTYuMTQyLDAtOC40ODRMMTUxLjY2MywxLjc1OCAgIGMtMi4zNDEtMi4zNDMtNi4xNDItMi4zNDQtOC40ODUtMC4wMDFsLTI5LjMxMywyOS4zMTJjLTIuMzQzLDIuMzQ0LTIuMzQzLDYuMTQzLDAsOC40ODUgICBDMTE2LjIwOSw0MS44OTcsMTIwLjAwNyw0MS44OTYsMTIyLjM1MSwzOS41NTR6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIiBzdHlsZT0iZmlsbDojRkZGRkZGIj48L3BhdGg+CjwvZz48L2c+IDwvc3ZnPg==);
+  background-size: 45px;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+  line-height: 200px;
+  text-align: center;
+}
+
+.imgEdiBlock:hover .imageHover{
+  opacity: 1;
+}
+
+.imageDOMEdit{
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  margin: 5px;
+  float: left;
+  position: relative;
+}
+
+.addedBlock{
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0px;
+  opacity: 0;
+  background-color: #efefef;
+  transition: 0.3s;
+}
+
+.addedBlock.show{
+  opacity: 1;
+  height: 100%;
+}
+
+.closeAddedBlock{
+  position: absolute;
+  font-size: 30px;
+  right: 10px;
+  top: 0px;
+  cursor: pointer;
+}
+
+.newEditedBlock{
+  display: none;
+}
+
+.newEditedBlock.show{
+  display: block;
+}
+
+#fileNewGalerry{}

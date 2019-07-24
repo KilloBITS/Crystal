@@ -23,12 +23,6 @@ const map = (
 )
 
 class MapBlock extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      currentLocation: (window.location.port !== '3000')?window.location.origin.toString():window.location.origin.split('3000')[0]+'5002'
-    }
-  }
   toTopThisScroll(){
     document.getElementById('scrollBlock').getElementsByTagName('div')[0].scrollTo({top: 0, behavior: 'smooth'});
   }
@@ -42,7 +36,7 @@ class MapBlock extends React.Component {
             progressiveLoad:!1,
             preserveAspectRatio:'xMaxYMax slice'
         },
-        path: this.state.currentLocation+'/header_vast.json'
+        path: this.props.myLocation+'/header_vast.json'
     };
     return <div className="block mapBlock">
       <div className="topSvg"><Lottie options={headergolfthrid}/></div>

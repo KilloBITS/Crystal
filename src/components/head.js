@@ -13,8 +13,14 @@ class HeadBlock extends React.Component {
   }
   componentDidMount() {
     setTimeout(() => {
-      new Vivus('headBackgroundFilter', {file: this.props.logotype });
-    }, 1000);
+      try{
+        new Vivus('headBackgroundFilter', {file: this.props.myLocation + this.props.logotype });
+      }catch(e){
+        console.log('head vivus error')
+        console.log(e);
+      }
+
+    }, 1500);
     var scene = document.getElementById('headBackground');
     new Parallax(scene);
     document.getElementById('content').addEventListener('scroll', this.handleScroll);
@@ -45,13 +51,12 @@ class HeadBlock extends React.Component {
   }
 
   render() {
-    let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5002':window.location.origin;
     return <div className="block head" id="HeadBlock">
       <div className="headBackground" id="headBackground">
-        <img data-depth="0.1" className="backgroundPhoto" src={myLocation+this.props.data.background} alt=""/>
+        <img data-depth="0.1" className="backgroundPhoto" src={this.props.myLocation + this.props.data.background} alt=""/>
       </div>
       <div className="headBackgroundFilter" id="headBackgroundFilter">
-        <img data-depth="0.3" className="headerModel" src={this.props.modelheader} alt=""/>
+        <img data-depth="0.3" className="headerModel" src={this.props.myLocation + this.props.modelheader} alt=""/>
       </div>
       <div className="headButtons" id="headButtons">
         <div className="toScrollButton" id="toScrollButton" onClick={(!this.state.scrolled)?this.nextScroll.bind(this):()=>{return false}}>{(this.state.scrolled)?"Про нас":<FontAwesomeIcon icon={['fas', 'arrow-down']}/>}</div>

@@ -2,10 +2,9 @@ import React from 'react';
 import Fade from 'react-reveal/Fade';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-let parseGallery = (a,css,click) => {
-    let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5002':window.location.origin;
+let parseGallery = (a,css,click, location) => {
     const dataGallery = a.map((comp, key) => <Fade delay={50} key={key}><div key={key} style={css} className="galleryPhoto" onClick={click}>
-      <img src={myLocation+comp.src} alt=""/>
+      <img src={location+comp.src} alt=""/>
       <div className="hoverImage" style={{  lineHeight: css.width+'px'}}><FontAwesomeIcon icon={['fas', 'search-plus']} /></div>
     </div></Fade>);
     return dataGallery
@@ -47,7 +46,7 @@ class GalleryBlock extends React.Component {
   render() {
     return <div className="block gallery" id="GalleryBlock">
       <div className="galleryData">
-        {parseGallery(this.props.data.images, {width: this.state.width, height: this.state.height}, this.props.openphoto, this.props.closephoto )}
+        {parseGallery(this.props.data.images, {width: this.state.width, height: this.state.height}, this.props.openphoto, this.props.myLocation)}
       </div>
       <div className="galleryFotterButton">
         <a href={'https://www.instagram.com/kalinich_nail_master/'} target="_blank" rel="noopener noreferrer"><div className="defaultButton showAllInstagram">наш Instagram</div></a>

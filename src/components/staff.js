@@ -3,12 +3,11 @@ import Swiper from 'react-id-swiper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadingArt from '../images/heading.js';
 
-let parseUsers = (data) => {
-  let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5002':window.location.origin;
+let parseUsers = (data, location) => {
   const dataBlock = data.map((comp, key) => <div key={key} className="staffUserBlock">
     <div className="staffImageUser">
-      <img className="oneImg" src={myLocation + '/images' + comp.photoOne} alt=""/>
-      <img className="twoImg" src={myLocation + '/images' + comp.photoTwo} alt=""/>
+      <img className="oneImg" src={location + '/images' + comp.photoOne} alt=""/>
+      <img className="twoImg" src={location + '/images' + comp.photoTwo} alt=""/>
     </div>
     <div className="staffTitleUser">
       {comp.title}
@@ -25,8 +24,7 @@ let parseUsers = (data) => {
   return dataBlock
 }
 
-const multipleRowSlidesLayout = (stafData) => {
-  console.log('PC')
+const multipleRowSlidesLayout = (stafData, location) => {
   const params = {
     slidesPerView: 3,
     slidesPerColumn: 2,
@@ -42,13 +40,12 @@ const multipleRowSlidesLayout = (stafData) => {
   }
   return (
     <Swiper {...params}>
-      {parseUsers(stafData)}
+      {parseUsers(stafData, location)}
     </Swiper>
   )
 };
 
-const multipleRowSlidesLayoutMobile = (stafData) => {
-  console.log('mobile')
+const multipleRowSlidesLayoutMobile = (stafData, location) => {
   const params = {
     effect: 'coverflow',
     grabCursor: true,
@@ -72,7 +69,7 @@ const multipleRowSlidesLayoutMobile = (stafData) => {
   }
   return (
     <Swiper {...params}>
-        {parseUsers(stafData)}
+        {parseUsers(stafData, location)}
     </Swiper>
   )
 };
@@ -101,7 +98,7 @@ class StaffBlock extends React.Component {
       <div className="bdt-heading-style"><HeadingArt fill={'#164b49'}/></div>
       <div className="staffContent">
       <div className="carouselBlock">
-        {(this.state.width > 880)?multipleRowSlidesLayout(this.props.data.staffData):multipleRowSlidesLayoutMobile(this.props.data.staffData)}
+        {(this.state.width > 880)?multipleRowSlidesLayout(this.props.data.staffData,this.props.myLocation):multipleRowSlidesLayoutMobile(this.props.data.staffData,this.props.myLocation)}
       </div>
       </div>
     </div>

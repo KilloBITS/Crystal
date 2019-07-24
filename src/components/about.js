@@ -26,8 +26,6 @@ const parseOpeneCristall = (hour) => {
   return result
 }
 
-const bg1 = require('../images/bg1.png');
-const bg2 = require('../images/bg2.png');
 class AboutBlock extends React.Component {
   constructor(props){
     super(props);
@@ -45,8 +43,8 @@ class AboutBlock extends React.Component {
       <div className="bdt-heading-style"><HeadingArt fill={'white'}/></div>
       <div className="aboutMiniText max1024">
         <div className="aboutDataBlock imageAbout" id="imageAbout">
-          <Fade delay={50}><img id="oneImageAbout" src={bg1} alt=""/></Fade>
-          <Fade delay={75}><img id="twoImageAbout" data-depth="0.1" src={bg2} alt=""/></Fade>
+          <Fade delay={50}><img id="oneImageAbout" src={this.props.myLocation + this.props.data.bg1} alt=""/></Fade>
+          <Fade delay={75}><img id="twoImageAbout" data-depth="0.1" src={ this.props.myLocation + this.props.data.bg2} alt=""/></Fade>
         </div>
         <div className="aboutDataBlock">
           <Fade delay={50}>{this.props.data.minitext}</Fade>

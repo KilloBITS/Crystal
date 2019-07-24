@@ -16,8 +16,27 @@ let parseMenu = (dataMenu, m,) => {
 }
 
 class FooterBlock extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      openSignIn: false
+    }
+  }
+  openStaffSignIn(){
+    if(this.state.openSignIn){
+      this.setState({openSignIn:false});
+    }else{
+      this.setState({openSignIn:true});
+    }
+  }
+
   render() {
     return <div className="block footer" id="FooterBlock">
+      <div className={(this.state.openSignIn)?"signInBlock show":"signInBlock"}>
+        <input type="text" className="signIninput" onKeyUp={this.props.keyUpChangeLogin.bind(this)}/>
+        <input type="password" className="signIninput" onKeyUp={this.props.keyUpChangePassword.bind(this)}/>
+        <div className="buttonSignIn" onClick={this.props.isSignIn.bind(this)}>Увійти</div>
+      </div>
       <div className="footerToTopBlock">
         <div className="footerToTopBtn">
           <FontAwesomeIcon icon={['fas', 'arrow-up']}/>
@@ -27,6 +46,7 @@ class FooterBlock extends React.Component {
       <div className="max1024">
         <div className="footerData footerDataLeft">
           {parseMenu(this.props.dataMenu, true)}
+          <div onClick={this.openStaffSignIn.bind(this)} className="menu_btn">Працівникам</div>
         </div>
         <div className="footerData footerDataRight">
           <div className="contacts_line">
@@ -52,7 +72,7 @@ class FooterBlock extends React.Component {
           </div>
         </div>
         <div className="footerData footerDataCenter">
-          <img className="fotterLogotype" src={this.props.logotype} alt=""/>
+          <img className="fotterLogotype" src={this.props.myLocation + this.props.logotype} alt=""/>
           <div className="coporight">
             2019 © Nail Studio "Cristall", Всі права захищені.
           </div>

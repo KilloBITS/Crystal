@@ -13,11 +13,10 @@ class Preloader extends React.Component {
       <ReactVivus
           id="Cristall_logo"
           option={{
-            file: this.props.logotype,
+            file: this.props.myLocation + this.props.logotype,
             duration: 50,
             animTimingFunction: 'EASE',
-            type: 'oneByOne',
-            onReady: console.log
+            type: 'oneByOne'
           }}
           callback={this.closeLoader.bind(this)}
         />

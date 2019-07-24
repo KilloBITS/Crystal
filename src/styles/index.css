@@ -1975,3 +1975,41 @@ display: none;
 .author::after{
   right: calc(100% + 5px);
 }
+
+
+/** SignIn **/
+.signInBlock{
+  position: fixed;
+  z-index: 10;
+  width: 300px;
+  background-color: white;
+  border-radius: 3px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #149690;
+  display: none;
+}
+
+.signInBlock.show{
+  display: block;
+}
+
+.signIninput{
+  width: calc(100% - 20px);
+  margin: auto;
+  height: 30px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.buttonSignIn{
+  color: black;
+  width: calc(100% - 20px);
+  margin: auto;
+  height: 30px;
+  margin-left: 10px;
+  margin-top: 10px;
+  text-align: center;
+  cursor: pointer;
+}

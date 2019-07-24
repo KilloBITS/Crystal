@@ -14,8 +14,7 @@ class MailingBlock extends React.Component {
     this.setState({
       sendingEmail: true
     })
-    let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5002':window.location.origin;
-    axios.post(myLocation+'/saveEmail', {text: this.state}).then(res => {
+    axios.post(this.props.myLocation+'/saveEmail', {text: this.state}).then(res => {
       setTimeout(() => {
         this.setState({
           sendingEmail: false,

@@ -1,15 +1,13 @@
 import React from 'react';
 import Fade from 'react-reveal/Fade';
-import Vivus from "vivus";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadingArt from '../images/heading.js'
 
-const myService = (arr, open) => {
-  let myLocation = (window.location.hostname === 'localhost')? window.location.origin.split('3000')[0]+'5002':window.location.origin;
+const myService = (arr, open, location) => {
   const myServices = arr.map((comp, key) => <div key={key} className="myService" id={"serv"+key}>
     <div className="serviceLine">
       <div className="serviceIcon" id={"serviceIcon"+key}>
-        <img src={myLocation + comp.icon} alt=""/>
+        <img src={location + comp.icon} alt=""/>
       </div>
     </div>
     <div className="bdt-heading-style"><HeadingArt fill={'#164b49'}/></div>
@@ -37,17 +35,6 @@ class ServicesBlock extends React.Component {
       modalData: null
     }
   }
-  componentDidMount(){
-    document.getElementById('content').addEventListener('scroll', this.handleScroll.bind(this));
-  }
-  handleScroll(){
-    // if(document.getElementById('content').scrollTop > document.getElementById('AboutBlock').offsetTop){
-    //   for(let i = 0; i < this.props.data.myservice.length; i++){
-    //     new Vivus("serviceIcon"+i, { duration: 100, file: this.props.data.myservice[i].icon })
-    //   }
-    // }
-  }
-
   handOpenServiceModal(e){
     let dataNum = parseInt(e.currentTarget.getAttribute('keydata'));
     console.log(this.props.data.myservice[dataNum].text)
@@ -78,7 +65,7 @@ class ServicesBlock extends React.Component {
       <div className="bdt-heading-style"><HeadingArt fill={'#164b49'}/></div>
       <div className="blockMiniText"> <Fade delay={50}>{this.props.data.text} </Fade></div>
       <div className="servicesContent">
-        {myService(this.props.data.myservice, this.handOpenServiceModal.bind(this))}
+        {myService(this.props.data.myservice, this.handOpenServiceModal.bind(this), this.props.myLocation)}
       </div>
     </div>
   }

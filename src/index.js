@@ -5,7 +5,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faCheckSquare, faCoffee , fas} from '@fortawesome/free-solid-svg-icons';
 
-
 //Styles
 import './styles/index.css';
 import './styles/index.min.css';
@@ -30,22 +29,24 @@ import MapBlock from './components/map.js';
 
 import FooterBlock from './components/footer.js';
 
-
 import AdminPanel from './components/adminPanel.js';
 
 library.add(fab, faCheckSquare, faCoffee, fas);
-
 class Crystal extends React.Component{
   constructor(props){
     super(props);
     this.state = {
+      myLocation: (window.location.hostname === 'localhost')? (window.location.port === "3000")? window.location.origin.split('3000')[0]+'5002':window.location.origin:window.location.origin,
       isAdmin: false,
+      login: '',
+      password:'',
+      isSignInUser: false,
       openedMenu: false,
       openimagesrc: null,
       title: 'Crystal',
-      logotype: require( './images/logotype.svg'),
-      logotypeFooter: require( './images/logotype.svg'),
-      modelheader: require( './images/model.png'),
+      logotype: '/images/logotype.svg',
+      logotypeFooter: '/images/logotype.svg',
+      modelheader: '/images/model.png',
       menu: [
         {
           title: 'Головна',
@@ -76,6 +77,8 @@ class Crystal extends React.Component{
         background: '/images/header/1.jpg'
       },
       about: {
+        bg1: '/images/bg1.png',
+        bg2: '/images/bg2.png',
         title: 'Про нас',
         minitext: `У людині все має бути прекрасним! Адже багатий внутрішній світ підкреслює приваблива і доглянута зовнішність.
         Хочете виглядати приголомшливо? Тоді навідайтеся до Nail studio «Cristall».
@@ -264,10 +267,19 @@ class Crystal extends React.Component{
     this.closephoto = this.closephoto.bind(this);
   }
   componentDidMount(){
-    axios.post('http://localhost:5002/getData').then(res => {
-       console.log(res.data);
-       this.setState(res.data.data);
-    });
+    axios.post(this.state.myLocation+'/getData').then(res => {
+      console.log(res.data)
+      this.setState({
+        isAdmin: res.data.data.isAdmin,
+        header: res.data.data.header,
+        gallery: res.data.data.gallery,
+        about: res.data.data.about,
+        staff: res.data.data.staff,
+        services: res.data.data.services,
+        menu: res.data.data.menu,
+        constacts: res.data.data.constacts
+      });
+    })
   }
   openCloseMenu(){
     this.setState({
@@ -287,23 +299,60 @@ class Crystal extends React.Component{
     });
   }
 
+  isSignIn(){
+    let loginData = {
+      l: this.state.login,
+      p: this.state.password
+    }
+    axios.post('/signIn', loginData).then(res => {
+      if(res.data.code === 200){
+        console.log('все супер')
+        this.setState({
+          isAdmin: true
+        });
+        console.log(this.state.isAdmin)
+      }else{
+        this.setState({
+          isAdmin: false
+        });
+      }
+    });
+  }
+
+  keyUpChangeLogin(event){
+    this.setState({login: event.target.value});
+  }
+
+  keyUpChangePassword(event){
+    this.setState({password: event.target.value});
+  }
+
   render(){
     return <div className="content" id="content">
-      {(this.state.isAdmin)?<AdminPanel menu={this.state.menu}/>:null}
-      <Preloader logotype={this.state.logotype}/>
-      <Menu data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
-      <Bar dataAbout={this.state.about} data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
-      <ImageModal openimagesrc={this.state.openimagesrc} closephoto={this.closephoto}/>
-      <HeadBlock data={this.state.header} logotype={this.state.logotype} modelheader={this.state.modelheader}/>
-      <AboutBlock data={this.state.about}/>
-      <ServicesBlock data={this.state.services} logotype={this.state.logotype}/>
-      <StatisticBlock/>
-      <MailingBlock/>
-      <GalleryBlock data={this.state.gallery} openphoto={this.openphoto}/>
-      <StaffBlock data={this.state.staff} dataTest={this.state.gallery}/>
-      <ContactsBlock data={this.state.constacts}/>
-      <MapBlock/>
-      <FooterBlock dataMenu={this.state.menu} dataContacts={this.state.constacts} logotype={this.state.logotypeFooter}/>
+      {(this.state.isAdmin)?<AdminPanel myLocation={this.state.myLocation} menu={this.state.menu}/>:null}
+      <Preloader myLocation={this.state.myLocation} logotype={this.state.logotype}/>
+      <Menu myLocation={this.state.myLocation} data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
+      <Bar myLocation={this.state.myLocation} dataAbout={this.state.about} data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
+      <ImageModal myLocation={this.state.myLocation} openimagesrc={this.state.openimagesrc} closephoto={this.closephoto}/>
+      <HeadBlock myLocation={this.state.myLocation} data={this.state.header} logotype={this.state.logotype} modelheader={this.state.modelheader}/>
+      <AboutBlock myLocation={this.state.myLocation} data={this.state.about}/>
+      <ServicesBlock myLocation={this.state.myLocation} data={this.state.services} logotype={this.state.logotype}/>
+      <StatisticBlock myLocation={this.state.myLocation}/>
+      <MailingBlock myLocation={this.state.myLocation}/>
+      <GalleryBlock myLocation={this.state.myLocation} data={this.state.gallery} openphoto={this.openphoto}/>
+      <StaffBlock myLocation={this.state.myLocation} data={this.state.staff} dataTest={this.state.gallery}/>
+      <ContactsBlock myLocation={this.state.myLocation} data={this.state.constacts}/>
+      <MapBlock myLocation={this.state.myLocation}/>
+      <FooterBlock
+        myLocation={this.state.myLocation}
+        keyUpChangeLogin={this.keyUpChangeLogin}
+        keyUpChangePassword={this.keyUpChangePassword}
+        isAdmin={this.state.isAdmin}
+        isSignIn={this.isSignIn}
+        dataMenu={this.state.menu}
+        dataContacts={this.state.constacts}
+        logotype={this.state.logotypeFooter}
+      />
     </div>
   }
 }
