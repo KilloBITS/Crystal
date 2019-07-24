@@ -131,6 +131,10 @@ let selectMethod = (name, location) => {
          imageDOM.className = "imageDOMEdit";
          imageDOM.style.backgroundImage = "url("+location+res.data.data[0].images[i].src+")";
          selectDomClass.appendChild(imageDOM);
+
+         let imageHoverDelete = document.createElement('div');
+         imageHoverDelete.className = "imageHoverDelete";
+         imageDOM.appendChild(imageHoverDelete);
        }
      }
 
@@ -151,9 +155,9 @@ let selectMethod = (name, location) => {
 }
 
 let toTopThisScroll = (e) => {
-  let toTopposition = document.getElementById(e.target.getAttribute('toelement')).offsetTop;
+  // let toTopposition = document.getElementById(e.target.getAttribute('toelement')).offsetTop;
   let location = e.target.getAttribute('location');
-  document.getElementById('content').scrollTo({top: toTopposition, behavior: 'smooth'});
+  // document.getElementById('content').scrollTo({top: toTopposition, behavior: 'smooth'});
   document.getElementById('defaultEditData').style.display = 'none';
 
   let clickedElement = e.target.getAttribute('toelement');
@@ -188,10 +192,18 @@ class AdminPanel extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      openPanel: false,
       saving: false,
       openAdd: false
     }
   }
+
+  openAdminPanelMethod(){
+    this.setState({
+      openPanel: (this.state.openPanel)?false:true
+    })
+  }
+
   saveEdited(){
     if(selectedEditedZone !== null){
       if(!dontSave){
@@ -221,10 +233,10 @@ class AdminPanel extends React.Component {
 
   render() {
     return <div className="adminpanel">
-      <div className="adminBtnMenu">
+      <div className={(this.state.openPanel)?"adminBtnMenu show":"adminBtnMenu"} onClick={this.openAdminPanelMethod.bind(this)}>
         <FontAwesomeIcon icon={['fas', 'cog']}/>
       </div>
-      <div className="openAdminPanel">
+      <div className={(this.state.openPanel)?"openAdminPanel show":"openAdminPanel"}>
         <div className="adminPaneTitle">Панель керування</div>
         <div className="bdt-heading-style"><HeadingArt fill={'#00726d'}/></div>
         <div className="navigationPanel">
@@ -232,6 +244,9 @@ class AdminPanel extends React.Component {
         </div>
         <div className="editedData">
           <div className="defaultEditData" id="defaultEditData">
+            <div className="panelLogotype">
+              <FontAwesomeIcon icon={['fas', 'user']}/>
+            </div>
             <div className="defaultEditDataTitle">Панель управления</div>
             <div className="defaultEditDataText">
               Панель управления "MiniAdmin v1.6.3"
@@ -321,6 +336,7 @@ class AdminPanel extends React.Component {
             <div className="closeAddedBlock" onClick={this.closeAdded.bind(this)}><FontAwesomeIcon icon={['fas', 'times']}/></div>
             <div className="newEditedBlock" id="newGalleryEdited">
               <input type="file" name="newGalleryPhoto" id="fileNewGalerry"/>
+              <label className="selectNewPhoto" htmlFor="fileNewGalerry">Выбрать изображение</label>
             </div>
             <div className="newEditedBlock" id="newAboutEdited">
               1
