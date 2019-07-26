@@ -53,7 +53,7 @@ class HeadBlock extends React.Component {
   render() {
     return <div className="block head" id="HeadBlock">
       <div className="headBackground" id="headBackground">
-        <img data-depth="0.1" className="backgroundPhoto" src={this.props.myLocation + this.props.data.background} alt=""/>
+        <img data-depth="0.1" className="backgroundPhoto" id="backgroundPhoto" src={this.props.myLocation + this.props.data.background} alt=""/>
       </div>
       <div className="headBackgroundFilter" id="headBackgroundFilter">
         <img data-depth="0.3" className="headerModel" src={this.props.myLocation + this.props.modelheader} alt=""/>

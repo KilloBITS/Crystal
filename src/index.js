@@ -270,14 +270,8 @@ class Crystal extends React.Component{
     axios.post(this.state.myLocation+'/getData').then(res => {
       console.log(res.data)
       this.setState({
-        isAdmin: res.data.data.isAdmin,
         header: res.data.data.header,
-        gallery: res.data.data.gallery,
-        about: res.data.data.about,
-        staff: res.data.data.staff,
-        services: res.data.data.services,
-        menu: res.data.data.menu,
-        constacts: res.data.data.constacts
+        isAdmin: res.data.data.isAdmin
       });
     })
   }

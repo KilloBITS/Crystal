@@ -31,9 +31,11 @@ var allowCrossDomain = function(req, res, next) {
 }
 app.use(allowCrossDomain);
 // app.use(express.json({limit: '50mb'}));
+
+
 app.use(express.urlencoded({limit: '50mb'}));
-app.use(bParser.urlencoded({limit: '50mb'}));
-app.use(bParser.json());
+app.use(bParser.urlencoded( {limit: '50mb', extended: true} ));
+app.use(bParser.json({limit: '50mb', extended: true}));
 // app.use(cParser());
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(express.static(path.join(__dirname, './data/')));
@@ -54,18 +56,25 @@ app.post('/signin', signin);
 const staffEdited =  require('./controller/panel/staffEdited');
 app.post('/getstaffEdited', staffEdited);
 app.post('/savestaffEdited', staffEdited);
+app.post('/addNewStaff', staffEdited);
+
 const servicesEdited =  require('./controller/panel/servicesEdited');
 app.post('/getservicesEdited', servicesEdited);
 app.post('/saveservicesEdited', servicesEdited);
+
 const headEdited =  require('./controller/panel/headEdited');
 app.post('/getheadEdited', headEdited);
 app.post('/saveheadEdited', headEdited);
+app.post('/removeHeadPhoto', headEdited);
+
 const galleryEdited =  require('./controller/panel/galleryEdited');
 app.post('/getgalleryEdited', galleryEdited);
 app.post('/savegalleryEdited', galleryEdited);
+
 const contactsEdited =  require('./controller/panel/contactsEdited');
 app.post('/getcontactsEdited', contactsEdited);
 app.post('/savecontactsEdited', contactsEdited);
+
 const aboutEdited =  require('./controller/panel/aboutEdited');
 app.post('/getaboutEdited', aboutEdited);
 app.post('/saveaboutEdited', aboutEdited);
@@ -75,5 +84,10 @@ app.get('/*', function (req, res) {
 });
 
 app.listen(5002, function(){
+
+  global.folders = {
+    headers: __dirname + '/data/images/header',
+		staffs: __dirname + '/data/images/staff'
+	}
   console.warn('Server started from port 5002');
 });
