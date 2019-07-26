@@ -271,6 +271,7 @@ class Crystal extends React.Component{
       console.log(res.data)
       this.setState({
         header: res.data.data.header,
+        staff: res.data.data.staff,
         isAdmin: res.data.data.isAdmin
       });
     })
