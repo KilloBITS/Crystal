@@ -3,6 +3,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadingArt from '../images/heading.js';
 import '../styles/admin.css';
+import '../styles/admin.min.css';
 
 var selectedEditedZone = null;
 var editZoneData = {};
@@ -20,10 +21,10 @@ let selectMethod = (name, location) => {
   axios.post(location+'/get'+name).then(res => {
      console.log(res.data);
      editZoneData = res.data.data;
-
-     selectDom.getElementsByClassName('miniTitleEditedLength')[0].innerHTML = " ("+res.data.data.length+")";
+     if(selectDom.getElementsByClassName('miniTitleEditedLength')[0] !== undefined){
+       selectDom.getElementsByClassName('miniTitleEditedLength')[0].innerHTML = " ("+res.data.data.length+")";
+     }
      selectedEditedZone = name;
-
      if(name === 'staffEdited'){
        document.getElementById('newStaffEdited').className = 'newEditedBlock show';
        //Название
@@ -93,7 +94,7 @@ let selectMethod = (name, location) => {
          imageHoverTwo.innerHTML = "Вибрать";
          imgTwo.appendChild(imageHoverTwo);
        }
-     }
+     } // Готово
      if(name === 'servicesEdited'){
        document.getElementById('newServicesEdited').className = 'newEditedBlock show';
        //Название
@@ -114,20 +115,34 @@ let selectMethod = (name, location) => {
            let titleEditServiceText = document.createElement('input');
            titleEditServiceText.className = "titleEditText";
            titleEditServiceText.onkeyup = (el) => {
-             dontSave = false;
+            dontSave = false;
             console.log(el.target.value);
            };
            titleEditServiceText.value = res.data.data[0].myservice[i].title;
            serviceEditBlock.appendChild(titleEditServiceText);
+
+           let bigServicesDataBlock = document.createElement('div');
+           bigServicesDataBlock.className = "bigServicesDataBlock";
+           serviceEditBlock.appendChild(bigServicesDataBlock);
+           //Изображение
+           let miniIconsServicesAdmin = document.createElement('div');
+           miniIconsServicesAdmin.className = "miniIconsServicesAdmin";
+           bigServicesDataBlock.appendChild(miniIconsServicesAdmin);
+
+           let miniServiceImgIcon = document.createElement('img');
+           miniServiceImgIcon.className = 'miniServiceImgIcon';
+           miniServiceImgIcon.src = location+res.data.data[0].myservice[i].icon;
+           miniIconsServicesAdmin.appendChild(miniServiceImgIcon);
            //Описание
-           let titleEditServiceTextArea = document.createElement('textarea');
-           titleEditServiceTextArea.className = "titleEditTextArea";
-           titleEditServiceTextArea.onkeyup = (el) => {
+           let titleEditTextArea = document.createElement('textarea');
+           titleEditTextArea.className = "titleEditTextArea";
+           titleEditTextArea.value = res.data.data[0].myservice[i].text;
+           titleEditTextArea.onkeyup = (el) => {
              dontSave = false;
+             console.log(el.target.value)
              // editZoneData.find(x => x.AI === res.data.data[i].AI).text = el.target.value;
            };
-           titleEditServiceTextArea.value = res.data.data[0].myservice[i].text;
-           serviceEditBlock.appendChild(titleEditServiceTextArea);
+           bigServicesDataBlock.appendChild(titleEditTextArea);
         }
      }
      if(name === 'galleryEdited'){
@@ -206,7 +221,7 @@ let selectMethod = (name, location) => {
        imageHoverUpdate.htmlFor = "selectHewHeadImage"
        imageHoverUpdate.innerHTML = 'Выбрать другое изображение';
        imageDOMHeadeEdit.appendChild(imageHoverUpdate);
-     }  // готово
+     }  // Готово
      if(name === 'aboutEdited'){
        document.getElementById('newAboutEdited').className = 'newEditedBlock show';
        //Название
@@ -218,7 +233,158 @@ let selectMethod = (name, location) => {
        };
        titleEditServiceText.value = res.data.data[0].title;
        selectDomClass.appendChild(titleEditServiceText);
-     }
+
+       let aboutEditBlock = document.createElement('div');
+       aboutEditBlock.className = "editBlock";
+       selectDomClass.appendChild(aboutEditBlock);
+       //Описание
+       let minitext = document.createElement('textarea');
+       minitext.className = "titleEditTextArea";
+       minitext.value = res.data.data[0].minitext;
+       minitext.onkeyup = (el) => {
+         dontSave = false;
+         editZoneData[0].minitext = el.target.value;
+       };
+       aboutEditBlock.appendChild(minitext);
+       //Описание 2
+       let minitext2 = document.createElement('textarea');
+       minitext2.className = "titleEditTextArea";
+       minitext2.value = res.data.data[0].minitext2;
+       minitext2.onkeyup = (el) => {
+         dontSave = false;
+         editZoneData[0].minitext2 = el.target.value;
+       };
+       aboutEditBlock.appendChild(minitext2);
+       //insta
+       let insta = document.createElement('input');
+       insta.className = "titleEditText";
+       insta.value = res.data.data[0].insta;
+       insta.onkeyup = (el) => {
+         dontSave = false;
+         editZoneData[0].insta = el.target.value;
+       };
+       aboutEditBlock.appendChild(insta);
+       //facebook
+       let facebook = document.createElement('input');
+       facebook.className = "titleEditText";
+       facebook.value = res.data.data[0].facebook;
+       facebook.onkeyup = (el) => {
+         dontSave = false;
+         editZoneData[0].facebook = el.target.value;
+       };
+       aboutEditBlock.appendChild(insta);
+       //email
+       let email = document.createElement('input');
+       email.className = "titleEditText";
+       email.value = res.data.data[0].email;
+       email.onkeyup = (el) => {
+         dontSave = false;
+         editZoneData[0].email = el.target.value;
+       };
+       aboutEditBlock.appendChild(email);
+       //viber
+       let viber = document.createElement('input');
+       viber.className = "titleEditText";
+       viber.value = res.data.data[0].viber;
+       viber.onkeyup = (el) => {
+         dontSave = false;
+         editZoneData[0].viber = el.target.value;
+       };
+       aboutEditBlock.appendChild(viber);
+
+       //фото блок
+       let imagesOneTwoBlock = document.createElement('div');
+       imagesOneTwoBlock.className = "imagesOneTwoBlock imageBlockFromAbout";
+       aboutEditBlock.appendChild(imagesOneTwoBlock);
+
+       let selectHewAboutImageOne = document.createElement('input');
+       selectHewAboutImageOne.className = "selectHewAboutImage";
+       selectHewAboutImageOne.type = 'file';
+       selectHewAboutImageOne.id = 'selectHewAboutImageOne';
+       selectHewAboutImageOne.onchange = function(el){
+         let reader = new FileReader();
+         reader.readAsDataURL(el.target.files[0]);
+         reader.onload = function () {
+           axios.post(location+'/changeAboutImageOne', {image: reader.result}).then(res => {
+             document.getElementById("twoImageAbout").src = location+"/images/bg1.png?" + new Date().getTime();
+             el.target.value ='';
+           });
+         };
+       };
+       imagesOneTwoBlock.appendChild(selectHewAboutImageOne);
+
+       let selectHewAboutImageTwo = document.createElement('input');
+       selectHewAboutImageTwo.className = "selectHewAboutImage";
+       selectHewAboutImageTwo.type = 'file';
+       selectHewAboutImageTwo.id = 'selectHewAboutImageTwo';
+       selectHewAboutImageTwo.onchange = function(el){
+         let reader = new FileReader();
+         reader.readAsDataURL(el.target.files[0]);
+         reader.onload = function () {
+           axios.post(location+'/changeAboutImageTwo', {image: reader.result}).then(res => {
+             document.getElementById("oneImageAbout").src = location+"/images/bg2.png?" + new Date().getTime();
+             el.target.value ='';
+           });
+         };
+       };
+       imagesOneTwoBlock.appendChild(selectHewAboutImageTwo);
+
+       //imgOne
+       let imgOne = document.createElement('div');
+       imgOne.className = "imgEdiBlock imgOne";
+       imgOne.style.backgroundImage = "url("+location + res.data.data[0].bg1+")";
+       imagesOneTwoBlock.appendChild(imgOne);
+
+       let imageHoverOne = document.createElement('label');
+       imageHoverOne.className = "imageHover";
+       imageHoverOne.innerHTML = "Вибрать";
+       imageHoverOne.htmlFor = "selectHewAboutImageOne";
+       imgOne.appendChild(imageHoverOne);
+       //imgTwo
+       let imgTwo = document.createElement('div');
+       imgTwo.className = "imgEdiBlock imgTwo";
+       imgTwo.style.backgroundImage = "url("+location+res.data.data[0].bg2+")";
+       imagesOneTwoBlock.appendChild(imgTwo);
+
+       let imageHoverTwo = document.createElement('label');
+       imageHoverTwo.className = "imageHover";
+       imageHoverTwo.innerHTML = "Вибрать";
+       imageHoverTwo.htmlFor = "selectHewAboutImageTwo";
+       imgTwo.appendChild(imageHoverTwo);
+
+       //checker
+       let checkerBlock = document.createElement('div');
+       checkerBlock.className = "checkerBlock";
+       aboutEditBlock.appendChild(checkerBlock);
+
+       let inputChecker = document.createElement('input');
+       inputChecker.className = "inputChecker";
+       inputChecker.id = "inputOnlineChecker";
+       inputChecker.type = 'checkbox';
+       if(res.data.data[0].writeOnline){
+         inputChecker.setAttribute('checked','checked')
+       }
+       inputChecker.onchange = function(el){
+         if(el.target.checked){
+           document.getElementById('aboutFooterSvg').style.height = '540px';
+           document.getElementById('onlineWritingBlock').className = 'blockFeedBack show';
+         }else{
+           document.getElementById('aboutFooterSvg').style.height = '175px';
+           document.getElementById('onlineWritingBlock').className = 'blockFeedBack';
+         }
+
+         axios.post(location+'/changeOnlineChecker',{writeOnline: el.target.checked}).then(res => {
+          console.log(res.data)
+         });
+       };
+       checkerBlock.appendChild(inputChecker);
+
+       let checkerLabel = document.createElement('label');
+       checkerLabel.className = "checkerLabel";
+       checkerLabel.innerHTML = "Запись онлайн";
+       checkerLabel.htmlFor = "inputOnlineChecker";
+       checkerBlock.appendChild(checkerLabel);
+     } // Готово
      if(name === 'contactsEdited'){
        document.getElementById('newContactsEdited').className = 'newEditedBlock show';
        //Название
@@ -237,9 +403,9 @@ let selectMethod = (name, location) => {
 }
 
 let toTopThisScroll = (e) => {
-  // let toTopposition = document.getElementById(e.target.getAttribute('toelement')).offsetTop;
+  let toTopposition = document.getElementById(e.target.getAttribute('toelement')).offsetTop;
   let location = e.target.getAttribute('location');
-  // document.getElementById('content').scrollTo({top: toTopposition, behavior: 'smooth'});
+  document.getElementById('content').scrollTo({top: toTopposition, behavior: 'smooth'});
   document.getElementById('defaultEditData').style.display = 'none';
   let clickedElement = e.target.getAttribute('toelement');
 
@@ -433,21 +599,11 @@ class AdminPanel extends React.Component {
           </div>
           <div className="dataFromEdited" id="headEdited">
             <div className="miniTitleEdited">Главная</div>
-            <div className="controllBlockPanel">
-              <div className="panelFrom Add" onClick={this.openAddBlock.bind(this)}><FontAwesomeIcon icon={['fas', 'plus']}/></div>
-              <div className="panelFrom Refresh"><FontAwesomeIcon icon={['fas', 'sync']}/></div>
-            </div>
-            <div className="miniTitleEditedLength"></div>
             <div className="miniDataEditedLoader"></div>
             <div className="miniDataEditedDataClass"></div>
           </div>
           <div className="dataFromEdited" id="aboutEdited">
             <div className="miniTitleEdited">О нас</div>
-            <div className="controllBlockPanel">
-              <div className="panelFrom Add" onClick={this.openAddBlock.bind(this)}><FontAwesomeIcon icon={['fas', 'plus']}/></div>
-              <div className="panelFrom Refresh"><FontAwesomeIcon icon={['fas', 'sync']}/></div>
-            </div>
-            <div className="miniTitleEditedLength"></div>
             <div className="miniDataEditedLoader"></div>
             <div className="miniDataEditedDataClass"></div>
           </div>
@@ -483,11 +639,6 @@ class AdminPanel extends React.Component {
           </div>
           <div className="dataFromEdited" id="contactsEdited">
             <div className="miniTitleEdited">Контакты</div>
-            <div className="controllBlockPanel">
-              <div className="panelFrom Add" onClick={this.openAddBlock.bind(this)}><FontAwesomeIcon icon={['fas', 'plus']}/></div>
-              <div className="panelFrom Refresh"><FontAwesomeIcon icon={['fas', 'sync']}/></div>
-            </div>
-            <div className="miniTitleEditedLength"></div>
             <div className="miniDataEditedLoader"></div>
             <div className="miniDataEditedDataClass"></div>
           </div>

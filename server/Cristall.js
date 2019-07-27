@@ -78,6 +78,10 @@ app.post('/savecontactsEdited', contactsEdited);
 const aboutEdited =  require('./controller/panel/aboutEdited');
 app.post('/getaboutEdited', aboutEdited);
 app.post('/saveaboutEdited', aboutEdited);
+app.post('/changeAboutImageOne', aboutEdited);
+app.post('/changeAboutImageOne', aboutEdited);
+app.post('/changeOnlineChecker', aboutEdited);
+
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
@@ -87,7 +91,8 @@ app.listen(5002, function(){
 
   global.folders = {
     headers: __dirname + '/data/images/header',
-		staffs: __dirname + '/data/images/staff'
+    staffs: __dirname + '/data/images/staff',
+		images: __dirname + '/data/images'
 	}
   console.warn('Server started from port 5002');
 });

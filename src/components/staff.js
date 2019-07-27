@@ -27,7 +27,7 @@ let parseUsers = (data, location) => {
 const multipleRowSlidesLayout = (stafData, location) => {
   const params = {
     slidesPerView: 3,
-    slidesPerColumn: 2,
+    slidesPerColumn: 1,
     spaceBetween: 30,
     navigation: {
       nextEl: '.swiper-button-next',

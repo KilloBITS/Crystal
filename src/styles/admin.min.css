@@ -1,0 +1,74 @@
+@media screen and (max-width: 880px) {
+  .openAdminPanel{
+    width: 100%;
+  }
+
+  .adminPaneTitle{
+    display: none;
+  }
+
+  .openAdminPanel .bdt-heading-style{
+    display: none;
+  }
+
+  .navigationPanel{
+    margin-top: 0px;
+    padding-top: 0px;
+  }
+
+  .navigationPanel .menu_btnNav{
+    padding: 6px 0
+  }
+
+  .navigationPanel .menu_btnNav.active{
+    background-position: 12px 11px;
+  }
+
+  .openAdminPanel.show{
+    left: 0;
+  }
+
+  .panelLogotype{
+    top: -20px;
+    font-size: 30px;
+  }
+
+  .imageDOMHeadeEdit .imageHoverDeleteImage,.imageDOMHeadeEdit .imageHoverUpdateImage{
+    overflow: hidden;
+  }
+
+  .editedData{
+    height: calc(100% - 156px);
+  }
+
+  .miniInfoNews{
+    width: calc(100% - 20px);
+    margin: auto;
+    text-align: center;
+    padding-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .newEditedBlock.show{
+    overflow: auto;
+    height: calc(100% - 41px);
+  }
+
+  .newEditedBlock .saveNewStaff{
+    height: 24px;
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    border-radius: 0;
+    color: white;
+    text-transform: uppercase;
+    line-height: 24px;
+  }
+
+  .imageBlockFromAbout .imgEdiBlock {
+    width: 120px;
+    height: 115px;
+  }
+}

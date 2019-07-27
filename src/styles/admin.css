@@ -273,7 +273,7 @@ div::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb{
 }
 
 .titleEditText{
-  width: calc(100% - 5px);
+  width: calc(100% - 0px);
   margin: auto;
   margin-bottom: 5px;
   height: 30px;
@@ -607,4 +607,55 @@ div::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb{
 
 .newEditedBlock .saveNewStaff:hover{
   background-color: #7cdf7c;
+}
+
+.imageBlockFromAbout .imgEdiBlock{
+    width: 125px;
+}
+
+.selectHewAboutImage{
+  display: none;
+}
+
+.checkerBlock{
+  position: relative;
+}
+
+.inputChecker{
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border: 1px solid rebeccapurple;
+}
+
+.checkerLabel{
+  position: absolute;
+  left: 35px;
+  top: 5px;
+}
+
+.bigServicesDataBlock{
+  width: 100%;
+}
+
+.miniIconsServicesAdmin{
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background: #a4f5f2;
+  transition: 0.3s;
+  margin-top: -45px;
+  animation: shadowDinamic 10s cubic-bezier(0.4, 0.74, 0.56, 0.82);
+  animation-iteration-count: infinite;
+}
+
+.miniServiceImgIcon{
+  max-height: 80px;
+}
+
+.bigServicesDataBlock .titleEditTextArea{
+  display: inline-block;
+  width: calc(100% - 106px);
+  margin-left: 20px;
 }

@@ -30,11 +30,24 @@ class FooterBlock extends React.Component {
     }
   }
 
+  closeSignIn(){
+    this.setState({openSignIn:false});
+  }
+
   render() {
     return <div className="block footer" id="FooterBlock">
       <div className={(this.state.openSignIn)?"signInBlock show":"signInBlock"}>
-        <input type="text" className="signIninput" onKeyUp={this.props.keyUpChangeLogin.bind(this)}/>
-        <input type="password" className="signIninput" onKeyUp={this.props.keyUpChangePassword.bind(this)}/>
+        <div className="closeSignInBlock" onClick={this.closeSignIn.bind(this)}>
+          <FontAwesomeIcon icon={['fas', 'times']}/>
+        </div>
+        <div className="authInfo">
+          Авторизация для сотрудников салона красоты "Cristall".
+        </div>
+        <div className="paragraphLine">
+          <FontAwesomeIcon icon={['fas', 'gem']} />
+        </div>
+        <input type="text" className="signIninput" placeholder="Ваш логін" onKeyUp={this.props.keyUpChangeLogin.bind(this)}/>
+        <input type="password" className="signIninput" placeholder="Ваш пароль" onKeyUp={this.props.keyUpChangePassword.bind(this)}/>
         <div className="buttonSignIn" onClick={this.props.isSignIn.bind(this)}>Увійти</div>
       </div>
       <div className="footerToTopBlock">
@@ -46,7 +59,7 @@ class FooterBlock extends React.Component {
       <div className="max1024">
         <div className="footerData footerDataLeft">
           {parseMenu(this.props.dataMenu, true)}
-          <div onClick={this.openStaffSignIn.bind(this)} className="menu_btn">Працівникам</div>
+          {(this.props.isAdmin)?null:<div onClick={this.openStaffSignIn.bind(this)} className="menu_btn">Працівникам</div>}
         </div>
         <div className="footerData footerDataRight">
           <div className="contacts_line">

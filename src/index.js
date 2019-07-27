@@ -46,7 +46,6 @@ class Crystal extends React.Component{
       title: 'Crystal',
       logotype: '/images/logotype.svg',
       logotypeFooter: '/images/logotype.svg',
-      modelheader: '/images/model.png',
       menu: [
         {
           title: 'Головна',
@@ -74,6 +73,7 @@ class Crystal extends React.Component{
         }
       ],
       header: {
+        modelheader: '/images/model.png',
         background: '/images/header/1.jpg'
       },
       about: {
@@ -272,8 +272,15 @@ class Crystal extends React.Component{
       this.setState({
         header: res.data.data.header,
         staff: res.data.data.staff,
+        about: res.data.data.about,
         isAdmin: res.data.data.isAdmin
       });
+      setTimeout(()=>{
+        document.getElementById('Preloader').className = 'Preloader fadeout';
+        setTimeout(() => {
+          document.getElementById('Preloader').style.display = 'none'
+        }, 400);
+      },1500);      
     })
   }
   openCloseMenu(){
@@ -325,11 +332,18 @@ class Crystal extends React.Component{
   render(){
     return <div className="content" id="content">
       {(this.state.isAdmin)?<AdminPanel myLocation={this.state.myLocation} menu={this.state.menu}/>:null}
-      <Preloader myLocation={this.state.myLocation} logotype={this.state.logotype}/>
+      <Preloader
+        myLocation={this.state.myLocation}
+        logotype={this.state.logotype}
+      />
       <Menu myLocation={this.state.myLocation} data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
       <Bar myLocation={this.state.myLocation} dataAbout={this.state.about} data={this.state.menu} open={this.state.openedMenu} openclose={this.openCloseMenu.bind(this)}/>
       <ImageModal myLocation={this.state.myLocation} openimagesrc={this.state.openimagesrc} closephoto={this.closephoto}/>
-      <HeadBlock myLocation={this.state.myLocation} data={this.state.header} logotype={this.state.logotype} modelheader={this.state.modelheader}/>
+      <HeadBlock
+        myLocation={this.state.myLocation}
+        data={this.state.header}
+        logotype={this.state.logotype}
+      />
       <AboutBlock myLocation={this.state.myLocation} data={this.state.about}/>
       <ServicesBlock myLocation={this.state.myLocation} data={this.state.services} logotype={this.state.logotype}/>
       <StatisticBlock myLocation={this.state.myLocation}/>

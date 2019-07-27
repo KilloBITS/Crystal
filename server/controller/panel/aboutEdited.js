@@ -32,9 +32,17 @@ var savedata = (req, res, next) => {
       const db = client.db("CRISTALL");
       const about = db.collection("about");
       if (err) return console.log(err);
-      req.body.data.forEach((a) => {
-        console.log(a)
-        about.updateOne({AI: parseInt(a.AI) },{ $set: {title: a.title, text: a.text, fulltext: a.fulltext } });
+
+      about.updateOne({AI: parseInt(0) },{
+        $set: {
+          title: req.body.data[0].title,
+          minitext: req.body.data[0].minitext,
+          minitext2: req.body.data[0].minitext2,
+          insta: req.body.data[0].insta,
+          facebook: req.body.data[0].facebook,
+          email: req.body.data[0].email,
+          viber: req.body.data[0].viber
+        }
       });
       res.send({
         code: 200,
@@ -50,7 +58,60 @@ var savedata = (req, res, next) => {
   // }
 };
 
+var selectHewAboutImageOne = (req, res, next) => {
+  var photo = req.body.image.replace(/^data:image\/(png|gif|jpeg|jpg);base64,/,'');
+  fs.writeFile(global.folders.images + "/bg1.png", photo, 'base64', function(err){
+    console.log(err);
+    res.send({
+      code: 200,
+      className: 'nSuccess'
+    });
+  })
+}
+
+var selectHewAboutImageTwo = (req, res, next) => {
+  var photo = req.body.image.replace(/^data:image\/(png|gif|jpeg|jpg);base64,/,'');
+  fs.writeFile(global.folders.images + "/bg2.png", photo, 'base64', function(err){
+    console.log(err);
+    res.send({
+      code: 200,
+      className: 'nSuccess'
+    });
+  })
+}
+
+var changeOnlineChecker  = (req, res, next) => {
+  // console.log(req.body.data)
+  // if(req.session !== undefined && req.session.user_id !== undefined){
+    mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
+      const db = client.db("CRISTALL");
+      const about = db.collection("about");
+      if (err) return console.log(err);
+
+      about.updateOne({AI: parseInt(0) },{
+        $set: {
+          writeOnline: req.body.writeOnline
+        }
+      });
+      res.send({
+        code: 200,
+        className: 'nSuccess'
+      });
+    });
+  // }else{
+  //   res.send({
+  //     code: 403,
+  //     className: 'nWarning',
+  //     message: 'У вас нет доступа к данным действиям!'
+  //   });
+  // }
+}
+
 router.post('/getaboutEdited', getdata);
 router.post('/saveaboutEdited', savedata);
+router.post('/changeAboutImageOne', selectHewAboutImageOne);
+router.post('/changeAboutImageTwo', selectHewAboutImageTwo);
+router.post('/changeOnlineChecker', changeOnlineChecker);
+
 
 module.exports = router;
