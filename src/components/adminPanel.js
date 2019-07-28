@@ -475,7 +475,7 @@ class AdminPanel extends React.Component {
         axios.post(this.props.myLocation+'/save'+selectedEditedZone, {data:editZoneData}).then(res => {
           this.setState({saving: false});
           dontSave = true;
-          selectDom.getElementsByClassName('miniDataEditedLoader')[0].className = 'miniDataEditedLoader';
+          selectDom.getElementsByClassName('miniDataEditedLoader')[0].className = 'miniDataEditedLoader ';
           this.props.serviceUpdate()
         });
       }else{
