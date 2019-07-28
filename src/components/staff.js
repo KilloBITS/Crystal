@@ -3,6 +3,8 @@ import Swiper from 'react-id-swiper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadingArt from '../images/heading.js';
 
+import '../styles/swiper.css';
+
 let parseUsers = (data, location) => {
   const dataBlock = data.map((comp, key) => <div key={key} className="staffUserBlock">
     <div className="staffImageUser">
@@ -16,9 +18,9 @@ let parseUsers = (data, location) => {
       {comp.text}
     </div>
     <div className="staffSocials">
-    <a target="_blank" href={"/"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'instagram']} /></a>
-    <a target="_blank" href={"/"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fas', 'envelope']} /></a>
-    <a target="_blank" href={"/"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'facebook']} /></a>
+      {(comp.insta.length > 0)?<a target="_blank" href={"/"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'instagram']} /></a>:null}
+      {(comp.email.length > 0)?<a target="_blank" href={"/"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fas', 'envelope']} /></a>:null}
+      {(comp.insta.facebook > 0)?<a target="_blank" href={"/"} rel="noopener noreferrer"><FontAwesomeIcon icon={['fab', 'facebook']} /></a>:null}
     </div>
   </div>);
   return dataBlock
@@ -27,7 +29,6 @@ let parseUsers = (data, location) => {
 const multipleRowSlidesLayout = (stafData, location) => {
   const params = {
     slidesPerView: 3,
-    slidesPerColumn: 1,
     spaceBetween: 30,
     navigation: {
       nextEl: '.swiper-button-next',

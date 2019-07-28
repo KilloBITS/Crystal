@@ -30,9 +30,9 @@ var savedata = (req, res, next) => {
   // if(req.session !== undefined && req.session.user_id !== undefined){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
-      const services = db.collection("staff");
+      const staff = db.collection("staff");
       if (err) return console.log(err);
-      services.updateOne({AI: parseInt(0) },{ $set: {title: req.body.data[0].title, staffData: req.body.data[0].staffData } });
+      staff.updateOne({AI: parseInt(0) },{ $set: {title: req.body.data[0].title, staffData: req.body.data[0].staffData } });
 
       res.send({
         code: 200,

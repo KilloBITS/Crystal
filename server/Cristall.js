@@ -61,6 +61,7 @@ app.post('/addNewStaff', staffEdited);
 const servicesEdited =  require('./controller/panel/servicesEdited');
 app.post('/getservicesEdited', servicesEdited);
 app.post('/saveservicesEdited', servicesEdited);
+app.post('/addNewService', servicesEdited);
 
 const headEdited =  require('./controller/panel/headEdited');
 app.post('/getheadEdited', headEdited);
@@ -92,6 +93,7 @@ app.listen(5002, function(){
   global.folders = {
     headers: __dirname + '/data/images/header',
     staffs: __dirname + '/data/images/staff',
+    icons: __dirname + '/data/images/icons',
 		images: __dirname + '/data/images'
 	}
   console.warn('Server started from port 5002');

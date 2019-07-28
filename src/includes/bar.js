@@ -70,10 +70,10 @@ class NavBar extends React.Component {
       </div>
       <div className={this.state.visibleBTN?"feedBackAbsoluteBtn":"feedBackAbsoluteBtn hide"} onClick={this.toClickFeedBack.bind(this)} id="feedBackAbsoluteBtn">
         <FontAwesomeIcon icon={['fas', 'gem']} />
-        <a href={this.props.dataAbout.email} rel="noopener noreferrer"><div className={this.state.clickedFeedback?"chilsFeedBackBtn email openFeed":"chilsFeedBackBtn email"}><FontAwesomeIcon icon={['fas', 'envelope']} /></div></a>
-        <a href={this.props.dataAbout.insta} target="_blank" rel="noopener noreferrer"><div className={this.state.clickedFeedback?"chilsFeedBackBtn insta openFeed":"chilsFeedBackBtn insta"}><FontAwesomeIcon icon={['fab', 'instagram']} /></div></a>
-        <a href={this.props.dataAbout.viber} rel="noopener noreferrer"><div className={this.state.clickedFeedback?"chilsFeedBackBtn viber openFeed":"chilsFeedBackBtn viber"}><FontAwesomeIcon icon={['fab', 'viber']} /></div></a>
-        <a href={this.props.dataAbout.facebook} target="_blank" rel="noopener noreferrer"><div className={this.state.clickedFeedback?"chilsFeedBackBtn facebook openFeed":"chilsFeedBackBtn facebook"}><FontAwesomeIcon icon={['fab', 'facebook']} /></div></a>
+        {(this.props.dataAbout !== null)?<a href={this.props.dataAbout.email} rel="noopener noreferrer"><div className={this.state.clickedFeedback?"chilsFeedBackBtn email openFeed":"chilsFeedBackBtn email"}><FontAwesomeIcon icon={['fas', 'envelope']} /></div></a>:null}
+        {(this.props.dataAbout !== null)?<a href={this.props.dataAbout.insta} target="_blank" rel="noopener noreferrer"><div className={this.state.clickedFeedback?"chilsFeedBackBtn insta openFeed":"chilsFeedBackBtn insta"}><FontAwesomeIcon icon={['fab', 'instagram']} /></div></a>:null}
+        {(this.props.dataAbout !== null)?<a href={this.props.dataAbout.viber} rel="noopener noreferrer"><div className={this.state.clickedFeedback?"chilsFeedBackBtn viber openFeed":"chilsFeedBackBtn viber"}><FontAwesomeIcon icon={['fab', 'viber']} /></div></a>:null}
+        {(this.props.dataAbout !== null)?<a href={this.props.dataAbout.facebook} target="_blank" rel="noopener noreferrer"><div className={this.state.clickedFeedback?"chilsFeedBackBtn facebook openFeed":"chilsFeedBackBtn facebook"}><FontAwesomeIcon icon={['fab', 'facebook']} /></div></a>:null}
       </div>
       <div className={this.state.visibleBTN?"toTopAbsoluteBtn":"toTopAbsoluteBtn hide"} onClick={this.toTopPosition.bind(this)} id="toTopAbsoluteBtn">
         <FontAwesomeIcon icon={['fas', 'arrow-up']}/>

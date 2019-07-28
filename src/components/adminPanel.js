@@ -9,7 +9,10 @@ var selectedEditedZone = null;
 var editZoneData = {};
 var dontSave = true;
 var globalLocation ='';
+var globalName = null;
+
 let selectMethod = (name, location) => {
+  globalName = name;
   const selectDom = document.getElementById(name);
   const selectDomClass = selectDom.getElementsByClassName('miniDataEditedDataClass')[0]
   while (selectDomClass.firstChild) {
@@ -107,6 +110,16 @@ let selectMethod = (name, location) => {
        titleEditServiceText.value = res.data.data[0].title;
        selectDomClass.appendChild(titleEditServiceText);
 
+       //subtitle
+       let subtitle = document.createElement('textarea');
+       subtitle.className = "subtitle";
+       subtitle.value = res.data.data[0].text;
+       subtitle.onkeyup = (el) => {
+         dontSave = false;
+         editZoneData[0].text = el.target.value;
+       };
+       selectDomClass.appendChild(subtitle);
+
        for(let i = 0; i < res.data.data[0].myservice.length; i++){
            let serviceEditBlock = document.createElement('div');
            serviceEditBlock.className = "editBlock";
@@ -116,7 +129,7 @@ let selectMethod = (name, location) => {
            titleEditServiceText.className = "titleEditText";
            titleEditServiceText.onkeyup = (el) => {
             dontSave = false;
-            console.log(el.target.value);
+            editZoneData[0].myservice.find(x => x.AI === res.data.data[0].myservice[i].AI).title = el.target.value;
            };
            titleEditServiceText.value = res.data.data[0].myservice[i].title;
            serviceEditBlock.appendChild(titleEditServiceText);
@@ -139,12 +152,12 @@ let selectMethod = (name, location) => {
            titleEditTextArea.value = res.data.data[0].myservice[i].text;
            titleEditTextArea.onkeyup = (el) => {
              dontSave = false;
-             console.log(el.target.value)
+            editZoneData[0].myservice.find(x => x.AI === res.data.data[0].myservice[i].AI).text = el.target.value;
              // editZoneData.find(x => x.AI === res.data.data[i].AI).text = el.target.value;
            };
            bigServicesDataBlock.appendChild(titleEditTextArea);
         }
-     }
+     } //готово
      if(name === 'galleryEdited'){
        document.getElementById('newGalleryEdited').className = 'newEditedBlock show';
        //Название
@@ -397,7 +410,6 @@ let selectMethod = (name, location) => {
        titleEditServiceText.value = res.data.data[0].title;
        selectDomClass.appendChild(titleEditServiceText);
      }
-
      selectDom.getElementsByClassName('miniDataEditedLoader')[0].className = 'miniDataEditedLoader';
   });
 }
@@ -431,7 +443,7 @@ let toTopThisScroll = (e) => {
 
 let parseMenu = (dataMenu, m, loc) => {
   if(m){
-    const menuBtn = dataMenu.map((comp, key) => <div key={key} onClick={toTopThisScroll.bind(this)} location={loc} toelement={comp.toelement} className="menu_btnNav">{comp.title}</div>);
+    const menuBtn = dataMenu.map((comp, key) => <div key={key} onClick={toTopThisScroll.bind(this)} id={"buttonIds_fron_"+key} location={loc} toelement={comp.toelement} className="menu_btnNav">{comp.title}</div>);
     return menuBtn
   }else{
     return <div className="menu_btn">Not data found</div>
@@ -457,11 +469,14 @@ class AdminPanel extends React.Component {
   saveEdited(){
     if(selectedEditedZone !== null){
       if(!dontSave){
+        const selectDom = document.getElementById(globalName);
+        selectDom.getElementsByClassName('miniDataEditedLoader')[0].className = 'miniDataEditedLoader show';
         this.setState({saving: true});
         axios.post(this.props.myLocation+'/save'+selectedEditedZone, {data:editZoneData}).then(res => {
-          console.log(res.data);
           this.setState({saving: false});
           dontSave = true;
+          selectDom.getElementsByClassName('miniDataEditedLoader')[0].className = 'miniDataEditedLoader';
+          this.props.serviceUpdate()
         });
       }else{
         console.log('есть несохраненные изминения')
@@ -500,7 +515,6 @@ class AdminPanel extends React.Component {
     let newStaffsfullText = document.getElementById('newStaffsfullText');
     let newOneFileImage = document.getElementById('newOneFileImage');
     let newTwoFileImage = document.getElementById('newTwoFileImage');
-
     let newAI = parseInt(editZoneData[0].staffData.length);
     let newObjectfromStaff = {
       AI: newAI,
@@ -514,16 +528,13 @@ class AdminPanel extends React.Component {
       facebook: newStaffsFacebook.value,
       newStaffs: true
     }
-
     var reader1 = new FileReader();
     reader1.readAsDataURL(newOneFileImage.files[0]);
     reader1.onload = function () {
       newObjectfromStaff.photoOne = reader1.result;
-
       var reader2 = new FileReader();
       reader2.readAsDataURL(newTwoFileImage.files[0]);
       reader2.onload = function () {
-        console.log(globalLocation);
         newObjectfromStaff.photoTwo = reader2.result;
         axios.post(globalLocation + '/addNewStaff', {new: newObjectfromStaff} ).then(res => {
           newStaffsTitle.value = '';
@@ -534,11 +545,36 @@ class AdminPanel extends React.Component {
           newStaffsfullText.value = '';
           newOneFileImage.value = '';
           newTwoFileImage.value = '';
-          this.setState({
-            openAdd: false
-          });
+          document.getElementById('selectNewImageIdOne').removeAttribute("style");
+          document.getElementById('selectNewImageIdTwo').removeAttribute("style");
+          document.getElementById('buttonIds_fron_4').click()
         });
       };
+    };
+  }
+
+  addNewServices(){
+    let newServiceName = document.getElementById('newServiceName');
+    let newServiceText = document.getElementById('newServiceText');
+    let newServiceIcon = document.getElementById('newServiceIcon');
+    let newAI = parseInt(editZoneData[0].myservice.length);
+    let newObjectfromService = {
+      AI: newAI,
+      title: newServiceName.value,
+      text: newServiceText.value
+    }
+    var readerService = new FileReader();
+    readerService.readAsText(newServiceIcon.files[0]);
+    readerService.onload = function () {
+      newObjectfromService.icon = readerService.result;
+      console.log(newObjectfromService)
+      axios.post(globalLocation + '/addNewService', {new: newObjectfromService} ).then(res => {
+        newServiceName.value = '';
+        newServiceText.value = '';
+        newServiceIcon.value = '';
+        document.getElementById('selectNewImageIcon').removeAttribute("style");
+        document.getElementById('buttonIds_fron_2').click()
+      });
     };
   }
 
@@ -555,6 +591,20 @@ class AdminPanel extends React.Component {
     reader.onload = function () {
       document.getElementById('selectNewImageIdTwo').style.backgroundImage = "url("+reader.result+")";
     }
+  }
+
+  newOneFileServiceIcon(el){
+    var reader = new FileReader();
+    reader.readAsDataURL(el.target.files[0]);
+    reader.onload = function () {
+      document.getElementById('selectNewImageIcon').style.backgroundImage = "url("+reader.result+")";
+    }
+  }
+
+  refresh(el){
+    let thisNumelement = el.currentTarget.getAttribute('idelement');
+    this.props.serviceUpdate.bind(this)
+    document.getElementById('buttonIds_fron_'+thisNumelement).click()
   }
 
   render() {
@@ -599,11 +649,17 @@ class AdminPanel extends React.Component {
           </div>
           <div className="dataFromEdited" id="headEdited">
             <div className="miniTitleEdited">Главная</div>
+            <div className="controllBlockPanel">
+              <div className="panelFrom Refresh" idelement="0" onClick={this.refresh.bind(this)}><FontAwesomeIcon icon={['fas', 'sync']}/></div>
+            </div>
             <div className="miniDataEditedLoader"></div>
             <div className="miniDataEditedDataClass"></div>
           </div>
           <div className="dataFromEdited" id="aboutEdited">
             <div className="miniTitleEdited">О нас</div>
+            <div className="controllBlockPanel">
+              <div className="panelFrom Refresh" idelement="1" onClick={this.refresh.bind(this)}><FontAwesomeIcon icon={['fas', 'sync']}/></div>
+            </div>
             <div className="miniDataEditedLoader"></div>
             <div className="miniDataEditedDataClass"></div>
           </div>
@@ -611,7 +667,7 @@ class AdminPanel extends React.Component {
             <div className="miniTitleEdited">Услуги</div>
             <div className="controllBlockPanel">
               <div className="panelFrom Add" onClick={this.openAddBlock.bind(this)}><FontAwesomeIcon icon={['fas', 'plus']}/></div>
-              <div className="panelFrom Refresh"><FontAwesomeIcon icon={['fas', 'sync']}/></div>
+              <div className="panelFrom Refresh" idelement="2" onClick={this.refresh.bind(this)}><FontAwesomeIcon icon={['fas', 'sync']}/></div>
             </div>
             <div className="miniTitleEditedLength"></div>
             <div className="miniDataEditedLoader"></div>
@@ -621,7 +677,7 @@ class AdminPanel extends React.Component {
             <div className="miniTitleEdited">Галерея</div>
             <div className="controllBlockPanel">
               <div className="panelFrom Add" onClick={this.openAddBlock.bind(this)}><FontAwesomeIcon icon={['fas', 'plus']}/></div>
-              <div className="panelFrom Refresh"><FontAwesomeIcon icon={['fas', 'sync']}/></div>
+              <div className="panelFrom Refresh" idelement="3" onClick={this.refresh.bind(this)}><FontAwesomeIcon icon={['fas', 'sync']}/></div>
             </div>
             <div className="miniTitleEditedLength"></div>
             <div className="miniDataEditedLoader"></div>
@@ -631,7 +687,7 @@ class AdminPanel extends React.Component {
             <div className="miniTitleEdited">Персонал</div>
             <div className="controllBlockPanel">
               <div className="panelFrom Add" onClick={this.openAddBlock.bind(this)}><FontAwesomeIcon icon={['fas', 'plus']}/></div>
-              <div className="panelFrom Refresh"><FontAwesomeIcon icon={['fas', 'sync']}/></div>
+              <div className="panelFrom Refresh" idelement="4" onClick={this.refresh.bind(this)}><FontAwesomeIcon icon={['fas', 'sync']}/></div>
             </div>
             <div className="miniTitleEditedLength"></div>
             <div className="miniDataEditedLoader"></div>
@@ -639,6 +695,9 @@ class AdminPanel extends React.Component {
           </div>
           <div className="dataFromEdited" id="contactsEdited">
             <div className="miniTitleEdited">Контакты</div>
+            <div className="controllBlockPanel">
+              <div className="panelFrom Refresh" idelement="5" onClick={this.refresh.bind(this)}><FontAwesomeIcon icon={['fas', 'sync']}/></div>
+            </div>
             <div className="miniDataEditedLoader"></div>
             <div className="miniDataEditedDataClass"></div>
           </div>
@@ -661,6 +720,18 @@ class AdminPanel extends React.Component {
                 В данном меню вы можете добавить новые услуги вашего салона,
                 указать их параметри и информацию
               </div>
+              <input className="titleEditText" type="text" id="newServiceName" placeholder="Название услуги"/>
+              <div className="newDataBlockFromService">
+                <input type="file" id="newServiceIcon" className="hiddenBlock" onChange={this.newOneFileServiceIcon.bind(this)}/>
+                <div className="selectNewImage" id="selectNewImageIcon">
+                  <label htmlFor="newServiceIcon">Вибрать</label>
+                </div>
+                <textarea className="titleEditTextArea" id="newServiceText" placeholder="Описание услуги"></textarea>
+              </div>
+              <div className="saveNewService" onClick={this.addNewServices.bind(this)}>
+                Добавить
+              </div>
+
             </div>
             <div className="newEditedBlock" id="newStaffEdited">
               <div className="miniInfoNews">
