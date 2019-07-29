@@ -47,8 +47,8 @@ class AdminPanel extends React.Component {
           <div onClick={this.nextPanelTab.bind(this)} className={(this.state.panelTab === 1)?"panelClassSelectButton right_panelClassSelect panelBtn_disabled":"panelClassSelectButton right_panelClassSelect"}></div>
         </div>
         <div className="bdt-heading-style"><HeadingArt fill={'#00726d'}/></div>
-        {(this.state.panelTab === 0)?<AminOnePage myLocation={this.props.myLocation} menu={this.props.menu} serviceUpdate={this.props.serviceUpdate}/>:null}
-        {(this.state.panelTab === 1)?<AminTwoPage myLocation={this.props.myLocation}/>:null}
+        {(this.state.panelTab === 0)?<AminOnePage closePanel={this.openAdminPanelMethod.bind(this)} myLocation={this.props.myLocation} menu={this.props.menu} serviceUpdate={this.props.serviceUpdate}/>:null}
+        {(this.state.panelTab === 1)?<AminTwoPage closePanel={this.openAdminPanelMethod.bind(this)} myLocation={this.props.myLocation}/>:null}
       </div>
     </div>
   }

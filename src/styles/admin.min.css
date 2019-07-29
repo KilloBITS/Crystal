@@ -1,6 +1,21 @@
 @media screen and (max-width: 880px) {
+  .adminOnePage{
+
+  }
+
+  .adminTwoPage{
+    margin-top: 100px;
+    height: calc(100% - 100px);
+  }
+
+  .ReactTable {
+    max-height: calc(100% - 70px);
+    overflow: auto;
+  }
+
   .openAdminPanel{
     width: 100%;
+    box-shadow: none;
   }
 
   .adminPaneTitle{
@@ -12,8 +27,14 @@
   }
 
   .navigationPanel{
-    margin-top: 0px;
     padding-top: 0px;
+    width: calc(100% - 80px);
+    margin: auto;
+    border: 1px solid #e6fffe;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+    transition: 0.3s;
   }
 
   .navigationPanel .menu_btnNav{
@@ -38,7 +59,24 @@
   }
 
   .editedData{
-    height: calc(100% - 156px);
+    height: calc(100% - 168px);
+  }
+
+  .panelClassSelect{
+    height: 0;
+  }
+
+  .saveAdminEdit{
+    width: calc(100% - 75px);
+    display: inline-block;
+  }
+
+  .saveAdminEdit.closeMobile{
+    display: block;
+    width: 75px;
+    overflow: hidden;
+    background-color: #ff4d4d;
+    float: right;
   }
 
   .miniInfoNews{
@@ -47,6 +85,10 @@
     text-align: center;
     padding-bottom: 5px;
     font-size: 14px;
+  }
+
+  .panelClassSelectButton{
+    top: 42px;
   }
 
   .newEditedBlock.show{

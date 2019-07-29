@@ -53,7 +53,7 @@ class AdminPanel extends React.Component {
   }
 
   render() {
-    return <div className="adminOnePage">
+    return <div className="adminTwoPage">
       <div className="usersBlockAdminTop">
         <div className="usersBlockAdminButton addAdmin">Добавить администратора</div>
         {(this.state.data !== null)?<TableCustom data={this.state.data}/>:<div className="usersLoader">Идет загрузка данных...</div>}

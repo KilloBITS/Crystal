@@ -786,6 +786,7 @@ class AminOnePage extends React.Component {
         </div>
       </div>
       <div className="saveAdminEdit" onClick={this.saveEdited.bind(this)}>{(this.state.saving)?"Идет сохранение":"Сохранить"}</div>
+      <div className="saveAdminEdit closeMobile" onClick={this.props.closePanel.bind(this)}>Закрыть</div>
     </div>
   }
 }

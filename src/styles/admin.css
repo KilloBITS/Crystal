@@ -55,7 +55,7 @@ div::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb{
   left: 510px;
 }
 
-.adminOnePage{
+.adminOnePage,.adminTwoPage{
   height: 100%;
 }
 
@@ -749,6 +749,9 @@ div::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb{
   pointer-events: none;
 }
 
+.saveAdminEdit.closeMobile{
+  display: none;
+}
 
 /** usersBlockAdminTop **/
 .usersBlockAdminTop{
