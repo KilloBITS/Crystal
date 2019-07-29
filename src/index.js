@@ -76,37 +76,7 @@ class Crystal extends React.Component{
       header: null,
       about: null,
       services: null,
-      gallery: {
-        title: 'Фотогалерея',
-        images:
-          [
-            {
-              src: '/images/gallery/1.jpg'
-            },
-            {
-              src: '/images/gallery/2.jpg'
-            },
-            {
-              src: '/images/gallery/3.jpg'
-            },
-            {
-              src: '/images/gallery/4.jpg'
-            },
-            {
-              src: '/images/gallery/5.jpg'
-            },
-            {
-              src: '/images/gallery/6.jpg'
-            },
-            {
-              src: '/images/gallery/7.jpg'
-            },
-            {
-              src: '/images/gallery/8.jpg'
-            }
-          ]
-
-      },
+      gallery: null,
       staff: null,
       constacts: {
         title: 'Контакти'
@@ -123,6 +93,7 @@ class Crystal extends React.Component{
         staff: res.data.data.staff,
         services: res.data.data.services,
         about: res.data.data.about,
+        // gallery: res.data.data.gallery,
         isAdmin: res.data.data.isAdmin
       });
       setTimeout(()=>{

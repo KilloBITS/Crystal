@@ -43,12 +43,14 @@ class NavBar extends React.Component {
     });
 
     let docHeight = document.getElementById('HeadBlock').offsetHeight / 2;
-    if(document.getElementById('content').scrollTop >= document.getElementById('HeadBlock').offsetTop){clearClassNavigator(0)}
-    if(document.getElementById('AboutBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(1)}
-    if(document.getElementById('ServicesBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(2)}
-    if(document.getElementById('GalleryBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(3)}
-    if(document.getElementById('StaffBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(4)}
-    if(document.getElementById('ContactsBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(5)}
+
+    if(document.getElementById('HeadBlock') && document.getElementById('content').scrollTop >= document.getElementById('HeadBlock').offsetTop){clearClassNavigator(0)}
+    if(document.getElementById('AboutBlock') && document.getElementById('AboutBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(1)}
+    if(document.getElementById('ServicesBlock') && document.getElementById('ServicesBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(2)}
+    if(document.getElementById('GalleryBlock') && document.getElementById('GalleryBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(3)}
+    if(document.getElementById('StaffBlock') && document.getElementById('StaffBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(4)}
+    if(document.getElementById('ContactsBlock') && document.getElementById('ContactsBlock').offsetTop - docHeight <= document.getElementById('content').scrollTop){clearClassNavigator(5)}
+
   }
   toTopPosition(){
     document.getElementById('content').scrollTo({top: 0, behavior: 'smooth'});

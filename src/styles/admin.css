@@ -55,6 +55,20 @@ div::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb{
   left: 510px;
 }
 
+.noneDataFromThisModule{
+  text-align: center;
+  padding: 30px;
+  text-transform: uppercase;
+  width: fit-content;
+  margin: 30px auto;
+  border: 1px solid #08e8de;
+  border-radius: 5px;
+  color: #09ddd3;
+  font-weight: bold;
+  letter-spacing: 2px;
+  background-color: white;
+}
+
 .adminOnePage,.adminTwoPage{
   height: 100%;
 }

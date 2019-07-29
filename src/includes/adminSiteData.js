@@ -38,93 +38,101 @@ let selectMethod = (name, location) => {
        titleEditServiceText.value = res.data.data[0].title;
        selectDomClass.appendChild(titleEditServiceText);
 
-       for(let i = 0; i < res.data.data[0].staffData.length; i++){
-         //Блок персонала
-         let staffEditBlock = document.createElement('div');
-         staffEditBlock.className = "editBlock";
-         selectDomClass.appendChild(staffEditBlock);
-         //Заголовок
-         let titleEditStaffText = document.createElement('input');
-         titleEditStaffText.className = "titleEditText";
-         titleEditStaffText.value = res.data.data[0].staffData[i].title;
-         titleEditStaffText.onkeyup = (el) => {
-           dontSave = false;
-           editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).title = el.target.value;
-         };
-         staffEditBlock.appendChild(titleEditStaffText);
-         //Должность
-         let editDolg = document.createElement('input');
-         editDolg.className = "titleEditText";
-         editDolg.value = res.data.data[0].staffData[i].text;
-         editDolg.onkeyup = (el) => {
-           dontSave = false;
-           editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).text = el.target.value;
-         };
-         staffEditBlock.appendChild(editDolg);
-         //Instagram
-         let instagram = document.createElement('input');
-         instagram.className = "titleEditText minSocials";
-         instagram.placeholder = 'Введите ник в инстаграм';
-         instagram.value = res.data.data[0].staffData[i].insta;
-         instagram.onkeyup = (el) => {
-           dontSave = false;
-           editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).insta = el.target.value;
-         };
-         staffEditBlock.appendChild(instagram);
-         //email
-         let email = document.createElement('input');
-         email.className = "titleEditText minSocials";
-         email.placeholder = 'Введите електронную почту';
-         email.value = res.data.data[0].staffData[i].email;
-         email.onkeyup = (el) => {
-           dontSave = false;
-           editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).email = el.target.value;
-         };
-         staffEditBlock.appendChild(email);
-         //facebook
-         let facebook = document.createElement('input');
-         facebook.className = "titleEditText minSocials";
-         facebook.placeholder = 'ссылка на фейсбук';
-         facebook.value = res.data.data[0].staffData[i].facebook;
-         facebook.onkeyup = (el) => {
-           dontSave = false;
-           editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).facebook = el.target.value;
-         };
-         staffEditBlock.appendChild(facebook);
-         //Описание
-         let titleEditStaffTextArea = document.createElement('textarea');
-         titleEditStaffTextArea.className = "titleEditTextArea";
-         titleEditStaffTextArea.value = res.data.data[0].staffData[i].fulltext;
-         titleEditStaffTextArea.onkeyup = (el) => {
-           dontSave = false;
-           editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).fulltext = el.target.value;
-         };
-         staffEditBlock.appendChild(titleEditStaffTextArea);
-         //фото блок
-         let imagesOneTwoBlock = document.createElement('div');
-         imagesOneTwoBlock.className = "imagesOneTwoBlock";
-         staffEditBlock.appendChild(imagesOneTwoBlock);
-         //imgOne
-         let imgOne = document.createElement('div');
-         imgOne.className = "imgEdiBlock imgOne";
-         imgOne.style.backgroundImage = "url("+location+"/images"+res.data.data[0].staffData[i].photoOne+")";
-         imagesOneTwoBlock.appendChild(imgOne);
+       if(res.data.data[0].staffData.length === 0){
+         let noneDataFromThisModule = document.createElement('div');
+         noneDataFromThisModule.className = "noneDataFromThisModule";
+         noneDataFromThisModule.innerHTML = "Данные отсутствуют!";
+         selectDomClass.appendChild(noneDataFromThisModule);
+       }else{
+         for(let i = 0; i < res.data.data[0].staffData.length; i++){
+           //Блок персонала
+           let staffEditBlock = document.createElement('div');
+           staffEditBlock.className = "editBlock";
+           selectDomClass.appendChild(staffEditBlock);
+           //Заголовок
+           let titleEditStaffText = document.createElement('input');
+           titleEditStaffText.className = "titleEditText";
+           titleEditStaffText.value = res.data.data[0].staffData[i].title;
+           titleEditStaffText.onkeyup = (el) => {
+             dontSave = false;
+             editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).title = el.target.value;
+           };
+           staffEditBlock.appendChild(titleEditStaffText);
+           //Должность
+           let editDolg = document.createElement('input');
+           editDolg.className = "titleEditText";
+           editDolg.value = res.data.data[0].staffData[i].text;
+           editDolg.onkeyup = (el) => {
+             dontSave = false;
+             editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).text = el.target.value;
+           };
+           staffEditBlock.appendChild(editDolg);
+           //Instagram
+           let instagram = document.createElement('input');
+           instagram.className = "titleEditText minSocials";
+           instagram.placeholder = 'Введите ник в инстаграм';
+           instagram.value = res.data.data[0].staffData[i].insta;
+           instagram.onkeyup = (el) => {
+             dontSave = false;
+             editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).insta = el.target.value;
+           };
+           staffEditBlock.appendChild(instagram);
+           //email
+           let email = document.createElement('input');
+           email.className = "titleEditText minSocials";
+           email.placeholder = 'Введите електронную почту';
+           email.value = res.data.data[0].staffData[i].email;
+           email.onkeyup = (el) => {
+             dontSave = false;
+             editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).email = el.target.value;
+           };
+           staffEditBlock.appendChild(email);
+           //facebook
+           let facebook = document.createElement('input');
+           facebook.className = "titleEditText minSocials";
+           facebook.placeholder = 'ссылка на фейсбук';
+           facebook.value = res.data.data[0].staffData[i].facebook;
+           facebook.onkeyup = (el) => {
+             dontSave = false;
+             editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).facebook = el.target.value;
+           };
+           staffEditBlock.appendChild(facebook);
+           //Описание
+           let titleEditStaffTextArea = document.createElement('textarea');
+           titleEditStaffTextArea.className = "titleEditTextArea";
+           titleEditStaffTextArea.value = res.data.data[0].staffData[i].fulltext;
+           titleEditStaffTextArea.onkeyup = (el) => {
+             dontSave = false;
+             editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).fulltext = el.target.value;
+           };
+           staffEditBlock.appendChild(titleEditStaffTextArea);
+           //фото блок
+           let imagesOneTwoBlock = document.createElement('div');
+           imagesOneTwoBlock.className = "imagesOneTwoBlock";
+           staffEditBlock.appendChild(imagesOneTwoBlock);
+           //imgOne
+           let imgOne = document.createElement('div');
+           imgOne.className = "imgEdiBlock imgOne";
+           imgOne.style.backgroundImage = "url("+location+"/images"+res.data.data[0].staffData[i].photoOne+")";
+           imagesOneTwoBlock.appendChild(imgOne);
 
-         let imageHoverOne = document.createElement('div');
-         imageHoverOne.className = "imageHover";
-         imageHoverOne.innerHTML = "Вибрать";
-         imgOne.appendChild(imageHoverOne);
-         //imgTwo
-         let imgTwo = document.createElement('div');
-         imgTwo.className = "imgEdiBlock imgTwo";
-         imgTwo.style.backgroundImage = "url("+location+"/images"+res.data.data[0].staffData[i].photoTwo+")";
-         imagesOneTwoBlock.appendChild(imgTwo);
+           let imageHoverOne = document.createElement('div');
+           imageHoverOne.className = "imageHover";
+           imageHoverOne.innerHTML = "Вибрать";
+           imgOne.appendChild(imageHoverOne);
+           //imgTwo
+           let imgTwo = document.createElement('div');
+           imgTwo.className = "imgEdiBlock imgTwo";
+           imgTwo.style.backgroundImage = "url("+location+"/images"+res.data.data[0].staffData[i].photoTwo+")";
+           imagesOneTwoBlock.appendChild(imgTwo);
 
-         let imageHoverTwo = document.createElement('div');
-         imageHoverTwo.className = "imageHover";
-         imageHoverTwo.innerHTML = "Вибрать";
-         imgTwo.appendChild(imageHoverTwo);
+           let imageHoverTwo = document.createElement('div');
+           imageHoverTwo.className = "imageHover";
+           imageHoverTwo.innerHTML = "Вибрать";
+           imgTwo.appendChild(imageHoverTwo);
+         }
        }
+
      } // Готово
      if(name === 'servicesEdited'){
        document.getElementById('newServicesEdited').className = 'newEditedBlock show';
@@ -151,43 +159,51 @@ let selectMethod = (name, location) => {
        };
        selectDomClass.appendChild(subtitle);
 
-       for(let i = 0; i < res.data.data[0].myservice.length; i++){
-           let serviceEditBlock = document.createElement('div');
-           serviceEditBlock.className = "editBlock";
-           selectDomClass.appendChild(serviceEditBlock);
-           //Название
-           let titleEditServiceText = document.createElement('input');
-           titleEditServiceText.className = "titleEditText";
-           titleEditServiceText.onkeyup = (el) => {
-            dontSave = false;
-            editZoneData[0].myservice.find(x => x.AI === res.data.data[0].myservice[i].AI).title = el.target.value;
-           };
-           titleEditServiceText.value = res.data.data[0].myservice[i].title;
-           serviceEditBlock.appendChild(titleEditServiceText);
+       if(res.data.data[0].myservice.length === 0){
+         let noneDataFromThisModule = document.createElement('div');
+         noneDataFromThisModule.className = "noneDataFromThisModule";
+         noneDataFromThisModule.innerHTML = "Данные отсутствуют!";
+         selectDomClass.appendChild(noneDataFromThisModule);
+       }else{
+         for(let i = 0; i < res.data.data[0].myservice.length; i++){
+             let serviceEditBlock = document.createElement('div');
+             serviceEditBlock.className = "editBlock";
+             selectDomClass.appendChild(serviceEditBlock);
+             //Название
+             let titleEditServiceText = document.createElement('input');
+             titleEditServiceText.className = "titleEditText";
+             titleEditServiceText.onkeyup = (el) => {
+              dontSave = false;
+              editZoneData[0].myservice.find(x => x.AI === res.data.data[0].myservice[i].AI).title = el.target.value;
+             };
+             titleEditServiceText.value = res.data.data[0].myservice[i].title;
+             serviceEditBlock.appendChild(titleEditServiceText);
 
-           let bigServicesDataBlock = document.createElement('div');
-           bigServicesDataBlock.className = "bigServicesDataBlock";
-           serviceEditBlock.appendChild(bigServicesDataBlock);
-           //Изображение
-           let miniIconsServicesAdmin = document.createElement('div');
-           miniIconsServicesAdmin.className = "miniIconsServicesAdmin";
-           bigServicesDataBlock.appendChild(miniIconsServicesAdmin);
+             let bigServicesDataBlock = document.createElement('div');
+             bigServicesDataBlock.className = "bigServicesDataBlock";
+             serviceEditBlock.appendChild(bigServicesDataBlock);
+             //Изображение
+             let miniIconsServicesAdmin = document.createElement('div');
+             miniIconsServicesAdmin.className = "miniIconsServicesAdmin";
+             bigServicesDataBlock.appendChild(miniIconsServicesAdmin);
 
-           let miniServiceImgIcon = document.createElement('img');
-           miniServiceImgIcon.className = 'miniServiceImgIcon';
-           miniServiceImgIcon.src = location+res.data.data[0].myservice[i].icon;
-           miniIconsServicesAdmin.appendChild(miniServiceImgIcon);
-           //Описание
-           let titleEditTextArea = document.createElement('textarea');
-           titleEditTextArea.className = "titleEditTextArea";
-           titleEditTextArea.value = res.data.data[0].myservice[i].text;
-           titleEditTextArea.onkeyup = (el) => {
-             dontSave = false;
-            editZoneData[0].myservice.find(x => x.AI === res.data.data[0].myservice[i].AI).text = el.target.value;
-             // editZoneData.find(x => x.AI === res.data.data[i].AI).text = el.target.value;
-           };
-           bigServicesDataBlock.appendChild(titleEditTextArea);
-        }
+             let miniServiceImgIcon = document.createElement('img');
+             miniServiceImgIcon.className = 'miniServiceImgIcon';
+             miniServiceImgIcon.src = location+res.data.data[0].myservice[i].icon;
+             miniIconsServicesAdmin.appendChild(miniServiceImgIcon);
+             //Описание
+             let titleEditTextArea = document.createElement('textarea');
+             titleEditTextArea.className = "titleEditTextArea";
+             titleEditTextArea.value = res.data.data[0].myservice[i].text;
+             titleEditTextArea.onkeyup = (el) => {
+               dontSave = false;
+              editZoneData[0].myservice.find(x => x.AI === res.data.data[0].myservice[i].AI).text = el.target.value;
+               // editZoneData.find(x => x.AI === res.data.data[i].AI).text = el.target.value;
+             };
+             bigServicesDataBlock.appendChild(titleEditTextArea);
+          }
+       }
+
      } //готово
      if(name === 'galleryEdited'){
        document.getElementById('newGalleryEdited').className = 'newEditedBlock show';
@@ -203,21 +219,28 @@ let selectMethod = (name, location) => {
        };
        titleEditServiceText.value = res.data.data[0].title;
        selectDomClass.appendChild(titleEditServiceText);
+       if(res.data.data[0].images.length === 0){
+         let noneDataFromThisModule = document.createElement('div');
+         noneDataFromThisModule.className = "noneDataFromThisModule";
+         noneDataFromThisModule.innerHTML = "Данные отсутствуют!";
+         selectDomClass.appendChild(noneDataFromThisModule);
+       }else{
+         for(let i = 0; i < res.data.data[0].images.length; i++){
+           let serviceEditBlock = document.createElement('div');
+           serviceEditBlock.className = "editBlock";
+           selectDomClass.appendChild(serviceEditBlock);
 
-       for(let i = 0; i < res.data.data[0].images.length; i++){
-         let serviceEditBlock = document.createElement('div');
-         serviceEditBlock.className = "editBlock";
-         selectDomClass.appendChild(serviceEditBlock);
+           let imageDOM = document.createElement('div');
+           imageDOM.className = "imageDOMEdit";
+           imageDOM.style.backgroundImage = "url("+location+res.data.data[0].images[i].src+")";
+           selectDomClass.appendChild(imageDOM);
 
-         let imageDOM = document.createElement('div');
-         imageDOM.className = "imageDOMEdit";
-         imageDOM.style.backgroundImage = "url("+location+res.data.data[0].images[i].src+")";
-         selectDomClass.appendChild(imageDOM);
-
-         let imageHoverDelete = document.createElement('div');
-         imageHoverDelete.className = "imageHoverDelete";
-         imageDOM.appendChild(imageHoverDelete);
+           let imageHoverDelete = document.createElement('div');
+           imageHoverDelete.className = "imageHoverDelete";
+           imageDOM.appendChild(imageHoverDelete);
+         }
        }
+
      }
      if(name === 'headEdited'){
        let selectHewHeadImage = document.createElement('input');
@@ -449,11 +472,13 @@ let selectMethod = (name, location) => {
 }
 
 let toTopThisScroll = (e) => {
-  let toTopposition = document.getElementById(e.target.getAttribute('toelement')).offsetTop;
+  if(document.getElementById(e.target.getAttribute('toelement'))){
+    let toTopposition = document.getElementById(e.target.getAttribute('toelement')).offsetTop;
+    document.getElementById('content').scrollTo({top: toTopposition, behavior: 'smooth'});
+  }
   let location = e.target.getAttribute('location');
-  document.getElementById('content').scrollTo({top: toTopposition, behavior: 'smooth'});
-  document.getElementById('defaultEditData').style.display = 'none';
   let clickedElement = e.target.getAttribute('toelement');
+  document.getElementById('defaultEditData').style.display = 'none';
 
   for(let i = 0; i < document.getElementsByClassName('dataFromEdited').length; i++){
     if(document.getElementsByClassName('newEditedBlock')[i] !== undefined){
