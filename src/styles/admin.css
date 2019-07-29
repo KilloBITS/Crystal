@@ -55,6 +55,9 @@ div::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb{
   left: 510px;
 }
 
+.adminOnePage{
+  height: 100%;
+}
 
 .openAdminPanel{
   position: fixed;
@@ -145,6 +148,34 @@ div::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb{
   margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #08e8de;
+}
+
+.panelClassSelect{
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  top: 0;
+}
+
+.panelClassSelectButton{
+  position: absolute;
+  top: 25px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-size: contain;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.left_panelClassSelect{
+  left: 5px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjkgMTI5IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMjkgMTI5IiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+PGc+PGc+CiAgICA8cGF0aCBkPSJtODguNiwxMjEuM2MwLjgsMC44IDEuOCwxLjIgMi45LDEuMnMyLjEtMC40IDIuOS0xLjJjMS42LTEuNiAxLjYtNC4yIDAtNS44bC01MS01MSA1MS01MWMxLjYtMS42IDEuNi00LjIgMC01LjhzLTQuMi0xLjYtNS44LDBsLTU0LDUzLjljLTEuNiwxLjYtMS42LDQuMiAwLDUuOGw1NCw1My45eiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCIgc3R5bGU9ImZpbGw6I0NCMDAwMCI+PC9wYXRoPgogIDwvZz48L2c+IDwvc3ZnPg==);
+}
+
+.right_panelClassSelect{
+  right: 5px;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjkgMTI5IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAxMjkgMTI5IiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+PGc+PGc+CiAgICA8cGF0aCBkPSJtNDAuNCwxMjEuM2MtMC44LDAuOC0xLjgsMS4yLTIuOSwxLjJzLTIuMS0wLjQtMi45LTEuMmMtMS42LTEuNi0xLjYtNC4yIDAtNS44bDUxLTUxLTUxLTUxYy0xLjYtMS42LTEuNi00LjIgMC01LjggMS42LTEuNiA0LjItMS42IDUuOCwwbDUzLjksNTMuOWMxLjYsMS42IDEuNiw0LjIgMCw1LjhsLTUzLjksNTMuOXoiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgc3R5bGU9ImZpbGw6I0NCMDAwMCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiPjwvcGF0aD4KICA8L2c+PC9nPiA8L3N2Zz4=);
 }
 
 .defaultEditDataContacts{
@@ -710,4 +741,38 @@ div::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb{
   border: 1px solid #08e8de;
   width: calc(100% - 35px);
   margin: 10px 15px 0 15px;
+}
+
+.panelBtn_disabled{
+  cursor: not-allowed;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+
+/** usersBlockAdminTop **/
+.usersBlockAdminTop{
+  height: 100%;
+}
+
+.usersBlockAdminButton.addAdmin{
+  text-align: center;
+  padding: 15px 0;
+  background-color: #5bd15b;
+  color: white;
+  text-transform: uppercase;
+  width: calc(100% - 20px);
+  margin: 20px auto;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.usersBlockAdminButton.addAdmin:hover{
+  background-color: #4ac74a;
+}
+
+.ReactTable {
+  max-height: calc(100% - 155px);
+  overflow: auto;
 }

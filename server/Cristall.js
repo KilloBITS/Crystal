@@ -52,6 +52,7 @@ app.post('/getData', getData);
 /** Авторизация **/
 const signin =  require('./controller/signin');
 app.post('/signin', signin);
+
 /** Panel **/
 const staffEdited =  require('./controller/panel/staffEdited');
 app.post('/getstaffEdited', staffEdited);
@@ -82,6 +83,9 @@ app.post('/saveaboutEdited', aboutEdited);
 app.post('/changeAboutImageOne', aboutEdited);
 app.post('/changeAboutImageOne', aboutEdited);
 app.post('/changeOnlineChecker', aboutEdited);
+
+const usersEdited =  require('./controller/panel/usersPanel');
+app.post('/getUsersData', usersEdited);
 
 
 app.get('/*', function (req, res) {

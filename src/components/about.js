@@ -19,8 +19,8 @@ let opendoorSvg = (parse) => {
 const parseOpeneCristall = (hour) => {
   let day = (new Date()).getDay();
   let result = {
-    text: (day < 7 && hour > 10 && hour < 20)?"Відчинено":"Зачинено",
-    image: opendoorSvg((day < 7 && hour > 10 && hour < 20))
+    text: (day !== 0 && hour > 10 && hour < 20)?"Відчинено":"Зачинено",
+    image: opendoorSvg((day !== 0 && hour > 10 && hour < 20))
   }
   return result
 }
