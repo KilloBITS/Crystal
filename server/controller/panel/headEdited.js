@@ -39,12 +39,19 @@ var savedata = (req, res, next) => {
           var rnum = Math.floor(Math.random() * chars.length);
           randomstring += chars.substring(rnum,rnum+1);
       }
-      fs.writeFile(global.folders.headers + '/' + randomstring + '.jpg', base64Data, 'base64', function(err) {
-        head.updateOne({AI: 0},{ $set: { background:  '/images/header/' + randomstring + '.jpg'}});
+      var imageType = (req.body.type === "background")?'.jpg':'.png';
+      
+      fs.writeFile(global.folders.headers + '/' + randomstring + imageType, base64Data, 'base64', function(err) {
+        if(req.body.type === "background"){
+          head.updateOne({AI: 0},{ $set: { background:  '/images/header/' + randomstring + '.jpg'}});
+        }else{
+          head.updateOne({AI: 0},{ $set: { modelheader:  '/images/header/' + randomstring + '.png'}});
+        }
+
         res.send({
           code: 200,
           className: 'nSuccess',
-          image: '/images/header/' + randomstring + '.jpg'
+          image: '/images/header/' + randomstring + imageType
         });
       });
     });
@@ -66,10 +73,16 @@ var removeHeadPhoto = (req, res, next) => {
     if (err) return console.log(err);
 
     head.find().toArray(function(err, results_head) {
-      let imageName = results_head[0].background.split('/header/')[1]
+      if(req.body.type === "background"){
+        var imageName = results_head[0].background.split('/header/')[1]
+        head.updateOne({AI: parseInt(0) },{ $set: {background: ''} });
+      }else{
+        var imageName = results_head[0].modelheader.split('/header/')[1];
+        head.updateOne({AI: parseInt(0) },{ $set: {modelheader: ''} });
+      }
       fs.unlink(global.folders.headers + '/' + imageName, function(err){
         if(err) return console.log(err);
-        head.updateOne({AI: parseInt(0) },{ $set: {background: ''} });
+        console.log(imageName);
         res.send({
           code: 200,
           className: 'nSuccess'

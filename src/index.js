@@ -78,9 +78,7 @@ class Crystal extends React.Component{
       services: null,
       gallery: null,
       staff: null,
-      constacts: {
-        title: 'Контакти'
-      }
+      constacts: null,
     }
     this.openphoto = this.openPhoto.bind(this);
     this.closephoto = this.closephoto.bind(this);
@@ -93,7 +91,8 @@ class Crystal extends React.Component{
         staff: res.data.data.staff,
         services: res.data.data.services,
         about: res.data.data.about,
-        // gallery: res.data.data.gallery,
+        gallery: res.data.data.gallery,
+        constacts: res.data.data.constacts,
         isAdmin: res.data.data.isAdmin
       });
       setTimeout(()=>{
@@ -113,6 +112,8 @@ class Crystal extends React.Component{
         staff: res.data.data.staff,
         services: res.data.data.services,
         about: res.data.data.about,
+        gallery: res.data.data.gallery,
+        constacts: res.data.data.constacts,
         isAdmin: res.data.data.isAdmin
       });
     });
@@ -185,7 +186,7 @@ class Crystal extends React.Component{
       {(this.state.gallery !== null)?<GalleryBlock myLocation={this.state.myLocation} data={this.state.gallery} openphoto={this.openphoto}/>:null}
       {(this.state.staff !== null)?<StaffBlock myLocation={this.state.myLocation} data={this.state.staff} dataTest={this.state.gallery}/>:null}
       {(this.state.constacts !== null)?<ContactsBlock myLocation={this.state.myLocation} data={this.state.constacts}/>:null}
-      <MapBlock myLocation={this.state.myLocation}/>
+      {(this.state.constacts !== null)?<MapBlock myLocation={this.state.myLocation} data={this.state.constacts}/>:null}
       <FooterBlock
         myLocation={this.state.myLocation}
         keyUpChangeLogin={this.keyUpChangeLogin}

@@ -30,17 +30,20 @@ let getdata = (req, res, next) => {
             staff.find().toArray(function(err, results_staff) {
               contacts.find().toArray(function(err, results_contacts) {
                 gallery.find().toArray(function(err, results_gallery) {
-                  GlobalData = {
-                    header: results_head[0],
-                    about: results_about[0],
-                    services: results_services[0],
-                    gallery: results_gallery[0],
-                    staff: results_staff[0],
-                    constacts: results_contacts[0]
-                  }
-                  GlobalData.isAdmin = (req.session.user_id !== undefined)?true:false;
-                  res.send({code: 500, data: GlobalData});
-                });
+                  fs.readdir(global.folders.gallery+"/", function (err, files) {
+                    results_gallery[0].images = files;
+                    GlobalData = {
+                      header: results_head[0],
+                      about: results_about[0],
+                      services: results_services[0],
+                      gallery: results_gallery[0],
+                      staff: results_staff[0],
+                      constacts: results_contacts[0]
+                    }
+                    GlobalData.isAdmin = true;//(req.session.user_id !== undefined)?true:false;
+                    res.send({code: 500, data: GlobalData});
+                  });
+                })
               });
             });
           });

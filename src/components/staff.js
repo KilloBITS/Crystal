@@ -7,6 +7,13 @@ import '../styles/swiper.css';
 
 let parseUsers = (data, location) => {
   const dataBlock = data.map((comp, key) => <div key={key} className="staffUserBlock">
+    <div className="staffInfoUserDataTextBtn">
+      <FontAwesomeIcon icon={['fas', 'info-circle']} />
+      <div className="staffInfoUserDataText">
+        {comp.fulltext}
+      </div>
+    </div>
+
     <div className="staffImageUser">
       <img className="oneImg" src={location + '/images' + comp.photoOne} alt=""/>
       <img className="twoImg" src={location + '/images' + comp.photoTwo} alt=""/>

@@ -19,11 +19,106 @@ let selectMethod = (name, location) => {
   selectDom.className ='dataFromEdited show';
   selectDom.getElementsByClassName('miniDataEditedLoader')[0].className = 'miniDataEditedLoader show';
   selectedEditedZone = null;
+  document.getElementById('adminOnePage').className = 'adminOnePage';
   axios.post(location+'/get'+name).then(res => {
      console.log(res.data);
      editZoneData = res.data.data;
      selectedEditedZone = name;
+     if(name === 'headEdited'){
+       let selectHewHeadImage = document.createElement('input');
+       selectHewHeadImage.className = "selectHewHeadImage";
+       selectHewHeadImage.id = "selectHewHeadImage";
+       selectHewHeadImage.type = 'file';
+       selectHewHeadImage.onchange = function(el){
+         document.getElementById('loaderHeaderImages').style.opacity = '1';
+         let reader = new FileReader();
+         reader.readAsDataURL(el.target.files[0]);
+         reader.onload = function () {
+           axios.post(location+'/saveheadEdited', {image: reader.result, type: "background"}).then(res => {
+             document.getElementById('loaderHeaderImages').style.opacity = '0';
+             document.getElementById('imageDOMHeadeEdit').style.backgroundImage = "url("+location+res.data.image+")";
+             document.getElementById("backgroundPhoto").setAttribute('src',location+res.data.image);
+           });
+         };
+       };
+       selectDomClass.appendChild(selectHewHeadImage);
+
+       let selectHewHeadImageModel = document.createElement('input');
+       selectHewHeadImageModel.className = "selectHewHeadImage";
+       selectHewHeadImageModel.id = "selectHewHeadImageModel";
+       selectHewHeadImageModel.type = 'file';
+       selectHewHeadImageModel.onchange = function(el){
+         document.getElementById('loaderHeaderImages').style.opacity = '1';
+         let reader = new FileReader();
+         reader.readAsDataURL(el.target.files[0]);
+         reader.onload = function () {
+           axios.post(location+'/saveheadEdited', {image: reader.result, type: "model"}).then(res => {
+             document.getElementById('loaderHeaderImages').style.opacity = '0';
+             document.getElementById("imageHeaderModel").setAttribute('src',location+res.data.image);
+             document.getElementById("prostoheaderModel").setAttribute('src',location+res.data.image);
+           });
+         };
+       };
+       selectDomClass.appendChild(selectHewHeadImageModel);
+
+       document.getElementById('newHeadEdited').className = 'newEditedBlock show';
+       let imageDOMHeadeEdit = document.createElement('div');
+       imageDOMHeadeEdit.className = "imageDOMHeadeEdit";
+       imageDOMHeadeEdit.id = "imageDOMHeadeEdit";
+       imageDOMHeadeEdit.style.backgroundImage = "url("+location+res.data.data[0].background+")";
+       selectDomClass.appendChild(imageDOMHeadeEdit);
+
+       let imageHeaderModel = document.createElement('img');
+       imageHeaderModel.className = "imageHeaderModel";
+       imageHeaderModel.id = "imageHeaderModel";
+       imageHeaderModel.src = location+res.data.data[0].modelheader;
+       imageDOMHeadeEdit.appendChild(imageHeaderModel);
+
+       let loaderHeaderImages = document.createElement('div');
+       loaderHeaderImages.className = "loaderHeaderImages";
+       loaderHeaderImages.id = "loaderHeaderImages";
+       imageDOMHeadeEdit.appendChild(loaderHeaderImages);
+
+       //блок с кнопками
+       let headerButtonsBlock = document.createElement('div');
+       headerButtonsBlock.className = "headerButtonsBlock";
+       selectDomClass.appendChild(headerButtonsBlock);
+
+       let imageHoverDelete = document.createElement('label');
+       imageHoverDelete.className = "standartHeadButtonDelete imageHoverDeleteImage";
+       imageHoverDelete.innerHTML = 'Удалить изображение фона';
+       imageHoverDelete.onclick = function(){
+         axios.post(location+'/removeHeadPhoto',{type: "background"}).then(res => {
+           imageDOMHeadeEdit.style.backgroundImage = "none";
+           document.getElementById("backgroundPhoto").setAttribute('src',"none");
+         });
+       }
+       headerButtonsBlock.appendChild(imageHoverDelete);
+
+       let imageHoverDeleteModel = document.createElement('label');
+       imageHoverDeleteModel.className = "standartHeadButtonDelete imageHoverDeleteImageModel";
+       imageHoverDeleteModel.innerHTML = 'Удалить изображение модели';
+       imageHoverDeleteModel.onclick = function(){
+         axios.post(location+'/removeHeadPhoto',{type: "model"}).then(res => {
+           document.getElementById("prostoheaderModel").setAttribute('src',"none");
+         });
+       }
+       headerButtonsBlock.appendChild(imageHoverDeleteModel);
+
+       let imageHoverUpdate = document.createElement('label');
+       imageHoverUpdate.className = "standartHeadButtonSelect imageHoverUpdateImage";
+       imageHoverUpdate.htmlFor = "selectHewHeadImage";
+       imageHoverUpdate.innerHTML = 'Выбрать другое изображение фона';
+       headerButtonsBlock.appendChild(imageHoverUpdate);
+
+       let imageHoverUpdateModel = document.createElement('label');
+       imageHoverUpdateModel.className = "standartHeadButtonSelect imageHoverUpdateImageModel";
+       imageHoverUpdateModel.htmlFor = "selectHewHeadImageModel";
+       imageHoverUpdateModel.innerHTML = 'Выбрать другое изображение модели';
+       headerButtonsBlock.appendChild(imageHoverUpdateModel);
+     }  // Готово
      if(name === 'staffEdited'){
+       document.getElementById('adminOnePage').className = 'adminOnePage isGlobalSave';
        document.getElementById('newStaffEdited').className = 'newEditedBlock show';
        if(selectDom.getElementsByClassName('miniTitleEditedLength')[0] !== undefined){
          selectDom.getElementsByClassName('miniTitleEditedLength')[0].innerHTML = " ("+res.data.data[0].staffData.length+")";
@@ -135,6 +230,7 @@ let selectMethod = (name, location) => {
 
      } // Готово
      if(name === 'servicesEdited'){
+       document.getElementById('adminOnePage').className = 'adminOnePage isGlobalSave';
        document.getElementById('newServicesEdited').className = 'newEditedBlock show';
        if(selectDom.getElementsByClassName('miniTitleEditedLength')[0] !== undefined){
          selectDom.getElementsByClassName('miniTitleEditedLength')[0].innerHTML = " ("+res.data.data[0].myservice.length+")";
@@ -207,9 +303,11 @@ let selectMethod = (name, location) => {
      } //готово
      if(name === 'galleryEdited'){
        document.getElementById('newGalleryEdited').className = 'newEditedBlock show';
+
        if(selectDom.getElementsByClassName('miniTitleEditedLength')[0] !== undefined){
-         selectDom.getElementsByClassName('miniTitleEditedLength')[0].innerHTML = " ("+res.data.data[0].images.length+")";
+         selectDom.getElementsByClassName('miniTitleEditedLength')[0].innerHTML = " ("+res.data.images.length+")";
        }
+
        //Название
        let titleEditServiceText = document.createElement('input');
        titleEditServiceText.className = "titleEditText globaleTextEditor";
@@ -219,80 +317,47 @@ let selectMethod = (name, location) => {
        };
        titleEditServiceText.value = res.data.data[0].title;
        selectDomClass.appendChild(titleEditServiceText);
-       if(res.data.data[0].images.length === 0){
+       if(res.data.images.length === 0){
          let noneDataFromThisModule = document.createElement('div');
          noneDataFromThisModule.className = "noneDataFromThisModule";
          noneDataFromThisModule.innerHTML = "Данные отсутствуют!";
          selectDomClass.appendChild(noneDataFromThisModule);
        }else{
-         for(let i = 0; i < res.data.data[0].images.length; i++){
-           let serviceEditBlock = document.createElement('div');
-           serviceEditBlock.className = "editBlock";
-           selectDomClass.appendChild(serviceEditBlock);
-
+         let serviceEditBlock = document.createElement('div');
+         serviceEditBlock.className = "editBlock";
+         selectDomClass.appendChild(serviceEditBlock);
+         for(let i = 0; i < res.data.images.length; i++){
            let imageDOM = document.createElement('div');
            imageDOM.className = "imageDOMEdit";
-           imageDOM.style.backgroundImage = "url("+location+res.data.data[0].images[i].src+")";
-           selectDomClass.appendChild(imageDOM);
+           imageDOM.id = "galleryImage_number_"+i;
+           imageDOM.style.backgroundImage = "url("+location+'/images/gallery/'+res.data.images[i]+")";
+           serviceEditBlock.appendChild(imageDOM);
+
+           let galleryImageLoader = document.createElement('div');
+           galleryImageLoader.className = "galleryImageLoader";
+           galleryImageLoader.id = "galleryImageLoader_number_"+i;
+           imageDOM.appendChild(galleryImageLoader);
 
            let imageHoverDelete = document.createElement('div');
            imageHoverDelete.className = "imageHoverDelete";
+
+           imageHoverDelete.setAttribute("imageName", res.data.images[i]);
+           imageHoverDelete.setAttribute('thisNUmber', i)
+           imageHoverDelete.onclick = (el) => {
+             let  isTrue = window.confirm("Действительно удалить изображение ?");
+             if(isTrue){
+               document.getElementById("galleryImageLoader_number_"+i).style.opacity = "1";
+               axios.post(location+'/removeGalleryPhoto', {image: el.target.getAttribute('imageName')}).then(res => {
+                 document.getElementById("galleryImage_number_"+el.target.getAttribute('thisNUmber')).remove();
+               });
+             }
+           }
            imageDOM.appendChild(imageHoverDelete);
          }
        }
-
      }
-     if(name === 'headEdited'){
-       let selectHewHeadImage = document.createElement('input');
-       selectHewHeadImage.className = "selectHewHeadImage";
-       selectHewHeadImage.id = "selectHewHeadImage";
-       selectHewHeadImage.type = 'file';
-       selectHewHeadImage.onchange = function(el){
-         document.getElementById('loaderHeaderImages').style.opacity = '1';
-         var reader = new FileReader();
-         reader.readAsDataURL(el.target.files[0]);
-         reader.onload = function () {
-           axios.post(location+'/saveheadEdited', {image: reader.result}).then(res => {
-             console.log(res.data);
-             document.getElementById('loaderHeaderImages').style.opacity = '0';
-             document.getElementById('imageDOMHeadeEdit').style.backgroundImage = "url("+location+res.data.image+")";
-             document.getElementById("backgroundPhoto").setAttribute('src',location+res.data.image);
-           });
-         };
-       };
-       selectDomClass.appendChild(selectHewHeadImage);
-
-       document.getElementById('newHeadEdited').className = 'newEditedBlock show';
-       let imageDOMHeadeEdit = document.createElement('div');
-       imageDOMHeadeEdit.className = "imageDOMHeadeEdit";
-       imageDOMHeadeEdit.id = "imageDOMHeadeEdit";
-       imageDOMHeadeEdit.style.backgroundImage = "url("+location+res.data.data[0].background+")";
-       selectDomClass.appendChild(imageDOMHeadeEdit);
-
-       let loaderHeaderImages = document.createElement('div');
-       loaderHeaderImages.className = "loaderHeaderImages";
-       loaderHeaderImages.id = "loaderHeaderImages";
-       imageDOMHeadeEdit.appendChild(loaderHeaderImages);
-
-       let imageHoverDelete = document.createElement('label');
-       imageHoverDelete.className = "imageHoverDeleteImage";
-       imageHoverDelete.innerHTML = 'Удалить изображение';
-       imageHoverDelete.onclick = function(){
-         imageDOMHeadeEdit.style.opacity = '1';
-         axios.post(location+'/removeHeadPhoto').then(res => {
-           imageDOMHeadeEdit.style.opacity = '0';
-           imageDOMHeadeEdit.style.backgroundImage = "none";
-         });
-       }
-       imageDOMHeadeEdit.appendChild(imageHoverDelete);
-
-       let imageHoverUpdate = document.createElement('label');
-       imageHoverUpdate.className = "imageHoverUpdateImage";
-       imageHoverUpdate.htmlFor = "selectHewHeadImage"
-       imageHoverUpdate.innerHTML = 'Выбрать другое изображение';
-       imageDOMHeadeEdit.appendChild(imageHoverUpdate);
-     }  // Готово
      if(name === 'aboutEdited'){
+       document.getElementById('adminOnePage').className = 'adminOnePage isGlobalSave';
        document.getElementById('newAboutEdited').className = 'newEditedBlock show';
        //Название
        let titleEditServiceText = document.createElement('input');
@@ -456,6 +521,7 @@ let selectMethod = (name, location) => {
        checkerBlock.appendChild(checkerLabel);
      } // Готово
      if(name === 'contactsEdited'){
+       document.getElementById('adminOnePage').className = 'adminOnePage isGlobalSave';
        document.getElementById('newContactsEdited').className = 'newEditedBlock show';
        //Название
        let titleEditServiceText = document.createElement('input');
@@ -466,6 +532,59 @@ let selectMethod = (name, location) => {
        };
        titleEditServiceText.value = res.data.data[0].title;
        selectDomClass.appendChild(titleEditServiceText);
+
+       //Название
+       let thisContactsEmail = document.createElement('input');
+       thisContactsEmail.className = "titleEditText globaleTextEditor";
+       thisContactsEmail.onkeyup = (el) => {
+         dontSave = false;
+         editZoneData[0].email = el.target.value;
+       };
+       thisContactsEmail.value = res.data.data[0].email;
+       selectDomClass.appendChild(thisContactsEmail);
+
+       //Адресс
+       let thisContactsAdress = document.createElement('input');
+       thisContactsAdress.className = "titleEditText globaleTextEditor";
+       thisContactsAdress.onkeyup = (el) => {
+         dontSave = false;
+         editZoneData[0].adress = el.target.value;
+       };
+       thisContactsAdress.value = res.data.data[0].adress;
+       selectDomClass.appendChild(thisContactsAdress);
+       
+       //заголовок номеров
+       let numbersTitle = document.createElement('div');
+       numbersTitle.className = "numbersTitle";
+       numbersTitle.innerHTML = "Номера телефонов";
+       selectDomClass.appendChild(numbersTitle);
+
+       if(res.data.data[0].numbers.length > 0){
+         //номер телефона
+         for(let j = 0; j < res.data.data[0].numbers.length; j++){
+           let numbersMinBlock = document.createElement('div');
+           numbersMinBlock.className = "numbersMinBlock";
+           selectDomClass.appendChild(numbersMinBlock);
+
+           let thisContactsEmail = document.createElement('input');
+           thisContactsEmail.className = "titleEditText globaleTextEditor";
+           thisContactsEmail.onkeyup = (el) => {
+             dontSave = false;
+             editZoneData[0].numbers[j] = el.target.value;
+           };
+           thisContactsEmail.value = res.data.data[0].numbers[j];
+           numbersMinBlock.appendChild(thisContactsEmail);
+
+           let numbersRemoveBtn = document.createElement('div');
+           numbersRemoveBtn.className = "numbersRemoveBtn";
+           numbersMinBlock.appendChild(numbersRemoveBtn);
+         }
+       }
+
+       let addNewNumber = document.createElement('div');
+       addNewNumber.className = "addNewNumber";
+       addNewNumber.innerHTML = "Добавить номер телефона";
+       selectDomClass.appendChild(addNewNumber);
      }
      selectDom.getElementsByClassName('miniDataEditedLoader')[0].className = 'miniDataEditedLoader';
   });
@@ -631,7 +750,7 @@ class AminOnePage extends React.Component {
   }
 
   oneImageOneChange(el){
-    var reader = new FileReader();
+    let reader = new FileReader();
     reader.readAsDataURL(el.target.files[0]);
     reader.onload = function () {
       document.getElementById('selectNewImageIdOne').style.backgroundImage = "url("+reader.result+")";
@@ -639,7 +758,7 @@ class AminOnePage extends React.Component {
   }
 
   oneImageTwoChange(el){
-    var reader = new FileReader();
+    let reader = new FileReader();
     reader.readAsDataURL(el.target.files[0]);
     reader.onload = function () {
       document.getElementById('selectNewImageIdTwo').style.backgroundImage = "url("+reader.result+")";
@@ -647,11 +766,30 @@ class AminOnePage extends React.Component {
   }
 
   newOneFileServiceIcon(el){
-    var reader = new FileReader();
+    let reader = new FileReader();
     reader.readAsDataURL(el.target.files[0]);
     reader.onload = function () {
       document.getElementById('selectNewImageIcon').style.backgroundImage = "url("+reader.result+")";
     }
+  }
+
+  selectGalleryImages(el){
+    const files = el.target.files;
+    const dataFile = new FormData();
+    for(let i = 0; i < files.length; i++){
+      dataFile.append('file', files[i]);
+    }
+
+    axios.post(globalLocation + '/newGalleryPhoto', dataFile, {
+
+    }).then(res => { // then print response status
+      if(res.status === 200){
+        document.getElementById('buttonIds_fron_3').click()
+      }else{
+        console.log('произошла ошибка')
+      }
+    });
+    el.target.value = '';
   }
 
   refresh(el){
@@ -662,7 +800,7 @@ class AminOnePage extends React.Component {
 
   render() {
     globalLocation = this.props.myLocation;
-    return <div className="adminOnePage">
+    return <div className="adminOnePage" id="adminOnePage">
       <div className="navigationPanel">
         {parseMenu(this.props.menu, true, this.props.myLocation)}
       </div>
@@ -753,7 +891,7 @@ class AminOnePage extends React.Component {
           <div className="miniTitleEdited">Добавить</div>
           <div className="closeAddedBlock" onClick={this.closeAddBlock.bind(this)}><FontAwesomeIcon icon={['fas', 'times']}/></div>
           <div className="newEditedBlock" id="newGalleryEdited">
-            <input type="file" name="newGalleryPhoto" id="fileNewGalerry"/>
+            <input type="file" name="newGalleryPhoto" id="fileNewGalerry" accept="image/*" onChange={this.selectGalleryImages.bind(this)} multiple/>
             <label className="selectNewPhoto" htmlFor="fileNewGalerry">Выбрать изображение</label>
           </div>
           <div className="newEditedBlock" id="newAboutEdited">
@@ -810,7 +948,7 @@ class AminOnePage extends React.Component {
           </div>
         </div>
       </div>
-      <div className="saveAdminEdit" onClick={this.saveEdited.bind(this)}>{(this.state.saving)?"Идет сохранение":"Сохранить"}</div>
+      <div className="saveAdminEdit" id="adminSaveGlobal" onClick={this.saveEdited.bind(this)}>{(this.state.saving)?"Идет сохранение":"Сохранить"}</div>
       <div className="saveAdminEdit closeMobile" onClick={this.props.closePanel.bind(this)}>Закрыть</div>
     </div>
   }

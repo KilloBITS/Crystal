@@ -1154,6 +1154,7 @@ top: 15px;
 .gallery .galleryData{
   float: left;
   width: 100%;
+  overflow: hidden;
 }
 
 .galleryFotterButton{
@@ -1512,6 +1513,40 @@ top: 15px;
   display: inline-block;
 }
 
+.staffInfoUserDataTextBtn{
+  position: absolute;
+  z-index: 10;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  color: #08e8de;
+  font-size: 24px;
+}
+
+.staffInfoUserDataText{
+  overflow: hidden;
+  position: absolute;
+  background-color: white;
+  width: 290px;
+  height: fit-content;
+  z-index: -10;
+  opacity: 0;
+  transition: 0.3s;
+  padding: 20px;
+  right: calc(100% - 30px);
+  top: calc(100% + 10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-size: 14px;
+  color: black;
+  display: none;
+}
+
+.staffInfoUserDataTextBtn:hover .staffInfoUserDataText{
+  z-index: 10;
+  opacity: 1;
+  display: block;
+}
+
 .staffImageUser{
   width: 340px;
   height: 440px;
@@ -1568,6 +1603,12 @@ top: 15px;
   color: #ff7070;
 }
 
+.staffImageUser:hover{
+  z-index: 5;
+  position: relative;
+  transition: 0;
+}
+
 .staffImageUser .oneImg, .staffImageUser .twoImg{
   position: absolute;
   top: 0;
@@ -1581,6 +1622,7 @@ top: 15px;
   object-fit: cover;
   max-width: 100%;
   width: 100%;
+
 }
 
  .staffImageUser .twoImg{

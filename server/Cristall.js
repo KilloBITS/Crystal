@@ -71,7 +71,8 @@ app.post('/removeHeadPhoto', headEdited);
 
 const galleryEdited =  require('./controller/panel/galleryEdited');
 app.post('/getgalleryEdited', galleryEdited);
-app.post('/savegalleryEdited', galleryEdited);
+app.post('/newGalleryPhoto', galleryEdited);
+app.post('/removeGalleryPhoto', galleryEdited);
 
 const contactsEdited =  require('./controller/panel/contactsEdited');
 app.post('/getcontactsEdited', contactsEdited);
@@ -98,7 +99,9 @@ app.listen(5002, function(){
     headers: __dirname + '/data/images/header',
     staffs: __dirname + '/data/images/staff',
     icons: __dirname + '/data/images/icons',
-		images: __dirname + '/data/images'
+		images: __dirname + '/data/images',
+    gallery: __dirname + '/data/images/gallery'
+
 	}
   console.warn('Server started from port 5002');
 });

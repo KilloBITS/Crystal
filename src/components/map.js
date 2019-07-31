@@ -8,21 +8,19 @@ var svg = '<svg id="mePin" xmlns="http://www.w3.org/2000/svg" width="43.3" heigh
 var meIcon = L.divIcon({
   className: "leaflet-data-marker",
     html: svg.replace('#','%23'),
-
     iconAnchor  : [22, 28],
     iconSize    : [36, 42],
     popupAnchor : [0, -30],
   });
 
-const position = [48.2791023,25.9463313]
-const map = (
-  <Map center={position}  scrollWheelZoom={false} zoom={18} id="map">
-    <TileLayer url="http://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}"/>
-    <Marker position={position} icon={meIcon} ></Marker>
-  </Map>
-)
-
 class MapBlock extends React.Component {
+  constructor(props){
+    super(props);
+    console.log(this.props.data.coordinates)
+    this.state = {
+      position: this.props.data.coordinates
+    }
+  }
   toTopThisScroll(){
     document.getElementById('scrollBlock').getElementsByTagName('div')[0].scrollTo({top: 0, behavior: 'smooth'});
   }
@@ -40,7 +38,10 @@ class MapBlock extends React.Component {
     };
     return <div className="block mapBlock">
       <div className="topSvg"><Lottie options={headergolfthrid}/></div>
-      {map}
+      <Map center={this.state.position}  scrollWheelZoom={false} zoom={18} id="map">
+        <TileLayer url="http://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}"/>
+        <Marker position={this.state.position} icon={meIcon} ></Marker>
+      </Map>
       <div className="bottomSvg"><Lottie options={headergolfthrid}/></div>
     </div>
   }

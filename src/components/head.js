@@ -56,7 +56,7 @@ class HeadBlock extends React.Component {
         <img data-depth="0.1" className="backgroundPhoto" id="backgroundPhoto" src={this.props.myLocation + this.props.data.background} alt=""/>
       </div>
       <div className="headBackgroundFilter" id="headBackgroundFilter">
-        <img data-depth="0.3" className="headerModel" src={this.props.myLocation + this.props.data.modelheader} alt=""/>
+        <img data-depth="0.3" className="headerModel" id="prostoheaderModel" src={this.props.myLocation + this.props.data.modelheader} alt=""/>
       </div>
       <div className="headButtons" id="headButtons">
         <div className="toScrollButton" id="toScrollButton" onClick={(!this.state.scrolled)?this.nextScroll.bind(this):()=>{return false}}>{(this.state.scrolled)?"Про нас":<FontAwesomeIcon icon={['fas', 'arrow-down']}/>}</div>
