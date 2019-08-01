@@ -91,7 +91,11 @@ app.post('/getUsersData', usersEdited);
 
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, '../build', 'index.html'));
+  if(fs.existsSync(path.join(__dirname, '../build', 'index.html'))){
+    res.sendFile(path.join(__dirname, '../build', 'index.html'));
+  }else{
+    res.sendFile(path.join(__dirname, '../pages', 'update.html'));  
+  }
 });
 
 app.listen(5002, function(){
