@@ -28,7 +28,14 @@ var savecontactsEdited = (req, res, next) => {
       if (err) return console.log(err);
       req.body.data.forEach((a) => {
         console.log(a)
-        contacts.updateOne({AI: parseInt(a.AI) },{ $set: {title: a.title, text: a.text, fulltext: a.fulltext } });
+        contacts.updateOne({AI: 0 },{ $set: {
+            title: a.title,
+            email: a.email,
+            numbers: a.numbers,
+            adress: a.adress,
+            coordinates: a.coordinates
+          }
+        });
       });
       res.send({
         code: 200,

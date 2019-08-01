@@ -23,7 +23,7 @@ class GalleryBlock extends React.Component {
       this.state = {
         height: (window.innerWidth / 2),
         width: (window.innerWidth / 2),
-        gallegyHeight: ( (window.innerWidth / 4) * 3 )
+        gallegyHeight: ( (window.innerWidth / 2) * 3 )
       };
     }
     this.updateDimensions = this.updateDimensions.bind(this);
@@ -42,7 +42,7 @@ class GalleryBlock extends React.Component {
       this.setState({
         height: (window.innerWidth / 2),
         width: (window.innerWidth / 2),
-        gallegyHeight: ( (window.innerWidth / 4) * 3 )
+        gallegyHeight: ( (window.innerWidth / 2) * 3 )
       });
     }
   }

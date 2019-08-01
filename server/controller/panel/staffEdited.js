@@ -36,6 +36,26 @@ var savestaffEdited = (req, res, next) => {
   }
 };
 
+var removeStaff = (req, res, next) => {
+  if(new ParseSession(req, res)){
+    mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
+      const db = client.db("CRISTALL");
+      const staff = db.collection("staff");
+      if (err) return console.log(err);
+
+      staff.find().toArray(function(err, results_staff) {
+        var removeStaff = results_staff[0].staffData
+        removeStaff.splice( parseInt(req.body.AI) , 1);
+        staff.updateOne({AI: parseInt(0) },{ $set: {staffData: removeStaff } });
+        res.send({
+          code: 200,
+          className: 'nSuccess'
+        });
+      })
+    });
+  }
+};
+
 var addNewStaff = (req, res, next) => {
   if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
@@ -79,5 +99,6 @@ var addNewStaff = (req, res, next) => {
 router.post('/getstaffEdited', getstaffEdited);
 router.post('/savestaffEdited', savestaffEdited);
 router.post('/addNewStaff', addNewStaff);
+router.post('/removeStaff', addNewStaff);
 
 module.exports = router;

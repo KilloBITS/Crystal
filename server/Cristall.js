@@ -58,6 +58,7 @@ const staffEdited =  require('./controller/panel/staffEdited');
 app.post('/getstaffEdited', staffEdited);
 app.post('/savestaffEdited', staffEdited);
 app.post('/addNewStaff', staffEdited);
+app.post('/removeStaff', staffEdited);
 
 const servicesEdited =  require('./controller/panel/servicesEdited');
 app.post('/getservicesEdited', servicesEdited);

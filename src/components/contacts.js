@@ -2,6 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import HeadingArt from '../images/heading.js'
 
+let parseNumbers = (data) => {
+  return data.map((comp, key) => <div key={key} className="contactsLineStroke">
+     <a href={"tel:"+comp}>{comp}</a>
+   </div>);
+
+}
+
 class ContactsBlock extends React.Component {
   constructor(props) {
       super(props);
@@ -76,23 +83,18 @@ class ContactsBlock extends React.Component {
         <div className="contactsRow">
           <div className="contacts_line">
             <div className="contactsLineTitle">Адреса</div>
-            <div className="contactsLineStroke">Чернівці, вулиця Чорноморська, 4а</div>
+            <div className="contactsLineStroke">{this.props.data.adress}</div>
           </div>
 
           <div className="contacts_line">
             <div className="contactsLineTitle">Телефон</div>
-            <div className="contactsLineStroke">
-              <a href={"tel:+380978056953"}>+38 (097) 805-69-53</a>
-            </div>
-            <div className="contactsLineStroke">
-              <a href={"tel:+380665241709"}>+38 (066) 524-17-09</a>
-            </div>
+            {parseNumbers(this.props.data.numbers)}
           </div>
 
           <div className="contacts_line">
             <div className="contactsLineTitle">Електронна пошта</div>
             <div className="contactsLineStroke">
-              <a href={"mailto:kalinich0107@gmail.com"}>kalinich0107@gmail.com</a>
+              <a href={"mailto:kalinich0107@gmail.com"}>{this.props.data.email}</a>
             </div>
           </div>
 

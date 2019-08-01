@@ -62,6 +62,16 @@
     max-width: 115px;
   }
 
+  .staffInfoUserDataTextBtn{
+    right: 18px;
+    color: #149690;
+    font-size: 34px;
+  }
+
+  .staffInfoUserDataText{
+    right: calc(100% - 40px);
+  }
+
   .editBlock {
     width: calc(100% - 30px);
     padding: 5px;

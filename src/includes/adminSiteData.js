@@ -1,4 +1,5 @@
 import React from 'react';
+import L from 'leaflet';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -146,7 +147,21 @@ let selectMethod = (name, location) => {
            //Блок персонала
            let staffEditBlock = document.createElement('div');
            staffEditBlock.className = "editBlock";
+           staffEditBlock.id = "stafEdit_"+i;
            selectDomClass.appendChild(staffEditBlock);
+           //Заголовок блока
+           let staffEditBlockTitle = document.createElement('div');
+           staffEditBlockTitle.className = "staffEditBlockTitle";
+           staffEditBlockTitle.setAttribute("editNum", "stafEdit_"+i);
+           staffEditBlockTitle.innerHTML = res.data.data[0].staffData[i].title;
+           staffEditBlockTitle.onclick = (el) => {
+             if(document.getElementById(el.target.getAttribute("editNum")).className === "editBlock"){
+               document.getElementById(el.target.getAttribute("editNum")).className = "editBlock opened";
+             }else{
+               document.getElementById(el.target.getAttribute("editNum")).className = "editBlock";
+             }
+           }
+           staffEditBlock.appendChild(staffEditBlockTitle);
            //Заголовок
            let titleEditStaffText = document.createElement('input');
            titleEditStaffText.className = "titleEditText";
@@ -229,6 +244,20 @@ let selectMethod = (name, location) => {
            imageHoverTwo.className = "imageHover";
            imageHoverTwo.innerHTML = "Вибрать";
            imgTwo.appendChild(imageHoverTwo);
+
+           let staffRemove = document.createElement('div');
+           staffRemove.className = "staffRemove";
+           staffRemove.innerHTML = "Удалить";
+           staffRemove.onclick = (el) => {
+             let  isTrue = window.confirm("Действительно удалить работника "+res.data.data[0].staffData[i].title+" ?");
+             if(isTrue){
+
+               axios.post(location+'/removeStaff', {AI: res.data.data[0].staffData[i].AI }).then(res => {
+                 document.getElementById("stafEdit_"+res.data.data[0].staffData[i].AI).remove();
+               });
+             }
+           };
+           staffEditBlock.appendChild(staffRemove);
          }
        }
 
@@ -589,6 +618,27 @@ let selectMethod = (name, location) => {
        addNewNumber.className = "addNewNumber";
        addNewNumber.innerHTML = "Добавить номер телефона";
        selectDomClass.appendChild(addNewNumber);
+
+       let miniMapBlockAdmin = document.createElement('div');
+       miniMapBlockAdmin.className = "miniMapBlockAdmin";
+       miniMapBlockAdmin.id = "miniMapBlockAdmin";
+       selectDomClass.appendChild(miniMapBlockAdmin);
+
+       const position = res.data.data[0].coordinates;
+       const map = L.map('miniMapBlockAdmin').setView(position, 13)
+
+       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map)
+
+       L.marker(position, {draggable: true})
+          .addTo(map)
+          .bindPopup('A pretty CSS3 popup. <br> Easily customizable.')
+          .on('dragend', function (e) {
+            dontSave = false;
+            let newCoords = [e.target._latlng.lat,e.target._latlng.lng];
+            editZoneData[0].coordinates = newCoords;
+          });
      }
      selectDom.getElementsByClassName('miniDataEditedLoader')[0].className = 'miniDataEditedLoader';
   });

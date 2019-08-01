@@ -16,7 +16,6 @@ var meIcon = L.divIcon({
 class MapBlock extends React.Component {
   constructor(props){
     super(props);
-    console.log(this.props.data.coordinates)
     this.state = {
       position: this.props.data.coordinates
     }

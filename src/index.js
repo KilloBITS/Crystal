@@ -88,7 +88,6 @@ class Crystal extends React.Component{
     console.log('%c Эта функция браузера предназначена для разработчиков! ', 'font-family: sans-serif; color: #149690; font-size: 24px; text-transform: uppercase; text-align: center');
     console.log('%c Служба поддержки сайта: kaleniuk.developer@gmail.com ', 'font-family: sans-serif; color: #149690; font-size: 16px; text-transform: uppercase; text-align: center');
     axios.post(this.state.myLocation+'/getData').then(res => {
-      console.log(res.data)
       this.setState({
         header: res.data.data.header,
         staff: res.data.data.staff,
