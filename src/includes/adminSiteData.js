@@ -683,6 +683,7 @@ let selectMethod = (name, location) => {
 }
 
 let toTopThisScroll = (e) => {
+  document.getElementsByClassName('closeAddedBlock')[0].click();
   if(document.getElementById(e.target.getAttribute('toelement'))){
     let toTopposition = document.getElementById(e.target.getAttribute('toelement')).offsetTop;
     document.getElementById('content').scrollTo({top: toTopposition, behavior: 'smooth'});
@@ -801,7 +802,7 @@ class AminOnePage extends React.Component {
       reader2.onload = function () {
         newObjectfromStaff.photoTwo = reader2.result;
         axios.post(globalLocation + '/addNewStaff', {new: newObjectfromStaff} ).then(res => {
-          document.getElementsByClassName('closeAddedBlock')[0].click()
+          document.getElementsByClassName('closeAddedBlock')[0].click();
           newStaffsTitle.value = '';
           newStaffsText.value = '';
           newStaffsInstagram.value = '';

@@ -40,7 +40,7 @@ let getdata = (req, res, next) => {
                       staff: results_staff[0],
                       constacts: results_contacts[0]
                     }
-                    GlobalData.isAdmin = (req.session.user_id !== undefined)?true:false;
+                    GlobalData.isAdmin = (req.session.user_id !== undefined)?true:true;
                     res.send({code: 500, data: GlobalData});
                   });
                 })
