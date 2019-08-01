@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
 var selectedEditedZone = null;
 var editZoneData = {};
 var dontSave = true;
@@ -152,6 +151,7 @@ let selectMethod = (name, location) => {
            let titleEditStaffText = document.createElement('input');
            titleEditStaffText.className = "titleEditText";
            titleEditStaffText.value = res.data.data[0].staffData[i].title;
+           titleEditStaffText.setAttribute("thisAI", res.data.data[0].staffData[i].AI)
            titleEditStaffText.onkeyup = (el) => {
              dontSave = false;
              editZoneData[0].staffData.find(x => x.AI === res.data.data[0].staffData[i].AI).title = el.target.value;

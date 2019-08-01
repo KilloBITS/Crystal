@@ -3,7 +3,6 @@ import Fade from 'react-reveal/Fade';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 let parseGallery = (a, css, click, location) => {
-  console.log(a)
     const dataGallery = a.map((comp, key) => <Fade delay={50} key={key}><div key={key} style={css} className="galleryPhoto" onClick={click}>
       <img src={location+"/images/gallery/"+comp} alt=""/>
       <div className="hoverImage" style={{  lineHeight: css.height+'px'}}><FontAwesomeIcon icon={['fas', 'search-plus']} /></div>
