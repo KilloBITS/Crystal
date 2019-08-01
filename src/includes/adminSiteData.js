@@ -143,16 +143,20 @@ let selectMethod = (name, location) => {
          noneDataFromThisModule.innerHTML = "Данные отсутствуют!";
          selectDomClass.appendChild(noneDataFromThisModule);
        }else{
+         let staffsTitleStatic = document.createElement('div');
+         staffsTitleStatic.className = "staffsTitleStatic";
+         staffsTitleStatic.innerHTML = "Список сотрудников!";
+         selectDomClass.appendChild(staffsTitleStatic);
          for(let i = 0; i < res.data.data[0].staffData.length; i++){
            //Блок персонала
            let staffEditBlock = document.createElement('div');
            staffEditBlock.className = "editBlock";
-           staffEditBlock.id = "stafEdit_"+i;
+           staffEditBlock.id = "stafEdit_"+res.data.data[0].staffData[i].AI;
            selectDomClass.appendChild(staffEditBlock);
            //Заголовок блока
            let staffEditBlockTitle = document.createElement('div');
            staffEditBlockTitle.className = "staffEditBlockTitle";
-           staffEditBlockTitle.setAttribute("editNum", "stafEdit_"+i);
+           staffEditBlockTitle.setAttribute("editNum", "stafEdit_"+res.data.data[0].staffData[i].AI);
            staffEditBlockTitle.innerHTML = res.data.data[0].staffData[i].title;
            staffEditBlockTitle.onclick = (el) => {
              if(document.getElementById(el.target.getAttribute("editNum")).className === "editBlock"){
@@ -248,12 +252,13 @@ let selectMethod = (name, location) => {
            let staffRemove = document.createElement('div');
            staffRemove.className = "staffRemove";
            staffRemove.innerHTML = "Удалить";
+           staffRemove.setAttribute("toRemovedElement","stafEdit_"+res.data.data[0].staffData[i].AI);
            staffRemove.onclick = (el) => {
+             console.log(el.target.getAttribute('toRemovedElement'))
              let  isTrue = window.confirm("Действительно удалить работника "+res.data.data[0].staffData[i].title+" ?");
              if(isTrue){
-
                axios.post(location+'/removeStaff', {AI: res.data.data[0].staffData[i].AI }).then(res => {
-                 document.getElementById("stafEdit_"+res.data.data[0].staffData[i].AI).remove();
+                 document.getElementById(el.target.getAttribute('toRemovedElement')).remove();
                });
              }
            };
@@ -763,6 +768,7 @@ class AminOnePage extends React.Component {
       reader2.onload = function () {
         newObjectfromStaff.photoTwo = reader2.result;
         axios.post(globalLocation + '/addNewStaff', {new: newObjectfromStaff} ).then(res => {
+          document.getElementsByClassName('closeAddedBlock')[0].click()
           newStaffsTitle.value = '';
           newStaffsText.value = '';
           newStaffsInstagram.value = '';

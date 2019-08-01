@@ -185,7 +185,7 @@ class Crystal extends React.Component{
       <StatisticBlock myLocation={this.state.myLocation}/>
       <MailingBlock myLocation={this.state.myLocation}/>
       {(this.state.gallery !== null)?<GalleryBlock myLocation={this.state.myLocation} data={this.state.gallery} openphoto={this.openphoto}/>:null}
-      {(this.state.staff !== null)?<StaffBlock myLocation={this.state.myLocation} data={this.state.staff} dataTest={this.state.gallery}/>:null}
+      {( (this.state.staff !== null) && (this.state.staff.staffData.length > 0) )?<StaffBlock myLocation={this.state.myLocation} data={this.state.staff} dataTest={this.state.gallery}/>:null}
       {(this.state.constacts !== null)?<ContactsBlock myLocation={this.state.myLocation} data={this.state.constacts}/>:null}
       {(this.state.constacts !== null)?<MapBlock myLocation={this.state.myLocation} data={this.state.constacts}/>:null}
       <FooterBlock

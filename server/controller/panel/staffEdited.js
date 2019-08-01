@@ -44,13 +44,18 @@ var removeStaff = (req, res, next) => {
       if (err) return console.log(err);
 
       staff.find().toArray(function(err, results_staff) {
-        var removeStaff = results_staff[0].staffData
-        removeStaff.splice( parseInt(req.body.AI) , 1);
-        staff.updateOne({AI: parseInt(0) },{ $set: {staffData: removeStaff } });
-        res.send({
-          code: 200,
-          className: 'nSuccess'
+        var removeStaff = results_staff[0].staffData;
+        fs.unlink(global.folders.staffs + removeStaff.find(x => x.AI === parseInt(req.body.AI)).photoOne.split("staff")[1], function(err){
+          fs.unlink(global.folders.staffs + removeStaff.find(x => x.AI === parseInt(req.body.AI)).photoTwo.split("staff")[1], function(err){
+            removeStaff.splice( removeStaff.findIndex(x => x.AI === parseInt(req.body.AI)) , 1);
+            staff.updateOne({AI: parseInt(0) },{ $set: {staffData: removeStaff } });
+            res.send({
+              code: 200,
+              className: 'nSuccess'
+            });
+          });
         });
+
       })
     });
   }
@@ -65,11 +70,12 @@ var addNewStaff = (req, res, next) => {
 
       staff.find().toArray(function(err, results_staff) {
         var myStafs = results_staff[0];
+        var newImageName = (myStafs.staffData.length+1).toString();
         myStafs.staffData.push({
-          AI: req.body.new.AI,
+          AI: (myStafs.staffData.length+1),
           title: req.body.new.title,
-          photoOne:"/staff/"+ (parseInt(req.body.new.AI)+1)+"-1.jpg",
-          photoTwo:"/staff/"+ (parseInt(req.body.new.AI)+1)+"-2.jpg",
+          photoOne:"/staff/"+ newImageName +"-1.jpg",
+          photoTwo:"/staff/"+ newImageName+"-2.jpg",
           text: req.body.new.text,
           fulltext: req.body.new.fulltext,
           insta: req.body.new.insta,
@@ -79,17 +85,14 @@ var addNewStaff = (req, res, next) => {
 
         var photoOne = req.body.new.photoOne.replace(/^data:image\/(png|gif|jpeg|jpg);base64,/,'');
         var photoTwo = req.body.new.photoTwo.replace(/^data:image\/(png|gif|jpeg|jpg);base64,/,'');
-        fs.writeFile(global.folders.staffs + "/"+ (parseInt(req.body.new.AI)+1) +"-1.jpg", photoOne, 'base64', function(err1){
-          console.log(err1)
-          fs.writeFile(global.folders.staffs + "/"+ (parseInt(req.body.new.AI)+1) +"-2.jpg", photoTwo, 'base64', function(err2){
-
+        fs.writeFile(global.folders.staffs + "/"+ newImageName +"-1.jpg", photoOne, 'base64', function(err1){
+          fs.writeFile(global.folders.staffs + "/"+ newImageName +"-2.jpg", photoTwo, 'base64', function(err2){
+            staff.updateOne({AI: parseInt(0) },{ $set: {staffData: myStafs.staffData } });
+            res.send({
+              code: 200,
+              className: 'nSuccess'
+            });
           });
-        });
-
-        staff.updateOne({AI: parseInt(0) },{ $set: {staffData: myStafs.staffData } });
-        res.send({
-          code: 200,
-          className: 'nSuccess'
         });
       })
     });
@@ -99,6 +102,6 @@ var addNewStaff = (req, res, next) => {
 router.post('/getstaffEdited', getstaffEdited);
 router.post('/savestaffEdited', savestaffEdited);
 router.post('/addNewStaff', addNewStaff);
-router.post('/removeStaff', addNewStaff);
+router.post('/removeStaff', removeStaff);
 
 module.exports = router;
