@@ -4,9 +4,10 @@ const router = express.Router();
 const mongoClient = require("mongodb").MongoClient;
 const bParser = require('body-parser');
 const fs = require("fs");
+const ParseSession = require('../system/parseSession');
 
 var getUsersData = (req, res, next) => {
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const users = db.collection("users");
@@ -16,13 +17,7 @@ var getUsersData = (req, res, next) => {
         res.send({data: results_users})
       })
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 };
 
 

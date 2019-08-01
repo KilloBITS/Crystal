@@ -4,9 +4,10 @@ const router = express.Router();
 const mongoClient = require("mongodb").MongoClient;
 const bParser = require('body-parser');
 const fs = require("fs");
+const ParseSession = require('../system/parseSession');
 
-var getdata = (req, res, next) => {
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+var getaboutEdited = (req, res, next) => {
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const about = db.collection("about");
@@ -16,18 +17,11 @@ var getdata = (req, res, next) => {
         res.send({data: results_about})
       })
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 };
 
-var savedata = (req, res, next) => {
-  // console.log(req.body.data)
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+var saveaboutEdited = (req, res, next) => {
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const about = db.collection("about");
@@ -49,40 +43,37 @@ var savedata = (req, res, next) => {
         className: 'nSuccess'
       });
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 };
 
 var selectHewAboutImageOne = (req, res, next) => {
-  var photo = req.body.image.replace(/^data:image\/(png|gif|jpeg|jpg);base64,/,'');
-  fs.writeFile(global.folders.images + "/bg1.png", photo, 'base64', function(err){
-    console.log(err);
-    res.send({
-      code: 200,
-      className: 'nSuccess'
-    });
-  })
+  if(new ParseSession(req, res)){
+    var photo = req.body.image.replace(/^data:image\/(png|gif|jpeg|jpg);base64,/,'');
+    fs.writeFile(global.folders.images + "/bg1.png", photo, 'base64', function(err){
+      console.log(err);
+      res.send({
+        code: 200,
+        className: 'nSuccess'
+      });
+    })
+  }
 }
 
 var selectHewAboutImageTwo = (req, res, next) => {
-  var photo = req.body.image.replace(/^data:image\/(png|gif|jpeg|jpg);base64,/,'');
-  fs.writeFile(global.folders.images + "/bg2.png", photo, 'base64', function(err){
-    console.log(err);
-    res.send({
-      code: 200,
-      className: 'nSuccess'
-    });
-  })
+  if(new ParseSession(req, res)){
+    var photo = req.body.image.replace(/^data:image\/(png|gif|jpeg|jpg);base64,/,'');
+    fs.writeFile(global.folders.images + "/bg2.png", photo, 'base64', function(err){
+      console.log(err);
+      res.send({
+        code: 200,
+        className: 'nSuccess'
+      });
+    })
+  }
 }
 
 var changeOnlineChecker  = (req, res, next) => {
-  // console.log(req.body.data)
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const about = db.collection("about");
@@ -98,20 +89,13 @@ var changeOnlineChecker  = (req, res, next) => {
         className: 'nSuccess'
       });
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 }
 
-router.post('/getaboutEdited', getdata);
-router.post('/saveaboutEdited', savedata);
+router.post('/getaboutEdited', getaboutEdited);
+router.post('/saveaboutEdited', saveaboutEdited);
 router.post('/changeAboutImageOne', selectHewAboutImageOne);
 router.post('/changeAboutImageTwo', selectHewAboutImageTwo);
 router.post('/changeOnlineChecker', changeOnlineChecker);
-
 
 module.exports = router;

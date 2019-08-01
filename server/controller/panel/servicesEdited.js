@@ -4,9 +4,10 @@ const router = express.Router();
 const mongoClient = require("mongodb").MongoClient;
 const bParser = require('body-parser');
 const fs = require("fs");
+const ParseSession = require('../system/parseSession');
 
-var getdata = (req, res, next) => {
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+var getservicesEdited = (req, res, next) => {
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const services = db.collection("services");
@@ -16,25 +17,18 @@ var getdata = (req, res, next) => {
         res.send({code: 200, data: results_services})
       })
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 };
 
-var savedata = (req, res, next) => {
-  // console.log(req.body.data)
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+var saveservicesEdited = (req, res, next) => {
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const services = db.collection("services");
       if (err) return console.log(err);
       services.updateOne({AI: parseInt(0) },{ $set: {
           title: req.body.data[0].title,
-          text: req.body.data[0].text, 
+          text: req.body.data[0].text,
           myservice: req.body.data[0].myservice
         }
       });
@@ -43,19 +37,13 @@ var savedata = (req, res, next) => {
         className: 'nSuccess'
       });
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 };
 
 
 
 var addNewService = (req, res, next) => {
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const services = db.collection("services");
@@ -81,17 +69,11 @@ var addNewService = (req, res, next) => {
         });
       })
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 }
 
-router.post('/getservicesEdited', getdata);
-router.post('/saveservicesEdited', savedata);
+router.post('/getservicesEdited', getservicesEdited);
+router.post('/saveservicesEdited', saveservicesEdited);
 router.post('/addNewService', addNewService);
 
 module.exports = router;

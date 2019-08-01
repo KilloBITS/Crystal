@@ -40,17 +40,17 @@ app.use(bParser.json({limit: '50mb', extended: true}));
 app.use(express.static(path.join(__dirname, '../build')));
 app.use(express.static(path.join(__dirname, './data/')));
 
-const message =  require('./controller/message_controller');
+const message =  require('./controller/global/message_controller');
 
-const saveEmail =  require('./controller/saveEmail');
+const saveEmail =  require('./controller/global/saveEmail');
 app.post('/postMessage', message);
 app.post('/saveEmail', saveEmail);
 
-const getData =  require('./controller/get_data');
+const getData =  require('./controller/global/get_data');
 app.post('/getData', getData);
 
 /** Авторизация **/
-const signin =  require('./controller/signin');
+const signin =  require('./controller/global/signin');
 app.post('/signin', signin);
 
 /** Panel **/

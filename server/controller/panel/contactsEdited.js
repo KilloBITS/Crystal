@@ -4,9 +4,10 @@ const router = express.Router();
 const mongoClient = require("mongodb").MongoClient;
 const bParser = require('body-parser');
 const fs = require("fs");
+const ParseSession = require('../system/parseSession');
 
-var getdata = (req, res, next) => {
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+var getcontactsEdited = (req, res, next) => {
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const contacts = db.collection("contacts");
@@ -16,18 +17,11 @@ var getdata = (req, res, next) => {
         res.send({data: results_contacts})
       })
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 };
 
-var savedata = (req, res, next) => {
-  // console.log(req.body.data)
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+var savecontactsEdited = (req, res, next) => {
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const contacts = db.collection("contacts");
@@ -41,16 +35,10 @@ var savedata = (req, res, next) => {
         className: 'nSuccess'
       });
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 };
 
-router.post('/getcontactsEdited', getdata);
-router.post('/savecontactsEdited', savedata);
+router.post('/getcontactsEdited', getcontactsEdited);
+router.post('/savecontactsEdited', savecontactsEdited);
 
 module.exports = router;

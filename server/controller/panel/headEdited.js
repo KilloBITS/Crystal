@@ -4,9 +4,10 @@ const router = express.Router();
 const mongoClient = require("mongodb").MongoClient;
 const bParser = require('body-parser');
 const fs = require("fs");
+const ParseSession = require('../system/parseSession');
 
-var getdata = (req, res, next) => {
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+var getheadEdited = (req, res, next) => {
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const head = db.collection("head");
@@ -16,17 +17,11 @@ var getdata = (req, res, next) => {
         res.send({data: results_head})
       })
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 };
 
-var savedata = (req, res, next) => {
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+var saveheadEdited = (req, res, next) => {
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const head = db.collection("head");
@@ -40,7 +35,7 @@ var savedata = (req, res, next) => {
           randomstring += chars.substring(rnum,rnum+1);
       }
       var imageType = (req.body.type === "background")?'.jpg':'.png';
-      
+
       fs.writeFile(global.folders.headers + '/' + randomstring + imageType, base64Data, 'base64', function(err) {
         if(req.body.type === "background"){
           head.updateOne({AI: 0},{ $set: { background:  '/images/header/' + randomstring + '.jpg'}});
@@ -55,52 +50,40 @@ var savedata = (req, res, next) => {
         });
       });
     });
-    // }else{
-    //   res.send({
-    //     code: 403,
-    //     className: 'nWarning',
-    //     message: 'У вас нет доступа к данным действиям!'
-    //   });
-    // }
+  }
 };
 
 
 var removeHeadPhoto = (req, res, next) => {
-// if(req.session !== undefined && req.session.user_id !== undefined){
-  mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
-    const db = client.db("CRISTALL");
-    const head = db.collection("head");
-    if (err) return console.log(err);
+  if(new ParseSession(req, res)){
+    mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
+      const db = client.db("CRISTALL");
+      const head = db.collection("head");
+      if (err) return console.log(err);
 
-    head.find().toArray(function(err, results_head) {
-      if(req.body.type === "background"){
-        var imageName = results_head[0].background.split('/header/')[1]
-        head.updateOne({AI: parseInt(0) },{ $set: {background: ''} });
-      }else{
-        var imageName = results_head[0].modelheader.split('/header/')[1];
-        head.updateOne({AI: parseInt(0) },{ $set: {modelheader: ''} });
-      }
-      fs.unlink(global.folders.headers + '/' + imageName, function(err){
-        if(err) return console.log(err);
-        console.log(imageName);
-        res.send({
-          code: 200,
-          className: 'nSuccess'
+      head.find().toArray(function(err, results_head) {
+        if(req.body.type === "background"){
+          var imageName = results_head[0].background.split('/header/')[1]
+          head.updateOne({AI: parseInt(0) },{ $set: {background: ''} });
+        }else{
+          var imageName = results_head[0].modelheader.split('/header/')[1];
+          head.updateOne({AI: parseInt(0) },{ $set: {modelheader: ''} });
+        }
+        fs.unlink(global.folders.headers + '/' + imageName, function(err){
+          if(err) return console.log(err);
+          console.log(imageName);
+          res.send({
+            code: 200,
+            className: 'nSuccess'
+          });
         });
-      });
-    })
-  });
-// }else{
-//   res.send({
-//     code: 403,
-//     className: 'nWarning',
-//     message: 'У вас нет доступа к данным действиям!'
-//   });
-// }
+      })
+    });
+  }
 }
 
-router.post('/getheadEdited', getdata);
-router.post('/saveheadEdited', savedata);
+router.post('/getheadEdited', getheadEdited);
+router.post('/saveheadEdited', saveheadEdited);
 router.post('/removeHeadPhoto', removeHeadPhoto);
 
 module.exports = router;

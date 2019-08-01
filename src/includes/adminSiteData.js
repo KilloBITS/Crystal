@@ -21,7 +21,6 @@ let selectMethod = (name, location) => {
   selectedEditedZone = null;
   document.getElementById('adminOnePage').className = 'adminOnePage';
   axios.post(location+'/get'+name).then(res => {
-     console.log(res.data);
      editZoneData = res.data.data;
      selectedEditedZone = name;
      if(name === 'headEdited'){
@@ -514,7 +513,7 @@ let selectMethod = (name, location) => {
          }
 
          axios.post(location+'/changeOnlineChecker',{writeOnline: el.target.checked}).then(res => {
-          console.log(res.data)
+
          });
        };
        checkerBlock.appendChild(inputChecker);
@@ -743,7 +742,6 @@ class AminOnePage extends React.Component {
     readerService.readAsText(newServiceIcon.files[0]);
     readerService.onload = function () {
       newObjectfromService.icon = readerService.result;
-      console.log(newObjectfromService)
       axios.post(globalLocation + '/addNewService', {new: newObjectfromService} ).then(res => {
         newServiceName.value = '';
         newServiceText.value = '';

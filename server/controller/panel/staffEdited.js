@@ -4,9 +4,10 @@ const router = express.Router();
 const mongoClient = require("mongodb").MongoClient;
 const bParser = require('body-parser');
 const fs = require("fs");
+const ParseSession = require('../system/parseSession');
 
-var getdata = (req, res, next) => {
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+var getstaffEdited = (req, res, next) => {
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const staff = db.collection("staff");
@@ -16,18 +17,11 @@ var getdata = (req, res, next) => {
         res.send({data: results_staff})
       })
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 };
 
-var savedata = (req, res, next) => {
-  // console.log(req.body.data)
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+var savestaffEdited = (req, res, next) => {
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const staff = db.collection("staff");
@@ -39,17 +33,11 @@ var savedata = (req, res, next) => {
         className: 'nSuccess'
       });
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 };
 
 var addNewStaff = (req, res, next) => {
-  // if(req.session !== undefined && req.session.user_id !== undefined){
+  if(new ParseSession(req, res)){
     mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
       const db = client.db("CRISTALL");
       const staff = db.collection("staff");
@@ -78,7 +66,6 @@ var addNewStaff = (req, res, next) => {
           });
         });
 
-
         staff.updateOne({AI: parseInt(0) },{ $set: {staffData: myStafs.staffData } });
         res.send({
           code: 200,
@@ -86,17 +73,11 @@ var addNewStaff = (req, res, next) => {
         });
       })
     });
-  // }else{
-  //   res.send({
-  //     code: 403,
-  //     className: 'nWarning',
-  //     message: 'У вас нет доступа к данным действиям!'
-  //   });
-  // }
+  }
 }
 
-router.post('/getstaffEdited', getdata);
-router.post('/savestaffEdited', savedata);
+router.post('/getstaffEdited', getstaffEdited);
+router.post('/savestaffEdited', savestaffEdited);
 router.post('/addNewStaff', addNewStaff);
 
 module.exports = router;
