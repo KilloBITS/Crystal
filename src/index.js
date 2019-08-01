@@ -144,7 +144,8 @@ class Crystal extends React.Component{
     }
     axios.post('/signIn', loginData).then(res => {
       if(res.data.code === 200){
-        console.log('все супер')
+        console.log('все супер');
+        window.location.reload();
         this.setState({
           isAdmin: true
         });
