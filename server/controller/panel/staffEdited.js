@@ -99,9 +99,47 @@ var addNewStaff = (req, res, next) => {
   }
 }
 
+var setNewImageUserOne = (req, res, next) => {
+  if(new ParseSession(req, res)){
+    mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
+      const db = client.db("CRISTALL");
+      const staff = db.collection("staff");
+      if (err) return console.log(err);
+
+      staff.find().toArray(function(err, results_staff) {
+        var myStafs = results_staff[0].staffData.find(x => x.AI === parseInt(req.body.AI)).photoOne;
+        var photo = req.body.image.replace(/^data:image\/(png|gif|jpeg|jpg);base64,/,'');
+        fs.writeFile(global.folders.staffs + myStafs.split('staff')[1], photo, 'base64', function(err1){
+          res.send({code: 200, image: myStafs});
+        });
+      })
+    });
+  }
+}
+
+var setNewImageUserTwo = (req, res, next) => {
+  if(new ParseSession(req, res)){
+    mongoClient.connect('mongodb://localhost:27017/', function(err, client) {
+      const db = client.db("CRISTALL");
+      const staff = db.collection("staff");
+      if (err) return console.log(err);
+
+      staff.find().toArray(function(err, results_staff) {
+        var myStafs = results_staff[0].staffData.find(x => x.AI === parseInt(req.body.AI)).photoTwo;
+        var photo = req.body.image.replace(/^data:image\/(png|gif|jpeg|jpg);base64,/,'');
+        fs.writeFile(global.folders.staffs + myStafs.split('staff')[1], photo, 'base64', function(err1){
+          res.send({code: 200, image: myStafs});
+        });
+      })
+    });
+  }
+}
+
 router.post('/getstaffEdited', getstaffEdited);
 router.post('/savestaffEdited', savestaffEdited);
 router.post('/addNewStaff', addNewStaff);
 router.post('/removeStaff', removeStaff);
+router.post('/setNewImageUserOne', setNewImageUserOne);
+router.post('/setNewImageUserTwo', setNewImageUserTwo);
 
 module.exports = router;

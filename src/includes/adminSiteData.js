@@ -228,24 +228,57 @@ let selectMethod = (name, location) => {
            let imagesOneTwoBlock = document.createElement('div');
            imagesOneTwoBlock.className = "imagesOneTwoBlock";
            staffEditBlock.appendChild(imagesOneTwoBlock);
+
+           let selectOneImageUser = document.createElement('input');
+           selectOneImageUser.className = "selectImageUser";
+           selectOneImageUser.id = "selectOneNewImageUser_"+res.data.data[0].staffData[i].AI;
+           selectOneImageUser.type = 'file';
+           selectOneImageUser.onchange = function(el){
+             let reader = new FileReader();
+             reader.readAsDataURL(el.target.files[0]);
+             reader.onload = function () {
+               axios.post(location+'/setNewImageUserOne', {image: reader.result, AI: res.data.data[0].staffData[i].AI }).then(res => {
+                 imgOne.style.backgroundImage = "url("+location+"/images"+res.data.image+"?"+new Date().getTime()+")";
+               });
+             };
+           };
+           selectDomClass.appendChild(selectOneImageUser);
+
+           let selectTwoImageUser = document.createElement('input');
+           selectTwoImageUser.className = "selectImageUser";
+           selectTwoImageUser.id = "selectTwoNewImageUser_"+res.data.data[0].staffData[i].AI;
+           selectTwoImageUser.type = 'file';
+           selectTwoImageUser.onchange = function(el){
+             let reader = new FileReader();
+             reader.readAsDataURL(el.target.files[0]);
+             reader.onload = function () {
+               axios.post(location+'/setNewImageUserTwo', {image: reader.result, AI: res.data.data[0].staffData[i].AI }).then(res => {
+                  imgTwo.style.backgroundImage = "url("+location+"/images"+res.data.image+"?"+new Date().getTime()+")";
+               });
+             };
+           };
+           selectDomClass.appendChild(selectTwoImageUser);
+
            //imgOne
            let imgOne = document.createElement('div');
            imgOne.className = "imgEdiBlock imgOne";
-           imgOne.style.backgroundImage = "url("+location+"/images"+res.data.data[0].staffData[i].photoOne+")";
+           imgOne.style.backgroundImage = "url("+location+"/images"+res.data.data[0].staffData[i].photoOne+"?"+new Date().getTime()+")";
            imagesOneTwoBlock.appendChild(imgOne);
 
-           let imageHoverOne = document.createElement('div');
+           let imageHoverOne = document.createElement('label');
            imageHoverOne.className = "imageHover";
+           imageHoverOne.htmlFor = "selectOneNewImageUser_"+res.data.data[0].staffData[i].AI;
            imageHoverOne.innerHTML = "Вибрать";
            imgOne.appendChild(imageHoverOne);
            //imgTwo
            let imgTwo = document.createElement('div');
            imgTwo.className = "imgEdiBlock imgTwo";
-           imgTwo.style.backgroundImage = "url("+location+"/images"+res.data.data[0].staffData[i].photoTwo+")";
+           imgTwo.style.backgroundImage = "url("+location+"/images"+res.data.data[0].staffData[i].photoTwo+"?"+new Date().getTime()+")";
            imagesOneTwoBlock.appendChild(imgTwo);
 
-           let imageHoverTwo = document.createElement('div');
+           let imageHoverTwo = document.createElement('label');
            imageHoverTwo.className = "imageHover";
+           imageHoverTwo.htmlFor = "selectTwoNewImageUser_"+res.data.data[0].staffData[i].AI;
            imageHoverTwo.innerHTML = "Вибрать";
            imgTwo.appendChild(imageHoverTwo);
 

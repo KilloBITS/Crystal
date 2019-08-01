@@ -59,6 +59,8 @@ app.post('/getstaffEdited', staffEdited);
 app.post('/savestaffEdited', staffEdited);
 app.post('/addNewStaff', staffEdited);
 app.post('/removeStaff', staffEdited);
+app.post('/setNewImageUserOne', staffEdited);
+app.post('/setNewImageUserTwo', staffEdited);
 
 const servicesEdited =  require('./controller/panel/servicesEdited');
 app.post('/getservicesEdited', servicesEdited);
@@ -94,7 +96,7 @@ app.get('/*', function (req, res) {
   if(fs.existsSync(path.join(__dirname, '../build', 'index.html'))){
     res.sendFile(path.join(__dirname, '../build', 'index.html'));
   }else{
-    res.sendFile(path.join(__dirname, '../pages', 'update.html'));  
+    res.sendFile(path.join(__dirname, '../pages', 'update.html'));
   }
 });
 
