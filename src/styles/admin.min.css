@@ -58,8 +58,43 @@
     overflow: hidden;
   }
 
+  .imageHeaderModel{
+    max-width: 115px;
+  }
+
+  .editBlock {
+    width: calc(100% - 30px);
+    padding: 5px;
+    border-bottom: 1px solid #08e8de;
+    margin: auto;
+    font-family: DefaultText;
+    margin-bottom: 10px;
+    height: auto;
+  }
+  .imageHoverDelete{
+    opacity: 1;
+  }
+
   .editedData{
     height: calc(100% - 168px);
+  }
+
+  .adminOnePage.isGlobalSave .editedData{
+    height: calc(100% - 168px);
+  }
+
+  .adminOnePage.isGlobalSave #adminSaveGlobal{
+    float: left;
+  }
+
+  .imageDOMEdit{
+    width: calc(100% / 3 - 10px);
+    height: 100px;
+    background-size: contain;
+    margin: 5px;
+    float: none;
+    position: relative;
+    display: inline-block;
   }
 
   .panelClassSelect{

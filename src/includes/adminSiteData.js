@@ -65,8 +65,13 @@ let selectMethod = (name, location) => {
        let imageDOMHeadeEdit = document.createElement('div');
        imageDOMHeadeEdit.className = "imageDOMHeadeEdit";
        imageDOMHeadeEdit.id = "imageDOMHeadeEdit";
-       imageDOMHeadeEdit.style.backgroundImage = "url("+location+res.data.data[0].background+")";
        selectDomClass.appendChild(imageDOMHeadeEdit);
+
+       let backgroundHead = document.createElement('img');
+       backgroundHead.className = "backgroundHead";
+       backgroundHead.id = "backgroundHead";
+       backgroundHead.src = location+res.data.data[0].background;
+       imageDOMHeadeEdit.appendChild(backgroundHead);
 
        let imageHeaderModel = document.createElement('img');
        imageHeaderModel.className = "imageHeaderModel";
@@ -300,7 +305,7 @@ let selectMethod = (name, location) => {
           }
        }
 
-     } //готово
+     } //Готово
      if(name === 'galleryEdited'){
        document.getElementById('newGalleryEdited').className = 'newEditedBlock show';
 
@@ -355,7 +360,7 @@ let selectMethod = (name, location) => {
            imageDOM.appendChild(imageHoverDelete);
          }
        }
-     }
+     } //Готово
      if(name === 'aboutEdited'){
        document.getElementById('adminOnePage').className = 'adminOnePage isGlobalSave';
        document.getElementById('newAboutEdited').className = 'newEditedBlock show';
@@ -552,7 +557,7 @@ let selectMethod = (name, location) => {
        };
        thisContactsAdress.value = res.data.data[0].adress;
        selectDomClass.appendChild(thisContactsAdress);
-       
+
        //заголовок номеров
        let numbersTitle = document.createElement('div');
        numbersTitle.className = "numbersTitle";
